@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Income
+from models import db, User, Income, Expense
 
 if __name__ == '__main__':
     fake = Faker()
@@ -44,6 +44,18 @@ if __name__ == '__main__':
         i5 = Income(amount=fake.pricetag(), frequency= "daily", user_id=User.query.get(5).id)
 
         incomes = [i1, i2, i3, i4, i5]
+        db.session.add_all(incomes)
+        db.session.commit()
+
+        print("Adding expenses...")
+
+        e1 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(1).id)
+        e2 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(2).id)
+        e3 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(3).id)
+        e4 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(4).id)
+        e5 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(5).id)
+
+        incomes = [e1, e2, e3, e4, e5]
         db.session.add_all(incomes)
         db.session.commit()
 
