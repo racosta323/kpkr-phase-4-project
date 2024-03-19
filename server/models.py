@@ -16,4 +16,4 @@ class User(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     def __repr__(self):
-        return f'<User Id: {self.id}, first_name = {self.first_name}, last_name = {self.last_name}>'
+        return f'<User Id: {self.id}, first_name = {self.first_name}, last_name = {self.last_name}, account_balance = {self.account_balance}>'
