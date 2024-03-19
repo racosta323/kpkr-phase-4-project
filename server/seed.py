@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User
+from models import db, User, Income
 
 if __name__ == '__main__':
     fake = Faker()
@@ -17,6 +17,7 @@ if __name__ == '__main__':
         # Seed code goes here!
         print('Deleting Data....')
         User.query.delete()
+        Income.query.delete()
 
         users = []
 
@@ -31,3 +32,7 @@ if __name__ == '__main__':
         print("Adding users...")    
         db.session.add_all(users)    
         db.session.commit()
+
+        
+
+        print("Adding incomes...")
