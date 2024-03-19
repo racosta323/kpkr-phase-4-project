@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Income, Expense
+from models import db, User, Income, Expense, Goal
 
 if __name__ == '__main__':
     fake = Faker()
@@ -55,8 +55,20 @@ if __name__ == '__main__':
         e4 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(4).id)
         e5 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(5).id)
 
-        incomes = [e1, e2, e3, e4, e5]
-        db.session.add_all(incomes)
+        expenses = [e1, e2, e3, e4, e5]
+        db.session.add_all(expenses)
+        db.session.commit()
+
+        print("Adding goals...")
+
+        g1 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(1).id)
+        g2 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(2).id)
+        g3 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(3).id)
+        g4 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(4).id)
+        g5 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(5).id)
+
+        goals = [g1, g2, g3, g4, g5]
+        db.session.add_all(goals)
         db.session.commit()
 
         print("Seeding complete!")
