@@ -4,10 +4,23 @@
   --link: #61dafb;
   --text: hsla(0, 0%, 100%, 0.88);
 }
+
+.app-container {
+  text-align: center; /* Centers the text */
+  width: 100%;
+}
+
 .onboarding-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+
+  max-width: 100%; 
+}
+
+.form-box {
+  margin: 20px auto; 
+  width: 80%; 
+  max-width: 500px; 
+  padding: 20px; 
+  border: 2px solid #000; 
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+  background-color: #fff; 
 }
