@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 
-function Form({ onSubmit }) {
+function InfoForm({ onSubmit }) {
     return (
         <Formik
           initialValues={{
@@ -40,4 +40,4 @@ function Form({ onSubmit }) {
       );
     };
 
-export default Form;
+export default InfoForm;

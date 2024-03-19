@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import Form from "./Form.js";
+import InfoForm from "./Form.js";
 
 function Onboarding() {
   return (
@@ -10,7 +10,7 @@ function Onboarding() {
         <h2>Set your savings goals and track your progress!</h2>
 
         <div className='form-box'>
-          <Form />
+          <InfoForm />
          
         </div>
 
