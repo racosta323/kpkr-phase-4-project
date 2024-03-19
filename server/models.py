@@ -44,3 +44,17 @@ class Expense(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Expenses ID: {self.id}, Expenses amount: {self.amount}, Expenses frequency: {self.frequency}, User ID: {self.user_id} >'
+    
+class Goal(db.Model, SerializerMixin):
+    __tablename__ = 'goals' 
+
+    id=db.Column(db.Integer, primary_key=True)
+    amount=db.Column(db.Integer, nullable=False)
+    goal=db.Column(db.String, nullable=False)
+    target_date=db.Column(db.DateTime)
+    created_at=db.Column(db.DateTime, server_default=db.func.now())
+
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    def __repr__(self):
+        return f'<Goal ID: {self.id}, Goal amount: {self.amount}, Goal: {self.frequency}, User ID: {self.user_id} >'
