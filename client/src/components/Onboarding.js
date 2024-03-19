@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
-function App() {
+function Onboarding() {
   return (
     <div className='app-container'>
       <img className="onboarding-container" src="" alt="" />
@@ -22,4 +22,4 @@ function App() {
   )
 }
 
-export default App;
+export default Onboarding;
