@@ -31,3 +31,16 @@ class Income(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Income ID: {self.id}, Income amount: {self.amount}, Income frequency: {self.frequency}, User ID: {self.user_id} >'
+    
+class Expense(db.Model, SerializerMixin):
+    __tablename__ = 'expenses' 
+
+    id=db.Column(db.Integer, primary_key=True)
+    amount=db.Column(db.Integer, nullable=False)
+    frequency=db.Column(db.String, nullable=False)
+    created_at=db.Column(db.DateTime, server_default=db.func.now())
+
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    def __repr__(self):
+        return f'<Expenses ID: {self.id}, Expenses amount: {self.amount}, Expenses frequency: {self.frequency}, User ID: {self.user_id} >'
