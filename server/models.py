@@ -1,7 +1,10 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.orm import validates
 
 from config import db
+
+#don't forget to migrate!
 
 # Models go here!
 class User(db.Model, SerializerMixin):
@@ -29,7 +32,7 @@ class UserGoal(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     def __repr__(self):
-        return f'<Income ID: {self.id}, Income amount: {self.amount}, Income frequency: {self.frequency}, User ID: {self.user_id} >'
+        return f'<User Goal Id: {self.id}, Contributions: {self.contributions}, Progress: {self.progress}, Completed Date: {self.completed_date}, Goal ID: {self.goal_id}, User ID:{self.user_id} >'
     
     
 class Goal(db.Model, SerializerMixin):
@@ -43,5 +46,10 @@ class Goal(db.Model, SerializerMixin):
 
     user_goal_id = db.Column(db.Integer, db.ForeignKey("user_goals.id"))
 
+    @validates('amount')
+    def validate_amount(self, key, new_amount):
+        if new_amount < 0:
+            raise ValueError('Amount must be greater than or equal to 0')
+
     def __repr__(self):
-        return f'<Goal ID: {self.id}, Goal amount: {self.amount}, Goal: {self.frequency}, User ID: {self.user_id} >'
+        return f'<Goal ID: {self.id}, Goal Name: {self.goal_name}, Goal Amount: {self.amount}, Target Date: {self.target_date}, User Goal ID: {self.user_goal_id} >'
