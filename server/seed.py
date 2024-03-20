@@ -35,9 +35,9 @@ if __name__ == '__main__':
 
         print("Adding goals...")
 
-        g1 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=3)
-        g2 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=1)
-        g3 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=2)
+        g1 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date())
+        g2 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date())
+        g3 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date())
 
         goals = [g1, g2, g3]
         db.session.add_all(goals)

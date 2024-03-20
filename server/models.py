@@ -20,6 +20,7 @@ class User(db.Model, SerializerMixin):
     updated_at=db.Column(db.DateTime, onupdate=db.func.now())
 
     user_goals = db.relationship("UserGoal", back_populates='user')
+    goals = association_proxy('user_goals', 'goal')
 
     def __repr__(self):
         return f'<User Id: {self.id}, first_name = {self.first_name}, last_name = {self.last_name}>'
@@ -66,6 +67,7 @@ class Goal(db.Model, SerializerMixin):
     created_at=db.Column(db.DateTime, server_default=db.func.now())
 
     user_goals = db.relationship('UserGoal', back_populates='goal')
+    user = association_proxy('user_goals', 'user')
 
     #add validation to date/time -> figure out how to make to a future date
     # @validates('target_date')
