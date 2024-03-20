@@ -26,6 +26,7 @@ class UserGoal(db.Model, SerializerMixin):
     completed_date=db.Column(db.DateTime, nullable=False)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
     goal_id = db.Column(db.Integer, db.ForeignKey("goals.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     def __repr__(self):
         return f'<Income ID: {self.id}, Income amount: {self.amount}, Income frequency: {self.frequency}, User ID: {self.user_id} >'
@@ -36,11 +37,11 @@ class Goal(db.Model, SerializerMixin):
 
     id=db.Column(db.Integer, primary_key=True)
     amount=db.Column(db.Integer, nullable=False)
-    name=db.Column(db.String, nullable=False)
+    goal_name=db.Column(db.String, nullable=False)
     target_date=db.Column(db.DateTime)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
 
-    goal_id = db.Column(db.Integer, db.ForeignKey("user_goals.id"))
+    user_goal_id = db.Column(db.Integer, db.ForeignKey("user_goals.id"))
 
     def __repr__(self):
         return f'<Goal ID: {self.id}, Goal amount: {self.amount}, Goal: {self.frequency}, User ID: {self.user_id} >'

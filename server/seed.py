@@ -26,7 +26,6 @@ if __name__ == '__main__':
             user = User(
                 first_name=fake.first_name(),
                 last_name = fake.last_name(),
-                account_balance=fake.pricetag()
                 )
             users.append(user)
             
@@ -36,9 +35,9 @@ if __name__ == '__main__':
 
         print("Adding goals...")
 
-        g1 = Goal(amount=fake.pricetag(), name = fake.sentence(), target_date = fake.future_date(), goal_id=rc(User.query.all()).id)
-        g2 = Goal(amount=fake.pricetag(), name = fake.sentence(), target_date = fake.future_date(), goal_id=rc(User.query.all()).id)
-        g3 = Goal(amount=fake.pricetag(), name = fake.sentence(), target_date = fake.future_date(), goal_id=rc(User.query.all()).id)
+        g1 = Goal(amount=fake.pricetag(), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=3)
+        g2 = Goal(amount=fake.pricetag(), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=1)
+        g3 = Goal(amount=fake.pricetag(), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=2)
 
         goals = [g1, g2, g3]
         db.session.add_all(goals)
@@ -46,9 +45,9 @@ if __name__ == '__main__':
 
         print("Adding user goals...")
 
-        ug1= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= rc(Goal.query.all()).id) 
-        ug2= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= rc(Goal.query.all()).id)
-        ug3= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= rc(Goal.query.all()).id)         
+        ug1= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= 2, user_id=rc(User.query.all()).id) 
+        ug2= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= 3, user_id=rc(User.query.all()).id)
+        ug3= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= 1, user_id=rc(User.query.all()).id)         
 
         user_goals = [ug1, ug2, ug3]
         db.session.add_all(user_goals)
