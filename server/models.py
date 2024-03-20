@@ -31,6 +31,12 @@ class UserGoal(db.Model, SerializerMixin):
     goal_id = db.Column(db.Integer, db.ForeignKey("goals.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+    @validates('progress')
+    def validate_progress(self,key,new_progress):
+        if 0 > new_progress or new_progress > 100:
+            raise ValueError('Number must be between 0 and 100')
+        return new_progress
+
     def __repr__(self):
         return f'<User Goal Id: {self.id}, Contributions: {self.contributions}, Progress: {self.progress}, Completed Date: {self.completed_date}, Goal ID: {self.goal_id}, User ID:{self.user_id} >'
     
@@ -50,6 +56,7 @@ class Goal(db.Model, SerializerMixin):
     def validate_amount(self, key, new_amount):
         if new_amount < 0:
             raise ValueError('Amount must be greater than or equal to 0')
+        return new_amount
 
     def __repr__(self):
         return f'<Goal ID: {self.id}, Goal Name: {self.goal_name}, Goal Amount: {self.amount}, Target Date: {self.target_date}, User Goal ID: {self.user_goal_id} >'
