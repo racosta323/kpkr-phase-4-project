@@ -28,7 +28,7 @@ class User(db.Model, SerializerMixin):
 class UserGoal(db.Model, SerializerMixin):
     __tablename__ = 'user_goals' 
 
-    serialize_rules = ('-user.user_goals')
+    serialize_rules = ('-user.user_goals', '-goal.user_goals')
 
     id=db.Column(db.Integer, primary_key=True)
     contributions = db.Column(db.Integer, nullable=False)
@@ -39,6 +39,7 @@ class UserGoal(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     user = db.relationship('User', back_populates='user_goals')
+    goal = db.relationship('Goal', back_populates='user_goals')
     
     @validates('progress')
     def validate_progress(self,key,new_progress):
@@ -56,13 +57,15 @@ class UserGoal(db.Model, SerializerMixin):
 class Goal(db.Model, SerializerMixin):
     __tablename__ = 'goals' 
 
+    serialize_rules = ('-goal.user_goals')
+
     id=db.Column(db.Integer, primary_key=True)
     amount=db.Column(db.Integer, nullable=False)
     goal_name=db.Column(db.String, nullable=False)
     target_date=db.Column(db.DateTime)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
 
-    user_goal_id = db.Column(db.Integer, db.ForeignKey("user_goals.id"))
+    user_goals = db.relationship('UserGoal', back_populates='goal')
 
     #add validation to date/time -> figure out how to make to a future date
     # @validates('target_date')
@@ -78,4 +81,4 @@ class Goal(db.Model, SerializerMixin):
         return new_amount
 
     def __repr__(self):
-        return f'<Goal ID: {self.id}, Goal Name: {self.goal_name}, Goal Amount: {self.amount}, Target Date: {self.target_date}, User Goal ID: {self.user_goal_id} >'
+        return f'<Goal ID: {self.id}, Goal Name: {self.goal_name}, Goal Amount: {self.amount}, Target Date: {self.target_date} >'
