@@ -1,17 +1,17 @@
 import React from "react";
 import { useFormik } from "formik";
 
-function CreateUser ({ onSubmit }) {
+const CreateUser = () => {
 
-//   const formik = useFormik({
-//     initialValues:
-//      {
-//       firstName:'',
-//       lastName:'',
-//       goalName:'',
-//       goalAmt:'',
+  const formik = useFormik({
+    initialValues:
+     {
+      firstName:'',
+      // lastName:'',
+      // goalName:'',
+      // goalAmt:''
 
-//     },
+    },
 
 //   validate: values => {
 //     const errors = {}
@@ -22,35 +22,30 @@ function CreateUser ({ onSubmit }) {
 
 //   },
 
-//   onSubmit: (values, { resetForm }) => {
-//     onSubmit(values);
-//     resetForm();
-//   },
-// })
+  // onSubmit: values => {
+  //   alert(JSON.stringify(values, null, 2))
+  // },
+})
 
 
 return (
-
-  <h1> Testing </h1>
-  // <form  style={{width:"50%", margin:"auto", padding:"25px"}} 
-  // onSubmit={formik.handleSubmit}
-  // >
+  <form onSubmit={formik.handleSubmit}>
     
-  //  <label>Set my Savings</label>
-  //  <input 
-  //  type="text"
-  //  id="firstName" 
-  //  name="firstName" 
-  //  placeholder="First Name..." 
-  //  onChange={formik.handleChange}
-  //  value={formik.values.firstName} 
-   
-  // />
-  // {formik.errors.firstName && formik.touched.firstName && 
-  // <div>{formik.errors.firstName}</div>}
+    <label htmlFor="firstName">Set my Savings</label>
+    <input 
+      type="text"
+      id="firstName" 
+      name="firstName" 
+      placeholder="First Name..." 
+      // onChange={formik.handleChange}
+      value={formik.values.firstName} 
+    
+    />
+    {/* {formik.errors.firstName && formik.touched.firstName && 
+    <div>{formik.errors.firstName}</div>} */}
 
-  // <button type="submit">Submit</button>
-  // </form>
+    <button type="submit">Submit</button>
+  </form>
   )
 }
 

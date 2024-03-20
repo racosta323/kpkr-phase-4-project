@@ -3,9 +3,6 @@ import CreateUser from "./CreateUser"
 
 
 function Onboarding() {
-  const handleSubmit = (formData) => {
-    console.log(formData);
-  };
 
   return (
     <div className='app-container'>
