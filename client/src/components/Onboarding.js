@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import InfoForm from "./CreateUser.js";
+import CreateUser from "./CreateUser.js";
+
 
 function Onboarding() {
   const handleSubmit = (formData) => {
@@ -13,7 +14,8 @@ function Onboarding() {
         <h2>Set your savings goals and track your progress!</h2>
 
         <div className='form-box'>
-              
+          <CreateUser onSubmit={handleSubmit} />
+
         </div>
 
         <p> 
