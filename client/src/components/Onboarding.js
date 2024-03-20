@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CreateUser from "./CreateUser.js";
+import { Link } from "react-router-dom";
 
 
 function Onboarding() {
@@ -14,8 +14,9 @@ function Onboarding() {
         <h2>Set your savings goals and track your progress!</h2>
 
         <div className='form-box'>
-          <CreateUser onSubmit={handleSubmit} />
-
+          <Link to="/create-user">
+         <button>Create User</button>
+         </Link>
         </div>
 
         <p> 
