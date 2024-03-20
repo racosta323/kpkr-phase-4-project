@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import InfoForm from "./Form.js";
+import React, { useState } from "react";
+import InfoForm from "./CreateUser.js";
 
 function Onboarding() {
+  const handleSubmit = (formData) => {
+    console.log(formData);
+  };
+
   return (
     <div className='app-container'>
       <img className="onboarding-container" src="" alt="" />
@@ -10,8 +13,7 @@ function Onboarding() {
         <h2>Set your savings goals and track your progress!</h2>
 
         <div className='form-box'>
-          <InfoForm />
-         
+              
         </div>
 
         <p> 
