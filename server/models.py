@@ -8,8 +8,8 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     id=db.Column(db.Integer, primary_key=True)
-    first_name=db.Column(db.String)
-    last_name=db.Column(db.String)
+    first_name=db.Column(db.String, nullable=False)
+    last_name=db.Column(db.String, nullable=False)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
     updated_at=db.Column(db.DateTime, onupdate=db.func.now())
 
