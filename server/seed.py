@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Income, Expense, Goal
+from models import db, User, UserGoal, Goal
 
 if __name__ == '__main__':
     fake = Faker()
@@ -17,7 +17,8 @@ if __name__ == '__main__':
         # Seed code goes here!
         print('Deleting Data....')
         User.query.delete()
-        Income.query.delete()
+        UserGoal.query.delete()
+        Goal.query.delete()
 
         users = []
 
@@ -33,15 +34,9 @@ if __name__ == '__main__':
         db.session.add_all(users)    
         db.session.commit()
 
+        print("Adding goals...")
 
-
-        print("Adding incomes...")
-
-        i1 = Income(amount=fake.pricetag(), frequency= "daily", user_id=User.query.get(1).id)
-        i2 = Income(amount=fake.pricetag(), frequency= "daily", user_id=User.query.get(2).id)
-        i3 = Income(amount=fake.pricetag(), frequency= "daily", user_id=User.query.get(3).id)
-        i4 = Income(amount=fake.pricetag(), frequency= "daily", user_id=User.query.get(4).id)
-        i5 = Income(amount=fake.pricetag(), frequency= "daily", user_id=User.query.get(5).id)
+        
 
         incomes = [i1, i2, i3, i4, i5]
         db.session.add_all(incomes)

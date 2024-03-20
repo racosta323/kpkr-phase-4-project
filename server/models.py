@@ -27,6 +27,7 @@ class UserGoal(db.Model, SerializerMixin):
     created_at=db.Column(db.DateTime, server_default=db.func.now())
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    goal_id = db.Column(db.Integer, db.ForeignKey("goals.id"))
 
     def __repr__(self):
         return f'<Income ID: {self.id}, Income amount: {self.amount}, Income frequency: {self.frequency}, User ID: {self.user_id} >'
