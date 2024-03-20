@@ -36,34 +36,22 @@ if __name__ == '__main__':
 
         print("Adding goals...")
 
-        
+        g1 = Goal(amount=fake.pricetag(), name = fake.sentence(), target_date = fake.future_date(), goal_id=rc(User.query.all()).id)
+        g2 = Goal(amount=fake.pricetag(), name = fake.sentence(), target_date = fake.future_date(), goal_id=rc(User.query.all()).id)
+        g3 = Goal(amount=fake.pricetag(), name = fake.sentence(), target_date = fake.future_date(), goal_id=rc(User.query.all()).id)
 
-        incomes = [i1, i2, i3, i4, i5]
-        db.session.add_all(incomes)
-        db.session.commit()
-
-        print("Adding expenses...")
-
-        e1 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(1).id)
-        e2 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(2).id)
-        e3 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(3).id)
-        e4 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(4).id)
-        e5 = Expense(amount=fake.pricetag(), frequency= "monthly", user_id=User.query.get(5).id)
-
-        expenses = [e1, e2, e3, e4, e5]
-        db.session.add_all(expenses)
-        db.session.commit()
-
-        print("Adding goals...")
-
-        g1 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(1).id)
-        g2 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(2).id)
-        g3 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(3).id)
-        g4 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(4).id)
-        g5 = Goal(amount=fake.pricetag(), goal= fake.sentence(), target_date=fake.future_date(), user_id=User.query.get(5).id)
-
-        goals = [g1, g2, g3, g4, g5]
+        goals = [g1, g2, g3]
         db.session.add_all(goals)
+        db.session.commit()
+
+        print("Adding user goals...")
+
+        ug1= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= rc(Goal.query.all()).id) 
+        ug2= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= rc(Goal.query.all()).id)
+        ug3= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= rc(Goal.query.all()).id)         
+
+        user_goals = [ug1, ug2, ug3]
+        db.session.add_all(user_goals)
         db.session.commit()
 
         print("Seeding complete!")

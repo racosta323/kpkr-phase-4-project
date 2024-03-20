@@ -25,8 +25,6 @@ class UserGoal(db.Model, SerializerMixin):
     progress=db.Column(db.Integer)
     completed_date=db.Column(db.DateTime, nullable=False)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
-
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     goal_id = db.Column(db.Integer, db.ForeignKey("goals.id"))
 
     def __repr__(self):
