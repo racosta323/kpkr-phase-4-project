@@ -51,6 +51,22 @@ class UsersById(Resource):
 
 api.add_resource(UsersById, '/users/<int:id>')
 
+
+class Goals(Resource):
+    def post(self):
+        goal = Goal(
+            amount=request.get_json()["amount"],
+            goal_name=request.get_json()["goal_name"],
+            target_date=request.get_json()["target_date"]
+            )
+        
+        db.session.add(goal)
+        db.session.commit()
+
+        return make_response(goal.to_dict(), 201)
+
+api.add_resource(Goals, '/goals')
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
