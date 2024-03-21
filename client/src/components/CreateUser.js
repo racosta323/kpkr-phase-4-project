@@ -29,7 +29,7 @@ const CreateUser = () => {
 
 
 return (
-  <form onSubmit={formik.handleSubmit}>
+  <form style={{width:"50%", margin:"auto", padding:"25px"}} onSubmit={formik.handleSubmit}>
 {/* Output for firstname */}
     <label htmlFor="firstName">$et my $avings</label>
     <input 
@@ -67,8 +67,10 @@ return (
       value={formik.values.goalAmt} 
     
     />
-
-    <button type="submit">Submit</button>
+    <div className="submit-button"> 
+    <button type="submit" style={{ backgroundColor: "#459C6A", color: "white" }}>
+      Submit</button>
+    </div>
   </form>
   )
 }
