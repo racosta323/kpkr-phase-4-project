@@ -7,9 +7,9 @@ const CreateUser = () => {
     initialValues:
      {
       firstName:'',
-      // lastName:'',
-      // goalName:'',
-      // goalAmt:''
+      lastName:'',
+      goalName:'',
+      goalAmt:''
 
     },
 
@@ -22,27 +22,51 @@ const CreateUser = () => {
 
 //   },
 
-  // onSubmit: values => {
-  //   alert(JSON.stringify(values, null, 2))
-  // },
+  onSubmit: values => {
+    alert(JSON.stringify(values, null, 2))
+  },
 })
 
 
 return (
   <form onSubmit={formik.handleSubmit}>
-    
-    <label htmlFor="firstName">Set my Savings</label>
+{/* Output for firstname */}
+    <label htmlFor="firstName">$et my $avings</label>
     <input 
       type="text"
       id="firstName" 
       name="firstName" 
       placeholder="First Name..." 
-      // onChange={formik.handleChange}
+      onChange={formik.handleChange}
       value={formik.values.firstName} 
+    />
+
+    <input 
+      type="text"
+      id="lastName" 
+      name="lastName" 
+      placeholder="Last Name..." 
+      onChange={formik.handleChange}
+      value={formik.values.lastName} 
+    />
+    <input 
+      type="text"
+      id="goalName" 
+      name="goalName" 
+      placeholder="Aim high!" 
+      onChange={formik.handleChange}
+      value={formik.values.goalName} 
     
     />
-    {/* {formik.errors.firstName && formik.touched.firstName && 
-    <div>{formik.errors.firstName}</div>} */}
+    <input 
+      type="number"
+      id="goalAmt" 
+      name="goalAmt" 
+      placeholder="Cost in USD" 
+      onChange={formik.handleChange}
+      value={formik.values.goalAmt} 
+    
+    />
 
     <button type="submit">Submit</button>
   </form>
