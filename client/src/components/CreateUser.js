@@ -39,9 +39,26 @@ const CreateUser = () => {
 
     },
   validate,
-  onSubmit: values => {
-    alert(JSON.stringify(values, null, 2))
-  },
+  onSubmit: async (values) => {
+    try {
+      const response = await fetch("http://localhost:3001/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+
+     if (response.ok) {
+      alert("Form submitted")
+     } else {
+      alert("Error submitting, please try again")
+    }
+  } catch (error) {
+    console.error("Error submitting form", error)
+    alert("Error submitting form, please try again when you have more money")
+  }
+ }
 })
 
 
