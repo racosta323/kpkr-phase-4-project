@@ -76,7 +76,52 @@ class GoalById(Resource):
 
         return make_response({}, 204)
 
-api.add_resource(GoalById, '/goals/<int:id>')    
+api.add_resource(GoalById, '/goals/<int:id>')
+
+class UserGoals(Resource):
+    def post(self):
+
+        request_body = request.json
+        
+        user_goal = UserGoal(
+            contributions=request_body['contributions'],
+            progress=request_body['progress'],
+            completed_date=request_body['completed_date'],
+        )
+
+        db.session.add(user_goal)
+        db.session.commit()
+
+        return make_response(user_goal.to_dict(), 201)
+
+api.add_resource(UserGoals, '/usergoals')    
+
+class UserGoalsById(Resource):
+    def get(self, id):
+        user_goal = UserGoal.query.get(id)
+        return make_response(user_goal.to_dict())
+
+    def patch(self,id):
+        user_goal = UserGoal.query.get(id)
+
+        request_body = request.json
+
+        for attr in request_body:
+            setattr(user_goal, attr, request_body[attr])
+
+        db.session.commit()
+
+        make_response(user_goal.to_dict())
+
+    def delete(self,id):
+        user_goal = UserGoal.query.get(id)
+        db.session.delete(user_goal)
+        db.session.commit()
+
+        return make_response({}, 204)
+
+api.add_resource(UserGoalsById, '/usergoals/<int:id>')
+    
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
