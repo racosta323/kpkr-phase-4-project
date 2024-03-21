@@ -34,7 +34,8 @@ class UserGoal(db.Model, SerializerMixin):
     id=db.Column(db.Integer, primary_key=True)
     contributions = db.Column(db.Integer, nullable=False)
     progress=db.Column(db.Integer)
-    completed_date=db.Column(db.DateTime, nullable=False)
+    #taking out nullable temporarily
+    completed_date=db.Column(db.DateTime)
     created_at=db.Column(db.DateTime, server_default=db.func.now())
     goal_id = db.Column(db.Integer, db.ForeignKey("goals.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
