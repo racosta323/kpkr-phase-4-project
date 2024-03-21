@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CreateUser from "./CreateUser"
+import NavBar from "./NavBar";
 
 
 function Onboarding() {
@@ -9,7 +10,7 @@ function Onboarding() {
       <img className="onboarding-container" src="" alt="" />
        <h1> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
         <h2>Set your savings goals and track your progress!</h2>
-
+        <NavBar/>
         <div className='form-box'>
           <CreateUser />
         </div>

@@ -4,6 +4,7 @@ import Onboarding from "./components/Onboarding";
 import CreateUser from "./components/CreateUser";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
         <Router> 
