@@ -35,9 +35,9 @@ if __name__ == '__main__':
 
         print("Adding goals...")
 
-        g1 = Goal(amount=fake.pricetag(), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=3)
-        g2 = Goal(amount=fake.pricetag(), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=1)
-        g3 = Goal(amount=fake.pricetag(), goal_name = fake.sentence(), target_date = fake.future_date(), user_goal_id=2)
+        g1 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date())
+        g2 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date())
+        g3 = Goal(amount=float(fake.numerify()), goal_name = fake.sentence(), target_date = fake.future_date())
 
         goals = [g1, g2, g3]
         db.session.add_all(goals)
@@ -45,9 +45,9 @@ if __name__ == '__main__':
 
         print("Adding user goals...")
 
-        ug1= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= 2, user_id=rc(User.query.all()).id) 
-        ug2= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= 3, user_id=rc(User.query.all()).id)
-        ug3= UserGoal(contributions=fake.pricetag(), progress="0.9", completed_date= fake.future_date(), goal_id= 1, user_id=rc(User.query.all()).id)         
+        ug1= UserGoal(contributions=float(fake.numerify()), progress=.90, completed_date= fake.past_date(), goal_id= 2, user_id=rc(User.query.all()).id) 
+        ug2= UserGoal(contributions=float(fake.numerify()), progress=.43, completed_date= fake.past_date(), goal_id= 3, user_id=rc(User.query.all()).id)
+        ug3= UserGoal(contributions=float(fake.numerify()), progress=.70, completed_date= fake.past_date(), goal_id= 1, user_id=rc(User.query.all()).id)         
 
         user_goals = [ug1, ug2, ug3]
         db.session.add_all(user_goals)
