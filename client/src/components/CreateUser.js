@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 const validate = values => {
   const errors = {}
 
+// string format and length validation
   if (!values.firstName) {
     errors.firstName = "Please enter first name"
   } else if (values.firstName.length > 13) {
@@ -17,7 +18,7 @@ const validate = values => {
   if(!values.goalName) {
     errors.goalName = "Please name your Savings Goal!"
   }
-
+// data type validation
   if (!values.goalAmt) {
     errors.goalAmt = "Please enter the cost to achieve your goal!"
   } else if (isNaN(values.goalAmt)) {
