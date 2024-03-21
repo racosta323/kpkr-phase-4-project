@@ -1,6 +1,31 @@
 import React from "react";
 import { useFormik } from "formik";
 
+const validate = values => {
+  const errors = {}
+
+  if (!values.firstName) {
+    errors.firstName = "Please enter first name"
+  } else if (values.firstName.length > 13) {
+    errors.firstName = "First name must be 13 characters or less"
+  }
+
+  if (!values.lastName) {
+    errors.lastName = "Please enter last name"
+  }
+
+  if(!values.goalName) {
+    errors.goalName = "Please name your Savings Goal!"
+  }
+
+  if (!values.goalAmt) {
+    errors.goalAmt = "Please enter the cost to achieve your goal!"
+  } else if (isNaN(values.goalAmt)) {
+    errors.goalAmt = "Please enter a valid dollar amount for your goal"
+  }
+  return errors
+}
+
 const CreateUser = () => {
 
   const formik = useFormik({
@@ -12,16 +37,7 @@ const CreateUser = () => {
       goalAmt:''
 
     },
-
-//   validate: values => {
-//     const errors = {}
-//     if (!values.firstName) {
-//       errors.firstName = "Please enter your First Name"
-//     }
-//     return errors
-
-//   },
-
+  validate,
   onSubmit: values => {
     alert(JSON.stringify(values, null, 2))
   },
@@ -40,6 +56,7 @@ return (
       onChange={formik.handleChange}
       value={formik.values.firstName} 
     />
+    {formik.errors.firstName ? ( <div style={{ color: "red" }}>{formik.errors.firstName}</div> ) : null}
 
     <input 
       type="text"
@@ -49,6 +66,8 @@ return (
       onChange={formik.handleChange}
       value={formik.values.lastName} 
     />
+    {formik.errors.lastName ? ( <div style={{ color: "red" }}>{formik.errors.lastName}</div> ) : null}
+
     <input 
       type="text"
       id="goalName" 
@@ -58,6 +77,8 @@ return (
       value={formik.values.goalName} 
     
     />
+    {formik.errors.goalName ? ( <div style={{ color: "red" }}>{formik.errors.goalName}</div> ) : null}
+
     <input 
       type="number"
       id="goalAmt" 
@@ -67,6 +88,9 @@ return (
       value={formik.values.goalAmt} 
     
     />
+    {formik.errors.goalAmt ? ( <div style={{ color: "red" }}>{formik.errors.goalAmt}</div> ) : null}
+
+    
     <div className="submit-button"> 
     <button type="submit" style={{ backgroundColor: "#459C6A", color: "white" }}>
       Submit</button>
