@@ -1,0 +1,79 @@
+[
+    
+    {
+        "id": 1,
+        "progess": "50",
+        "completed date": "05142024" ,
+        "contributions": "100",
+        "user":
+            {
+                "user_id" : "323", 
+                "first_name": "Jason" , 
+                "last_name": "Marks"
+                } ,
+        "goal" :
+            {
+             "id": "1",
+             "goal_name":"Canada",
+             "goal_amount": "300" ,
+             "goal_created_date": "0112024" 
+            }
+      }, 
+      {
+        "id": 2,
+        "progess": "10",
+        "completed date": "06142024" ,
+        "contributions": " 20 ",
+        "user":
+            {
+                "user_id" : "222", 
+                "first_name": "Betty" , 
+                "last_name": "Suarez"
+                } ,
+        "goal" :
+            {
+             "goal_id": "2",
+             "goal_name": "Tahiti" ,
+             "goal_amount": "400",
+             "goal_created_date": "01032024"
+            }
+      },
+      {
+        "id": 3,
+        "progess": "30 ",
+        "completed date": "07222024" ,
+        "contributions": " 500 ",
+        "user":
+            {
+                "user_id" : "422", 
+                "first_name": "Linda" , 
+                "last_name": "May"
+                } ,
+        "goal" :
+            {
+             "goal_id": "3",
+             "goal_name": "Brazil" ,
+             "goal_amount": "650" ,
+             "goal_created_date": "02042024" 
+            }
+      },
+      {
+        "id": 4,
+        "progess": "70",
+        "completed date": "08222024" ,
+        "contributions": " 80 ",
+        "user":
+            {
+                "user_id" : "0334", 
+                "first_name": "Jacob" , 
+                "last_name": "Edwards"
+                } ,
+        "goal" :
+            {
+             "goal_id": "4",
+             "goal_name": "Hawaii",
+             "goal_amount": "700",
+             "goal_created_date": "03192024"
+            }
+    }
+]
