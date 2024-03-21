@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "firstName": "John",
       "lastName": "Doe",
       "goalName": "Retirement",
@@ -13,6 +13,13 @@
       "lastName": "Connolly",
       "goalName": "Maltese Falcon",
       "goalAmt": 291384789312
+    },
+    {
+      "id": "804f",
+      "firstName": "Parker",
+      "lastName": "Connolly",
+      "goalName": "Maltese Falcone",
+      "goalAmt": 150000000
     }
   ]
 }
