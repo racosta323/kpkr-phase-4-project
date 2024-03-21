@@ -11,7 +11,7 @@ from config import db
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ('-user_goals.user')
+    serialize_rules = ('-user_goals.user',)
 
     id=db.Column(db.Integer, primary_key=True)
     first_name=db.Column(db.String, nullable=False)
@@ -29,7 +29,7 @@ class User(db.Model, SerializerMixin):
 class UserGoal(db.Model, SerializerMixin):
     __tablename__ = 'user_goals' 
 
-    serialize_rules = ('-user.user_goals', '-goal.user_goals')
+    serialize_rules = ('-user.user_goals', '-goal.user_goals',)
 
     id=db.Column(db.Integer, primary_key=True)
     contributions = db.Column(db.Integer, nullable=False)
@@ -58,7 +58,7 @@ class UserGoal(db.Model, SerializerMixin):
 class Goal(db.Model, SerializerMixin):
     __tablename__ = 'goals' 
 
-    serialize_rules = ('-goal.user_goals')
+    serialize_rules = ('-goal.user_goals',)
 
     id=db.Column(db.Integer, primary_key=True)
     amount=db.Column(db.Integer, nullable=False)
