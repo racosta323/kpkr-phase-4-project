@@ -67,6 +67,17 @@ class Goals(Resource):
 
 api.add_resource(Goals, '/goals')
 
+class GoalById(Resource):
+    def delete(self,id):
+        goal = Goal.query.get(id)
+
+        db.session.delete(goal)
+        db.session.commit()
+
+        return make_response({}, 204)
+
+api.add_resource(GoalById, '/goals/<int:id>')    
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
