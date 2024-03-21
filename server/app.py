@@ -28,6 +28,18 @@ class Users(Resource):
 api.add_resource(Users, '/users')
 
 class UsersById(Resource):
+    def patch(self,id):
+        user = User.query.get(id)
+
+        request_body = request.json
+
+        for attr in request_body:
+            setattr(user, attr, request_body[attr])
+
+        db.session.commit()
+
+        return make_response(user.to_dict())     
+
     def delete(self, id):
         user = User.query.get(id)
         db.session.delete(user)
