@@ -27,6 +27,17 @@ class Users(Resource):
 
 api.add_resource(Users, '/users')
 
+class UsersById(Resource):
+    def delete(self, id):
+        user = User.query.get(id)
+        db.session.delete(user)
+        db.session.commit()
+
+        #figure out how to send a response back --> no content when the below used
+        # return make_response({"comment": "user delete"}, 204)
+        return make_response({}, 204)
+
+api.add_resource(UsersById, '/users/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
