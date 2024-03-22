@@ -1,12 +1,12 @@
 import React from "react";
 import { useFormik } from "formik";
-import Form from "./Form";
+import Intake from "./Intake";
 
 function Onboarding(){
   return(
       <>
         <h1>Tell us a bit about yourself!</h1>
-        <Form/>
+        <Intake/>
       </>
       
   )

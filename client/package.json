@@ -18,7 +18,10 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "sass": "1.72.0",
+    "sass-loader": "10.5.2",
+    "webpack": "5.91.0"
   },
   "scripts": {
     "start": "react-scripts start",

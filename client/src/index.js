@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import Onboarding from "./components/Onboarding";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./index.css";
-import '../../client/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './styles/custom.scss'
+// import '../../client/node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
         <Router> 
