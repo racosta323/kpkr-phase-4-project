@@ -28,6 +28,7 @@ class Users(Resource):
 api.add_resource(Users, '/users')
 
 class UsersById(Resource):
+
     def patch(self,id):
         user = User.query.get(id)
 
