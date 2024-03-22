@@ -28,6 +28,10 @@ class Users(Resource):
 api.add_resource(Users, '/users')
 
 class UsersById(Resource):
+    def get(self,id):
+        user = User.query.get(id)
+        return make_response(user.to_dict())
+
     def patch(self,id):
         user = User.query.get(id)
 
