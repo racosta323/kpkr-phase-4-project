@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateUser from "./CreateUser"
 import NavBar from "./NavBar";
-
+import Goal from "./Goal";
 
 function Onboarding() {
 
@@ -12,9 +12,9 @@ function Onboarding() {
         <h2>Set your savings goals and track your progress!</h2>
         <NavBar/>
         <div className='form-box'>
-          <CreateUser />
+        <CreateUser />
         </div>
-
+        <Goal/>
         <p> 
           $avings. Made. $imple. 
           In a technical world full of options and confusion we want to simplify for you. 
