@@ -19,7 +19,7 @@ def index():
 
 class Users(Resource):
     def post(self):
-        new_user = User(first_name=request.get_json()["first_name"], last_name=request.get_json()["last_name"])
+        new_user = User(first_name=request.get_json()["firstName"], last_name=request.get_json()["lastName"])
         db.session.add(new_user)
         db.session.commit()
 
