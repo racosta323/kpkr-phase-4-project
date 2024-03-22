@@ -1,7 +1,5 @@
 import React from "react";
 import { useFormik } from "formik";
-import { useState } from 'react';
-
 
 const validate = values => {
   const errors = {}
@@ -87,6 +85,28 @@ return (
       value={formik.values.lastName} 
     />
     {formik.errors.lastName ? ( <div style={{ color: "red" }}>{formik.errors.lastName}</div> ) : null}
+
+    <input 
+      type="text"
+      id="goalName" 
+      name="goalName" 
+      placeholder="Aim high!" 
+      onChange={formik.handleChange}
+      value={formik.values.goalName} 
+    
+    />
+    {formik.errors.goalName ? ( <div style={{ color: "red" }}>{formik.errors.goalName}</div> ) : null}
+
+    <input 
+      type="number"
+      id="goalAmt" 
+      name="goalAmt" 
+      placeholder="Cost in USD" 
+      onChange={formik.handleChange}
+      value={formik.values.goalAmt} 
+    
+    />
+    {formik.errors.goalAmt ? ( <div style={{ color: "red" }}>{formik.errors.goalAmt}</div> ) : null}
 
     
     <div className="submit-button"> 
