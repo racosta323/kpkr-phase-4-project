@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CreateUser from "./Onboarding"
+import Onboarding from "./Onboarding"
 
 
 
@@ -12,7 +12,7 @@ function App() {
         <h2>Set your savings goals and track your progress!</h2>
 
         <div className='form-box'>
-          <CreateUser />
+          <Onboarding />
         </div>
 
         <p> 
