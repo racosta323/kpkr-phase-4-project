@@ -8,7 +8,7 @@ function NavBar() {
     return(
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home"> <img src="https://cdn.discordapp.com/attachments/1102300163525058591/1220487914069426328/F2-2.png?ex=660f1ef2&is=65fca9f2&hm=0f2abb8af89c958a4533d5bf22e821e2e659e27c6190be46a212331a5a65db47&" // Replace with your image URL
+        <Navbar.Brand href="#home"> <img src="https://cdn.discordapp.com/attachments/1102300163525058591/1220789201507848253/F2-3.png?ex=6610378a&is=65fdc28a&hm=d762b3e82ba9352179982cf5867ca00401239700edd5f46040a08c412f79a46b&" 
             width="45" 
             height="45" 
             className="d-inline-block align-top" 
