@@ -6,6 +6,7 @@ import CreateUser from "./AllForm-don't delete";
 import Column from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
 
 function Intake(){
 
@@ -35,13 +36,14 @@ return (
   <>
     <Carousel onSelect={handleSelect} interval={null} className="text-dark">
       <Carousel.Item>
-        <Form>
-          <Form.Group className="m-5">
+       {/* <Container>
+       <Form> 
+          <Form.Group>
             <Form.Label>First Name </Form.Label>
-            <Form.Control type='firstName' placeholder="Enter first name"></Form.Control>
+            <Form.Control type='firstName' placeholder="Enter first name" className="m-2"></Form.Control>
           </Form.Group>
-        
         </Form>
+       </Container> */}
       </Carousel.Item>
 
     </Carousel>
