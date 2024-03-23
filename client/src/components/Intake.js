@@ -12,20 +12,6 @@ import FirstName from "./FirstName";
   const [fName, setFName] = useState("")
   const [lName, setLName] = useState("")
 
-  const update = () => {
-    if (display === ""){
-      return <FirstName/>
-    }
-    else if (display ==="Rene"){
-      return <h1>hello</h1>
-    }
-  }
-
-
-  function nameSubmit(){
-    
-  }
-
   const formik = useFormik({
     initialValues:{
       firstName:'',
@@ -34,6 +20,21 @@ import FirstName from "./FirstName";
       goalAmt:'' 
     }
   })
+  
+  
+  const update = () => {
+    if (display === ""){
+      return <FirstName formik={formik}/>
+    }
+    else if (display ==="Rene"){
+      return <h1>hello</h1>
+    }
+  }
+
+
+  
+
+  console.log(formik)
     //not this
   //   } catch (error) {
   //     console.error("Error submitting form", error)
