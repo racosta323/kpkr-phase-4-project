@@ -3,10 +3,10 @@ import { useFormik } from "formik";
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import CreateUser from "./AllForm-don't delete";
-import Column from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
 
 function Intake(){
 
@@ -34,20 +34,34 @@ function Intake(){
 
 return (
   <>
-    <Carousel onSelect={handleSelect} interval={null} className="text-dark">
-      <Carousel.Item>
-       {/* <Container>
-       <Form> 
+    <Row>
+      <Col></Col>
+      <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
+        <Form className="w-75 m-5"> 
           <Form.Group>
-            <Form.Label>First Name </Form.Label>
-            <Form.Control type='firstName' placeholder="Enter first name" className="m-2"></Form.Control>
+            <Form.Label className="fs-4">What is your first and last name?</Form.Label>
+            <p>Enter your first and last name, then press next</p>
+            <Form.Control type='firstName' placeholder="Enter first name" className="my-3"></Form.Control>
+            <Form.Control type='lastName' placeholder="Enter last name" className="my-3"></Form.Control>
+            <Button as="input" type="button" value="Next" />{' '}
           </Form.Group>
         </Form>
-       </Container> */}
-      </Carousel.Item>
-
-    </Carousel>
+      </Col>
+      <Col></Col>
+    </Row>
+    <Row></Row>
   </>
+
+    // <Carousel onSelect={handleSelect} interval={null} className="text-dark">
+    // <Carousel.Item>
+    // <Form> 
+    //     <Form.Group>
+    //       <Form.Label>First Name </Form.Label>
+    //       <Form.Control type='firstName' placeholder="Enter first name" className="m-2"></Form.Control>
+    //     </Form.Group>
+    //   </Form>
+    // </Carousel.Item>
+    // </Carousel>
     // <Carousel activeIndex={index} onSelect={handleSelect} interval={null} className="bg-dark">
     //     <form onSubmit={formik.handleSubmit} className="bg-dark">
     //     <Carousel.Item className="w-100 bg-white" >
