@@ -3,8 +3,9 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-function FirstName({ formik, click }){
+function Goals({ formik }){
 
+    console.log(formik)
 
 return(
     <>
@@ -13,7 +14,7 @@ return(
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
         <Form className="w-75 m-5"> 
           <Form.Group>
-            <Form.Label className="fs-4">What is your first and last name?</Form.Label>
+            <Form.Label className="fs-4">What are your goals?</Form.Label>
             <p>Enter your first and last name, then press next</p>
             <Form.Control 
                 as="input" 
@@ -30,7 +31,7 @@ return(
                 placeholder="Enter last name" 
                 className="my-3">   
             </Form.Control>
-            <Button as="input" type="button" value="Next" onClick={click}/>{' '}
+            <Button as="input" type="button" value="Next" />{' '}
           </Form.Group>
         </Form>
       </Col>
@@ -42,4 +43,4 @@ return(
 
 }
 
-export default FirstName
+export default Goals

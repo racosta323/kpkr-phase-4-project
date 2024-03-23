@@ -5,12 +5,11 @@ import CreateUser from "./AllForm-don't delete";
 
 
 import FirstName from "./FirstName";
+import Goals from "./Goals"
 
   function Intake(){
 
   const [display, setDisplay] = useState("")
-  const [fName, setFName] = useState("")
-  const [lName, setLName] = useState("")
 
   const formik = useFormik({
     initialValues:{
@@ -21,20 +20,24 @@ import FirstName from "./FirstName";
     }
   })
   
+
   
+
+  const nameClick= () => {
+    console.log("hello")
+    setDisplay("goals")
+  }
+
   const update = () => {
     if (display === ""){
-      return <FirstName formik={formik}/>
+      return <FirstName formik={formik} click={nameClick}/>
     }
-    else if (display ==="Rene"){
-      return <h1>hello</h1>
+    else if (display ==="goals"){
+      return <Goals formik={formik}/>
     }
   }
 
 
-  
-
-  console.log(formik)
     //not this
   //   } catch (error) {
   //     console.error("Error submitting form", error)
