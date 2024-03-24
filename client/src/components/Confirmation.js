@@ -33,6 +33,7 @@ function Contributions({ formik, click }){
     }
 
     function editOptions(type){
+     
       return(
         <Form.Control 
           as="input" 
