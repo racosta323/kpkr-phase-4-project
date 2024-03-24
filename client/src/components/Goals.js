@@ -17,10 +17,11 @@ return(
             <Form.Label className="fs-3">What are your goals?</Form.Label>
               <p className='fs-5'>Briefly describe your goal and the amount needed to reach that goal.</p>
               <p>For example, "Trip to Tahiti." Target amount: $1000</p>
+  
             <Form.Control 
                 as="textarea" 
                 type='goal'
-                name='goal' 
+                name='goalName' 
                 placeholder="Enter a goal" 
                 className="my-3"
                 onChange={formik.handleChange}
@@ -29,6 +30,7 @@ return(
             <Form.Control 
                 as="input" 
                 type='amount' 
+                name='goalAmt'
                 placeholder="Enter goal amount" 
                 className="my-3"
                 onChange={formik.handleChange}

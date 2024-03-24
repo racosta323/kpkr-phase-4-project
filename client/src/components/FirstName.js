@@ -27,6 +27,7 @@ return(
             <Form.Control 
                 as="input" 
                 type='lastName' 
+                name='lastName' 
                 placeholder="Enter last name" 
                 className="my-3"
                 onChange={formik.handleChange}

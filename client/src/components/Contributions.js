@@ -24,7 +24,7 @@ return(
             <Form.Control 
                 as="input" 
                 type='contribution'
-                name='contribution' 
+                name='contributions' 
                 placeholder="Enter a contribution amount" 
                 className="my-3"
                 onChange={formik.handleChange}
