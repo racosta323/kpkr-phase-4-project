@@ -17,7 +17,8 @@ import Contributions from "./Contributions"
       firstName:'',
       lastName:'',
       goalName:'',
-      goalAmt:'' 
+      goalAmt:'',
+      contributions:'' 
     }
   })
   

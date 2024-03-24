@@ -2,6 +2,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Stack from 'react-bootstrap/Stack'
 
 function Contributions({ formik, click }){
 
@@ -16,25 +17,23 @@ return(
           <Form.Group>
             <Form.Label className="fs-3">What are your Contributions?</Form.Label>
               <p className='fs-5'>Have you made any contributions towards that goal?</p>
-              <p>For example, "Trip to Tahiti." Target amount: $1000</p>
-            <Form.Control 
-                as="textarea" 
-                type='goal'
-                name='goal' 
-                placeholder="Enter a goal" 
-                className="my-3"
-                onChange={formik.handleChange}
-                value={formik.values.goalName}
-            />
+              <p>Enter an amount you've contributed. No need to add dollar signs! Example, "50."</p>
             <Form.Control 
                 as="input" 
-                type='amount' 
-                placeholder="Enter goal amount" 
+                type='contribution'
+                name='contribution' 
+                placeholder="Enter a contribution amount" 
                 className="my-3"
                 onChange={formik.handleChange}
-                value={formik.values.goalAmt}
-            />   
-            <Button as="input" type="button" value="Next" onClick={click}/>{' '}
+                value={formik.values.contributions}
+            />
+            {/* consider adding ability to add another*/}
+            <Stack direction='horizontal' gap={3}>
+              <Button as="input" type="button" value="Next" onClick={click}/>{' '}
+              <p className='ms-auto'>Skip</p>
+            </Stack>
+            
+            
           </Form.Group>
         </Form>
       </Col>
