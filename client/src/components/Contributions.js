@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-function Goals({ formik, click }){
+function Contributions({ formik, click }){
 
     console.log(formik)
 
@@ -14,8 +14,8 @@ return(
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
         <Form className="w-75 m-5"> 
           <Form.Group>
-            <Form.Label className="fs-3">What are your goals?</Form.Label>
-              <p className='fs-5'>Briefly describe your goal and the amount needed to reach that goal.</p>
+            <Form.Label className="fs-3">What are your Contributions?</Form.Label>
+              <p className='fs-5'>Have you made any contributions towards that goal?</p>
               <p>For example, "Trip to Tahiti." Target amount: $1000</p>
             <Form.Control 
                 as="textarea" 
@@ -46,4 +46,4 @@ return(
 
 }
 
-export default Goals
+export default Contributions;

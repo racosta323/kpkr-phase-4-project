@@ -6,6 +6,7 @@ import CreateUser from "./AllForm-don't delete";
 
 import FirstName from "./FirstName";
 import Goals from "./Goals"
+import Contributions from "./Contributions"
 
   function Intake(){
 
@@ -24,16 +25,21 @@ import Goals from "./Goals"
   
 
   const nameClick= () => {
-    console.log("hello")
     setDisplay("goals")
+  }
+
+  const goalClick= () => {
+    console.log("hello")
+    setDisplay("contributions")
   }
 
   const update = () => {
     if (display === ""){
       return <FirstName formik={formik} click={nameClick}/>
-    }
-    else if (display ==="goals"){
-      return <Goals formik={formik}/>
+    } else if (display === "goals"){
+        return <Goals formik={formik} click={goalClick}/>
+    } else if (display === "contributions"){
+        return <Contributions formik={formik}/>
     }
   }
 
