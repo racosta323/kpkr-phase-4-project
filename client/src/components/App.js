@@ -3,6 +3,7 @@ import Onboarding from "./Onboarding"
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Stack from 'react-bootstrap/Stack'
+import Container from "react-bootstrap/esm/Container";
 
 
 
@@ -10,26 +11,28 @@ function App() {
 
   return (
     <>
-      <Row className="m-4"></Row>
-      <Row className="d-flex justify-content-center">
-        <Col></Col>
-        <Col xs={6}>
-            <h1> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
-            <h2>Set your savings goals and track your progress!</h2>
-        </Col>
-        <Col></Col>
-      </Row>
+      <Container fluid>
+        <Row className="m-4"></Row>
+        <Row className="d-flex justify-content-center">
+          <Col></Col>
+          <Col xs={6}>
+              <h1 className="text-center"> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
+              <h2 className="text-center">Set your savings goals and track your progress!</h2>
+          </Col>
+          <Col></Col>
+        </Row>
 
-      <Row className="m-4"></Row>
-      <Onboarding/>
-      <Row className="m-4"></Row>
-      <Row>
-        <p> 
-          $avings. Made. $imple. 
-          In a technical world full of options and confusion we want to simplify for you. 
-          Decide what you want, and track your progress toward that goal.
-        </p>
-      </Row>
+        <Row className="m-4"></Row>
+        <Onboarding/>
+        <Row className="m-4"></Row>
+        <Row>
+          <p className="text-center"> 
+            $avings. Made. $imple. 
+            In a technical world full of options and confusion we want to simplify for you. 
+            Decide what you want, and track your progress toward that goal.
+          </p>
+        </Row>
+      </Container>
     </>
 
 
