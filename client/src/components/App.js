@@ -16,7 +16,8 @@ function App() {
         <Row className="d-flex justify-content-center">
           <Col></Col>
           <Col xs={6}>
-              <h1 className="text-center"> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
+              <img class="rounded mx-auto d-block" src="https://cdn.discordapp.com/attachments/1102300163525058591/1220789201507848253/F2-3.png?ex=6610378a&is=65fdc28a&hm=d762b3e82ba9352179982cf5867ca00401239700edd5f46040a08c412f79a46b&" alt="F2 logo" style={{ width: '100px', height: 'auto' }}/>
+              <h1 className="text-center mt-4"> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
               <h2 className="text-center">Set your savings goals and track your progress!</h2>
           </Col>
           <Col></Col>
