@@ -20,7 +20,23 @@ import Confirmation from "./Confirmation";
       goalName:'',
       goalAmt:'',
       contributions:'' 
-    }
+    },
+    // validate,
+    onSubmit: (values) => { 
+      fetch("/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values, null, 2),
+      }).then(
+          (res) => {
+            if (res.status == 200){
+              console.log(res)
+            }
+          }
+        )
+      }
   })
   
 

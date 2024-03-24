@@ -138,13 +138,14 @@ return(
       <Row>
         <Col></Col>
         <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
-          <Form className="w-75 m-5"> 
+          <Form className="w-75 m-5" onSubmit={formik.handleSubmit}> 
             <Form.Group>
               <Form.Label className="fs-2 mb-4">Confirm your details</Form.Label>
               {nameStack()}
               {goalStack()}
               {contributionStack()}
             </Form.Group>
+            <Button as="input" type="submit" value="Submit"/>{' '}
           </Form>
         </Col>
         <Col></Col>

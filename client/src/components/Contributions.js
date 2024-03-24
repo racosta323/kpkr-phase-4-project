@@ -35,8 +35,6 @@ return(
               <Button as="input" type="button" value="Next" onClick={click}/>{' '}
               <a href="#" className='ms-auto' onClick={click}>Skip</a>
             </Stack>
-            
-            
           </Form.Group>
         </Form>
       </Col>
