@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import CreateUser from "./CreateUser"
+import { useState } from "react";
 import NavBar from "./NavBar";
 
 import React from "react";
