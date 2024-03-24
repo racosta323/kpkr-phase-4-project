@@ -14,23 +14,26 @@ return(
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
         <Form className="w-75 m-5"> 
           <Form.Group>
-            <Form.Label className="fs-4">What are your goals?</Form.Label>
-            <p>Enter your first and last name, then press next</p>
+            <Form.Label className="fs-3">What are your goals?</Form.Label>
+              <p className='fs-5'>Briefly describe your goal and the amount needed to reach that goal.</p>
+              <p>For example, "Trip to Tahiti." Target amount: $1000</p>
             <Form.Control 
-                as="input" 
-                type='firstName'
-                name='firstName' 
-                placeholder="Enter first name" 
+                as="textarea" 
+                type='goal'
+                name='goal' 
+                placeholder="Enter a goal" 
                 className="my-3"
                 onChange={formik.handleChange}
-                value={formik.values.FirstName}
+                value={formik.values.goalName}
             />
             <Form.Control 
                 as="input" 
-                type='lastName' 
-                placeholder="Enter last name" 
-                className="my-3">   
-            </Form.Control>
+                type='amount' 
+                placeholder="Enter goal amount" 
+                className="my-3"
+                onChange={formik.handleChange}
+                value={formik.values.goalAmt}
+            />   
             <Button as="input" type="button" value="Next" />{' '}
           </Form.Group>
         </Form>

@@ -13,7 +13,7 @@ return(
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
         <Form className="w-75 m-5"> 
           <Form.Group>
-            <Form.Label className="fs-4">What is your first and last name?</Form.Label>
+            <Form.Label className="fs-3">What is your first and last name?</Form.Label>
             <p>Enter your first and last name, then press next</p>
             <Form.Control 
                 as="input" 
@@ -22,14 +22,16 @@ return(
                 placeholder="Enter first name" 
                 className="my-3"
                 onChange={formik.handleChange}
-                value={formik.values.FirstName}
+                value={formik.values.firstName}
             />
             <Form.Control 
                 as="input" 
                 type='lastName' 
                 placeholder="Enter last name" 
-                className="my-3">   
-            </Form.Control>
+                className="my-3"
+                onChange={formik.handleChange}
+                value={formik.values.lastName}
+            />   
             <Button as="input" type="button" value="Next" onClick={click}/>{' '}
           </Form.Group>
         </Form>
