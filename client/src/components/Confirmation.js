@@ -13,6 +13,7 @@ function Contributions({ formik, click }){
 
   const [nameEdit, setNameEdit] = useState("")
   const [goalEdit, setGoalEdit] = useState("")
+  const [contributionEdit, setContributionEdit] = useState("")
 
     console.log(formik)
 
@@ -104,6 +105,33 @@ function Contributions({ formik, click }){
     }
   }
 
+  function contributionClick(){
+    setContributionEdit("edit")
+  }
+
+  const contributionStack = () => {
+    if (contributionEdit === ""){
+      return (
+        <>
+          <Stack direction='horizontal' gap={3}>
+            <h3 >Contribution</h3>
+            <Button as="input" className='ms-auto w-25' value="Edit" onClick={contributionClick}/>
+          </Stack>
+          {options('contributions')}
+        </>
+      )
+    } else if (contributionEdit==="edit"){
+      return(
+        <>
+          <Stack direction='horizontal' gap={3}>
+            <h3 >Contribution</h3>
+          </Stack>
+          {editOptions('contributions')}
+        </>
+      )
+    }
+  }
+
 return(
     <>
       <Row>
@@ -114,6 +142,7 @@ return(
               <Form.Label className="fs-2 mb-4">Confirm your details</Form.Label>
               {nameStack()}
               {goalStack()}
+              {contributionStack()}
             </Form.Group>
           </Form>
         </Col>
