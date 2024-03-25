@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Onboarding from "./Onboarding"
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Stack from 'react-bootstrap/Stack'
 import Container from "react-bootstrap/esm/Container";
+import Intake from "./Intake";
 
 
 
@@ -24,7 +24,7 @@ function App() {
         </Row>
 
         <Row className="m-4"></Row>
-        <Onboarding/>
+        <Intake />
         <Row className="m-4"></Row>
         <Row>
           <p className="text-center"> 
