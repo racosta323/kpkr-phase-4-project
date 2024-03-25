@@ -92,8 +92,10 @@ class UserGoals(Resource):
         
         user_goal = UserGoal(
             contributions=request_body['contributions'],
-            progress=request_body['progress'],
-            completed_date=request_body['completed_date'],
+            # progress=request_body['progress'],
+            # completed_date=request_body['completed_date'],
+            goal_id = request_body['goalId'],
+            user_id = request_body['userId']
         )
 
         db.session.add(user_goal)
