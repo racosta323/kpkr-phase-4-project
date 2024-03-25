@@ -18,8 +18,15 @@ function AllGoals(){
     let renderGoals = goals.map((goal)=>{
         //this needs to change based on user id
         if (goal.user_id === 2){
+            console.log(goal)
             return(
-                <GoalsList/>
+                <GoalsList
+                    key={goal.id}
+                    name={goal.goal.goal_name}
+                    amount={goal.goal.amount}
+                    progress={goal.progress}
+                    contributions={goal.contributions}
+                />
             )
         }
         
@@ -30,7 +37,8 @@ function AllGoals(){
     return(
         <>
             <NavBar/>
-            <h1>This is a placeholder page</h1>
+            <Row className="m-4"></Row>
+            <h1>Your Goals</h1>
             {renderGoals}
         </>
     )
