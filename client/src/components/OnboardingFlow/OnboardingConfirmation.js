@@ -6,7 +6,7 @@ import Stack from 'react-bootstrap/Stack'
 
 import { useState } from 'react'
 
-import FakePage from './FakePage'
+import FakePage from '../AllGoals'
 
 
 function Contributions({ formik, click }){
@@ -14,8 +14,6 @@ function Contributions({ formik, click }){
   const [nameEdit, setNameEdit] = useState("")
   const [goalEdit, setGoalEdit] = useState("")
   const [contributionEdit, setContributionEdit] = useState("")
-
-    console.log(formik)
 
     function options(type){
       return(

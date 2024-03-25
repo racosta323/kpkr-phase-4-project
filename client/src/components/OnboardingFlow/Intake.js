@@ -1,13 +1,14 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useState } from 'react';
-import CreateUser from "./AllForm-don't delete";
+import CreateUser from "../AllForm-don't delete";
 
 
-import FirstName from "./FirstName";
-import Goals from "./Goals"
-import Contributions from "./Contributions"
-import Confirmation from "./Confirmation";
+import FirstName from "./OnboardingFirstName";
+import Goals from "./OnboardingGoals"
+import Contributions from "./OnboardingContributions"
+import Confirmation from "./OnboardingConfirmation";
+import FakePage from "../AllGoals";
 
   function Intake(){
 
@@ -20,7 +21,9 @@ import Confirmation from "./Confirmation";
       goalName:'',
       goalAmt:'',
       targetDate:'',
-      contributions:'' 
+      contributions:'',
+      goalId: '',
+      userId: '' 
     },
     // validate,
     onSubmit: (values) => { 
@@ -31,13 +34,16 @@ import Confirmation from "./Confirmation";
       },
       body: JSON.stringify(values, null, 2)
       }).then(
-          (res) => {
-            console.log(res.json())
-            if (res.status == 200){
-              console.log(res)
-            }
+        (res) => {
+          if(res.status == 201){
+            return res.json()
           }
-        )
+        }
+      ).then(
+        (data)=>{
+          formik.values.userId = data["id"]
+        }
+      )
       fetch("/goals",{
         method: "POST",
         headers: {
@@ -46,14 +52,36 @@ import Confirmation from "./Confirmation";
         body: JSON.stringify(values, null, 2)
       }).then(
         (res) => {
-          if(res.status == 200){
-            console.log(res)
+          if(res.status == 201){
+            return res.json()
           }
         }
+      ).then(
+        (data)=>{
+          formik.values.goalId = data["id"]
+          // console.log(data)
+        }
       )
-      fetch('')
+      fetch('/usergoals', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values, null, 2)
+        }).then(
+          (res) => {
+            if(res.status == 201){
+              return res.json()
+            }
+          }
+        ).then(
+          (data)=>{
+            console.log(data)
+            // return <FakePage />
+          }
+        )
+        
       }
-      
   })
   
 
@@ -66,7 +94,6 @@ import Confirmation from "./Confirmation";
   }
 
   const contributionClick= () => {
-    console.log("hello")
     setDisplay("confirmation")
   }
 

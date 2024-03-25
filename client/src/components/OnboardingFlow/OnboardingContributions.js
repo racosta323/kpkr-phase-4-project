@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
 
-import FakePage from './FakePage'
+import FakePage from '../AllGoals'
 
 function Contributions({ formik, click }){
 
