@@ -4,10 +4,14 @@ import Row from 'react-bootstrap/Row'
 import Stack from 'react-bootstrap/Stack'
 import Container from "react-bootstrap/esm/Container";
 import Intake from "./Intake";
+import Graph from "./Graph";
 
 
 
 function App() {
+  // graph test values
+  // const goalAmount = 800
+  // const userContributions = 300
 
   return (
     <>
@@ -22,7 +26,6 @@ function App() {
           </Col>
           <Col></Col>
         </Row>
-
         <Row className="m-4"></Row>
         <Intake />
         <Row className="m-4"></Row>
@@ -34,21 +37,8 @@ function App() {
           </p>
         </Row>
       </Container>
+      {/* <Graph goalAmount={goalAmount} userContributions={userContributions} /> */}
     </>
-
-
-    // <div className='app-container'>
-    //   <img className="onboarding-container" src="" alt="" />
-    //    <h1> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
-    //     <h2>Set your savings goals and track your progress!</h2>
-    //       <Onboarding />
-    //     <p> 
-    //       $avings. Made. $imple. 
-    //       In a technical world full of options and confusion we want to simplify for you. 
-    //       Decide what you want, and track your progress toward that goal.
-    //     </p>
-    // </div>
-  
   )
 }
 

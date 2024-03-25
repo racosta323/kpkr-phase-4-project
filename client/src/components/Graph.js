@@ -1,6 +1,9 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Graph = ({ goalAmount, userContributions }) => {
   const total = goalAmount + userContributions + Math.abs(goalAmount - userContributions);
@@ -25,6 +28,7 @@ const Graph = ({ goalAmount, userContributions }) => {
     ],
   };
 
+  // mouseover percentage tooltip
   const options = {
     plugins: {
       tooltip: {
@@ -40,7 +44,16 @@ const Graph = ({ goalAmount, userContributions }) => {
     },
   };
 
-  return <Doughnut data={data} options={options} />;
+  // chart size and position
+  return (
+    <Container>
+      <Row className="justify-content-center">
+        <Col lg={6}> 
+          <Doughnut data={data} options={options} />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Graph;
