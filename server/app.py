@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # Standard library imports
+from datetime import datetime
 
 # Remote library imports
 from flask import request, make_response
@@ -58,10 +59,12 @@ api.add_resource(UsersById, '/users/<int:id>')
 
 class Goals(Resource):
     def post(self):
+        date_object = datetime.strptime(request.get_json()["targetDate"], '%m/%d/%Y').date()
+
         goal = Goal(
             amount=request.get_json()["goalAmt"],
             goal_name=request.get_json()["goalName"],
-            # target_date=request.get_json()["target_date"]
+            target_date=date_object
             )
         
         db.session.add(goal)

@@ -19,6 +19,7 @@ import Confirmation from "./Confirmation";
       lastName:'',
       goalName:'',
       goalAmt:'',
+      targetDate:'',
       contributions:'' 
     },
     // validate,

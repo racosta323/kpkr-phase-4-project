@@ -91,6 +91,7 @@ function Contributions({ formik, click }){
           </Stack>
           {options('goalName')}
           {options('goalAmt')}
+          {options('targetDate')}
         </>
       )
     } else if (goalEdit==="edit"){
@@ -101,6 +102,7 @@ function Contributions({ formik, click }){
           </Stack>
           {editOptions('goalName')}
           {editOptions('goalAmt')}
+          {editOptions('targetDate')}
         </>
       )
     }
