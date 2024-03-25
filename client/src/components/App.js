@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import Stack from 'react-bootstrap/Stack'
 import Container from "react-bootstrap/esm/Container";
 import Intake from "./OnboardingFlow/Intake";
 

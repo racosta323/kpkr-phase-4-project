@@ -1,6 +1,9 @@
 import GoalsList from "./GoalsList"
 
-function Goals(){
+function AllGoals(){
+
+    
+
     return(
         <>
             <h1>This is a placeholder page</h1>
@@ -9,4 +12,4 @@ function Goals(){
     )
 }
 
-export default Goals
+export default AllGoals
