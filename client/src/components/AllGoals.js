@@ -38,7 +38,8 @@ function AllGoals(){
         <>
             <NavBar/>
             <Row className="m-4"></Row>
-            <h1>Your Goals</h1>
+            <h1 className="mx-5">Your Goals</h1>
+            <Row className="m-4"></Row>
             {renderGoals}
         </>
     )
