@@ -59,9 +59,9 @@ api.add_resource(UsersById, '/users/<int:id>')
 class Goals(Resource):
     def post(self):
         goal = Goal(
-            amount=request.get_json()["amount"],
-            goal_name=request.get_json()["goal_name"],
-            target_date=request.get_json()["target_date"]
+            amount=request.get_json()["goalAmt"],
+            goal_name=request.get_json()["goalName"],
+            # target_date=request.get_json()["target_date"]
             )
         
         db.session.add(goal)

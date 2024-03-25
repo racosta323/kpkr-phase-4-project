@@ -28,7 +28,7 @@ import Confirmation from "./Confirmation";
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(values, null, 2),
+      body: JSON.stringify(values, null, 2)
       }).then(
           (res) => {
             if (res.status == 200){
@@ -36,7 +36,21 @@ import Confirmation from "./Confirmation";
             }
           }
         )
+      fetch("/goals",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values, null, 2)
+      }).then(
+        (res) => {
+          if(res.status == 200){
+            console.log(res)
+          }
+        }
+      )
       }
+      
   })
   
 

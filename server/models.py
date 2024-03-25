@@ -79,7 +79,7 @@ class Goal(db.Model, SerializerMixin):
 
     @validates('amount')
     def validate_amount(self, key, new_amount):
-        if new_amount < 0:
+        if int(new_amount) < 0:
             raise ValueError('Amount must be greater than or equal to 0')
         return new_amount
 
