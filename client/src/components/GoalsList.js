@@ -15,8 +15,6 @@ function GoalsList(){
                     <p>This is a goal</p>
                     <ProgressBar now={60}/>
                 </a>
-                <a href="#" class="rounded border border-primary-subtle list-group-item list-group-item-action mb-4">A second link item</a>
-                <a href="#" class="rounded border border-primary-subtle list-group-item list-group-item-action mb-4">The current link item</a>
             </div>
         </Container>
     )
