@@ -1,29 +1,26 @@
 import { useState } from "react";
 import NavBar from "./NavBar";
+import Goal from "./Goal";
 
-import React from "react";
-import { useFormik } from "formik";
-import Intake from "./Intake";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col"
-import Container from "react-bootstrap/Container"
+function Onboarding() {
 
-function Onboarding(){
-  return(
-      <>
-        <Container fluid>
-          <Row className="m-4">
-            <Col></Col>
-            <Col xs={5} className="d-flex justify-content-center"> 
-              <h2 className="text-center">Tell us a bit about yourself!</h2>
-            </Col>
-            <Col></Col>
-          </Row>  
-          <Row className="m-4"></Row>
-          <Intake/>
-        </Container>
-      </>
-      
+  return (
+    <div className='app-container'>
+      <img className="onboarding-container" src="https://cdn.discordapp.com/attachments/1102300163525058591/1220487914069426328/F2-2.png?ex=660f1ef2&is=65fca9f2&hm=0f2abb8af89c958a4533d5bf22e821e2e659e27c6190be46a212331a5a65db47&" alt="F2 logo" style={{ width: '100px', height: 'auto' }}/>
+       <h1> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
+        <h2>Set your savings goals and track your progress!</h2>
+        <NavBar/>
+        <div className='form-box'>
+        <CreateUser />
+        </div>
+        <Goal/>
+        <p> 
+          $avings. Made. $imple. 
+          In a technical world full of options and confusion we want to simplify for you. 
+          Decide what you want, and track your progress toward that goal.
+        </p>
+    </div>
+  
   )
 }
 
