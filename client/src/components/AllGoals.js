@@ -24,7 +24,8 @@ function AllGoals(){
                     key={goal.id}
                     name={goal.goal.goal_name}
                     amount={goal.goal.amount}
-                    progress={goal.progress}
+                    //looks like we probably don't need progress -- will remove later
+                    // progress={goal.progress}
                     contributions={goal.contributions}
                 />
             )

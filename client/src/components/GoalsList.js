@@ -13,7 +13,7 @@ function GoalsList({ name, amount, progress, contributions }){
                         <h4 className="ms-auto">${contributions} of ${amount} raised</h4>
                     </Stack>
                     <p>{name}</p>
-                    <ProgressBar now={progress*100}/>
+                    <ProgressBar now={(contributions/amount)*100}/>
                 </a>
             </div>
         </Container>
