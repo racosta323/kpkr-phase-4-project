@@ -32,6 +32,7 @@ import Confirmation from "./Confirmation";
       body: JSON.stringify(values, null, 2)
       }).then(
           (res) => {
+            console.log(res.json())
             if (res.status == 200){
               console.log(res)
             }
@@ -50,6 +51,7 @@ import Confirmation from "./Confirmation";
           }
         }
       )
+      fetch('')
       }
       
   })

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 function Goals({ formik, click }){
 
-    console.log(formik)
+    // console.log(formik)
 
 return(
     <>

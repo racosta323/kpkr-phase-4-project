@@ -9,7 +9,7 @@ function FirstName({ formik, click }){
 return(
     <>
     <Row>
-      <Col></Col>
+    <Col></Col>
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
         <Form className="w-75 m-5"> 
           <Form.Group>
