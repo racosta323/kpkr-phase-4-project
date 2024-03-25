@@ -86,6 +86,11 @@ class GoalById(Resource):
 api.add_resource(GoalById, '/goals/<int:id>')
 
 class UserGoals(Resource):
+    def get(self):
+        user_goals = UserGoal.query.all()
+        goals_list = [goals.to_dict() for goals in user_goals]
+        return make_response(goals_list)
+
     def post(self):
 
         request_body = request.json
