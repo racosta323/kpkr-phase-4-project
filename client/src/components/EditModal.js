@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
 
-function EditModal({ show, handleClose, name, amount, contributions, goalId }){
+function EditModal({ show, handleClose, name, amount, contributions, userGoalId, goalId }){
 
     const handleDelete = () => {
-        fetch(`/usergoals/${goalId}`, {
+        fetch(`/goals/${userGoalId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -20,37 +20,52 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId }){
         })
     }
     
-    // const formik = useFormik({
-    //     initialValues:{
-    //       firstName:'',
-    //       lastName:'',
-    //       goalName:'',
-    //       goalAmt:'',
-    //       targetDate:'',
-    //       contributions:'',
-    //       goalId: '',
-    //       userId: '' 
-    //     },
-    //     onSubmit: (values) => { 
-    //         fetch("/users", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(values, null, 2)
-    //         }).then(
-    //           (res) => {
-    //             if(res.status == 201){
-    //               return res.json()
-    //             }
-    //           }
-    //         ).then(
-    //           (data)=>{
-    //             formik.values.userId = data["id"]
-    //           }
-    //         )
-    //     }    
-    // })
+    const formik = useFormik({
+        initialValues:{
+          goalName:'',
+          goalAmt:'',
+          contributions:''
+        },
+        onSubmit: (values) => { 
+          if (formik.goalName != "" || formik.goal != ""){
+            fetch(`/goals/${goalId}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values, null, 2)
+              }).then(
+                (res) => {
+                  if(res.status == 201){
+                    return res.json()
+                  }
+                }
+              ).then(
+                (data)=>{
+                  console.log(data)
+                }
+              )
+          } else if (formik.contributions != ""){
+            fetch(`/usergoals/${userGoalId}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values, null, 2)
+              }).then(
+                (res) => {
+                  if(res.status == 201){
+                    return res.json()
+                  }
+                }
+              ).then(
+                (data)=>{
+                  console.log(data)
+                }
+              )
+          }
+        }    
+    })
 
     return(
     <Modal
@@ -71,6 +86,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId }){
                 type="goalName"
                 name = 'goalName'
                 placeholder= {name}
+                value={formik.values["goalName"]}
                 autoFocus
               />
             </Form.Group>
@@ -81,6 +97,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId }){
                 type="goalAmount"
                 name = 'goalAmount'
                 placeholder= {amount}
+                value={formik.values["goalAmt"]}
                 autoFocus
               />
             </Form.Group>
@@ -91,6 +108,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId }){
                 type="contributions"
                 name = 'contributions'
                 placeholder= {contributions}
+                value={formik.values["contributions"]}
                 autoFocus
               />
             </Form.Group>

@@ -33,6 +33,7 @@ function Goal() {
   const goalName = (goal === null) ? null : goal.goal["goal_name"]
   const goalAmount = (goal === null) ? null : goal.goal.amount
   const userContributions = (goal === null) ? null : goal.contributions
+  const goalId = (goal === null) ? null : goal.id
 
   return (
     <>
@@ -57,7 +58,8 @@ function Goal() {
           name={goalName} 
           amount={goalAmount}
           contributions={userContributions}
-          goalId = {userGoalId}
+          userGoalId = {userGoalId}
+          goalId = {goalId}
         />
       </Container>
     </>

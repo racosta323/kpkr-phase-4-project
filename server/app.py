@@ -82,6 +82,18 @@ class GoalById(Resource):
         db.session.commit()
 
         return make_response({}, 204)
+    
+    def patch(self,id):
+        goal = Goal.query.get(id)
+
+        request_body = request.json
+
+        for attr in request_body:
+            setattr(goal, attr, request_body[attr])
+
+        db.session.commit()
+
+        return make_response(goal.to_dict())
 
 api.add_resource(GoalById, '/goals/<int:id>')
 
@@ -125,7 +137,7 @@ class UserGoalsById(Resource):
 
         db.session.commit()
 
-        make_response(user_goal.to_dict())
+        return make_response(user_goal.to_dict())
 
     def delete(self,id):
         user_goal = UserGoal.query.get(id)
