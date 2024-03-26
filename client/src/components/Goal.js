@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from 'react'
 
+import EditModal from "./EditModal";
+
 import NavBar from "./NavBar";
 import Graph from "./Graph";
 import Row from "react-bootstrap/Row"
@@ -28,27 +30,7 @@ function Goal() {
           <button className="edit-button btn btn-secondary" onClick={handleShow}>Update your goal</button>
         </Column>
       </Row>
-      <Modal
-        show = {show}
-        onHide={handleClose}
-        backdrop='static'
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Edit</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Test
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant='primary'>
-            Understood
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <EditModal show={show} handleClose={handleClose}/>
     </>
       // <div className='app-container'>
       //   <NavBar/>
