@@ -22,6 +22,7 @@ function AllGoals(){
             return(
                 <GoalsList
                     key={goal.id}
+                    id={goal.id}
                     name={goal.goal.goal_name}
                     amount={goal.goal.amount}
                     //looks like we probably don't need progress -- will remove later

@@ -23,7 +23,7 @@ function Goal() {
       <NavBar/>
       <Row className="m-4"></Row>
       <Container fluid className="d-flex justify-content-center">
-        <Row className="w-25">
+        <Row className="w-100">
           <Col></Col>
           <Col>
             <Graph goalAmount={goalAmount} userContributions={userContributions} />
