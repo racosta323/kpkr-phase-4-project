@@ -34,6 +34,7 @@ function Goal() {
   const goalName = (goal === null) ? null : goal.user_goals[0].goal.goal_name
   const goalAmount = (goal === null) ? null : goal.user_goals[0].goal.amount
   const userContributions = (goal === null) ? null : goal.user_goals[0].contributions
+  const userGoalId = (goal === null) ? null : goal.user_goals[0].id
 
   return (
     <>
@@ -41,9 +42,10 @@ function Goal() {
       <Row className="m-4"></Row>
       <Container fluid className="d-flex justify-content-center">
         <Stack>
+          {/* {update colors} */}
           <h2 className="d-flex justify-content-center mb-4">{goalName}</h2>
-          <h3 className="d-flex justify-content-center">Goal Amount: ${goalAmount}</h3>
-          <h3 className="d-flex justify-content-center">Contributions made: ${userContributions}</h3>
+          <h3 className="d-flex justify-content-center text-danger">Goal Amount: ${goalAmount}</h3>
+          <h3 className="d-flex justify-content-center text-primary">Contributions made: ${userContributions}</h3>
           <h3 className="d-flex justify-content-center mb-5 text-warning">Amount to Goal: ${goalAmount-userContributions}</h3>
           <Row>
             <Col></Col>
@@ -62,6 +64,7 @@ function Goal() {
           amount={goalAmount}
           contributions={userContributions}
           goalId = {goalId}
+          userGoalId = {userGoalId}
         />
       </Container>
     </>

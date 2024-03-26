@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
 
-function EditModal({ show, handleClose, name, amount, contributions, userGoalId, goalId }){
+function EditModal({ show, handleClose, name, amount, contributions, goalId, userGoalId }){
 
     const handleDelete = () => {
-        fetch(`/goals/${userGoalId}`, {
+        fetch(`/goals/${goalId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -27,7 +27,7 @@ function EditModal({ show, handleClose, name, amount, contributions, userGoalId,
           contributions:''
         },
         onSubmit: (values) => { 
-          if (formik.goalName != "" || formik.goal != ""){
+          if (formik.goalName != "" || formik.goalAmt != ""){
             fetch(`/goals/${goalId}`, {
               method: "POST",
               headers: {
@@ -45,9 +45,10 @@ function EditModal({ show, handleClose, name, amount, contributions, userGoalId,
                   console.log(data)
                 }
               )
-          } else if (formik.contributions != ""){
+          }
+          if (formik.contributions != ""){
             fetch(`/usergoals/${userGoalId}`, {
-              method: "POST",
+              method: "PATCH",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -79,7 +80,7 @@ function EditModal({ show, handleClose, name, amount, contributions, userGoalId,
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="goalName">
               <Form.Label>Goal Name</Form.Label>
               <Form.Control
                 as="input"
@@ -87,6 +88,7 @@ function EditModal({ show, handleClose, name, amount, contributions, userGoalId,
                 name = 'goalName'
                 placeholder= {name}
                 value={formik.values["goalName"]}
+                onChange={formik.handleChange}
                 autoFocus
               />
             </Form.Group>
@@ -98,7 +100,7 @@ function EditModal({ show, handleClose, name, amount, contributions, userGoalId,
                 name = 'goalAmount'
                 placeholder= {amount}
                 value={formik.values["goalAmt"]}
-                autoFocus
+                onChange={formik.handleChange}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -108,8 +110,8 @@ function EditModal({ show, handleClose, name, amount, contributions, userGoalId,
                 type="contributions"
                 name = 'contributions'
                 placeholder= {contributions}
+                onChange={formik.handleChange}
                 value={formik.values["contributions"]}
-                autoFocus
               />
             </Form.Group>
           </Form>
