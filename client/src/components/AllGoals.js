@@ -18,7 +18,7 @@ function AllGoals(){
     let renderGoals = goals.map((goal)=>{
         //this needs to change based on user id
         if (goal.user_id === 2){
-            console.log(goal)
+            
             return(
                 <GoalsList
                     key={goal.id}
@@ -30,10 +30,7 @@ function AllGoals(){
                 />
             )
         }
-        
     })
-
-    console.log(renderGoals)
 
     return(
         <>

@@ -1,4 +1,5 @@
 import AllGoals from "../src/components/AllGoals"
+import Goal from "./components/Goal"
 import App from "./components/App"
 
 const routes = [
@@ -7,8 +8,12 @@ const routes = [
         element: <App/>
     },
     {
-        path: '/goals/:id',
+        path: '/goals',
         element: <AllGoals/>
+    },
+    {
+        path: '/goals/:id',
+        element: <Goal/>
     }
 ]
 
