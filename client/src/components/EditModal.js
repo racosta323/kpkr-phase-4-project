@@ -4,7 +4,18 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
 
-function EditModal({ show, handleClose, name, amount, contributions }){
+function EditModal({ show, handleClose, name, amount, contributions, goalId }){
+
+    const handleDelete = () => {
+        fetch(`/usergoals/${goalId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        }) 
+        .then(resp=>resp.json())
+        .then(data=>console.log(data))
+    }
     
     // const formik = useFormik({
     //     initialValues:{
@@ -84,7 +95,7 @@ function EditModal({ show, handleClose, name, amount, contributions }){
         </Modal.Body>
         <Modal.Footer>
             <Col>
-                <Button variant='danger' onClick={handleClose}>
+                <Button variant='danger' onClick={handleDelete}>
                     Delete
                 </Button>
             </Col>
