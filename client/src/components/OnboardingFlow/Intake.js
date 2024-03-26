@@ -1,14 +1,26 @@
 import React from "react";
-import { useFormik } from "formik";
+import { useFormik, Field } from "formik";
 import { useState } from 'react';
-import CreateUser from "../AllForm-don't delete";
-
+// import CreateUser from "../AllForm-don't delete";
 
 import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
-import FakePage from "../AllGoals";
+// import FakePage from "../AllGoals";
+import * as yup from 'yup';
+
+const formSchema = yup.object().shape({
+  firstName: yup.string().required("Please enter a valid string as first name"),
+  lastName: yup.string().required("Please enter a valid string as last name"),
+  goalName: yup.string().required("Please enter valid goal"),
+  goalAmt: yup.number()
+  .required("A target savings in USD is required for your goal")
+  .integer("Goal must be a whole number"),
+  targetDate: yup.date()
+  .required('A target date is required')
+  .min(new Date(), 'Taregt should be a reasonable date in the future')
+})
 
   function Intake(){
 
@@ -26,6 +38,7 @@ import FakePage from "../AllGoals";
       userId: '' 
     },
     // validate,
+    validationSchema: formSchema,
     onSubmit: (values) => { 
       fetch("/users", {
       method: "POST",
@@ -35,7 +48,7 @@ import FakePage from "../AllGoals";
       body: JSON.stringify(values, null, 2)
       }).then(
         (res) => {
-          if(res.status == 201){
+          if(res.status === 201){
             return res.json()
           }
         }
@@ -52,7 +65,7 @@ import FakePage from "../AllGoals";
         body: JSON.stringify(values, null, 2)
       }).then(
         (res) => {
-          if(res.status == 201){
+          if(res.status === 201){
             return res.json()
           }
         }
@@ -70,7 +83,7 @@ import FakePage from "../AllGoals";
         body: JSON.stringify(values, null, 2)
         }).then(
           (res) => {
-            if(res.status == 201){
+            if(res.status === 201){
               return res.json()
             }
           }
@@ -123,8 +136,31 @@ import FakePage from "../AllGoals";
 
 return (
   <>
-    {update()}
-  </>
+    <div>
+      {update()}
+      <div>
+        <Field name="firstName" />
+        {formik.errors.firstName && formik.touched.firstName ?
+        ( <div style={{ color: "red" }}>{formik.errors.firstName}</div> ) : null}
+
+        <Field name="lastName" />
+          {formik.errors.lastName && formik.touched.lastName ?
+          ( <div style={{ color: "red" }}>{formik.errors.lastName}</div> ) : null}
+
+        <Field name="goalName" />
+          {formik.errors.goalName && formik.touched.goalName ?
+          ( <div style={{ color: "red" }}>{formik.errors.goalName}</div> ) : null}
+
+        <Field name="goalAmt" />
+          {formik.errors.goalAmt && formik.touched.goalAmt ?
+          ( <div style={{ color: "red" }}>{formik.errors.goalAmt}</div> ) : null}
+
+        <Field name="targetDate" />
+          {formik.errors.targetDate && formik.touched.targetDate ?
+          ( <div style={{ color: "red" }}>{formik.errors.targetDate}</div> ) : null}
+      </div>
+    </div>
+ </>
 )
 }
 export default Intake
