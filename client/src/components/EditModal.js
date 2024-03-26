@@ -22,13 +22,13 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
     
     const formik = useFormik({
         initialValues:{
-          goalName:'',
-          goalAmt:'',
+          goal_name:'',
+          goal_amt:'',
           contributions:''
         },
         onSubmit: (values) => { 
-          console.log(formik.values.contributions)
-          if (formik.values.goalName != "" || formik.values.goalAmt != ""){
+          console.log(formik.values.goal_name)
+          if (formik.values.goal_name != "" || formik.values.goal_amt != ""){
             fetch(`/goals/${goalId}`, {
               method: "PATCH",
               headers: {
@@ -37,7 +37,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
               body: JSON.stringify(values, null, 2)
               }).then(
                 (res) => {
-                  if(res.status == 201){
+                  if(res.status == 200){
                     return res.json()
                   }
                 }
@@ -47,7 +47,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 }
               )
           }
-          console.log(formik.values.contributions)
+          // console.log(formik.values.contributions)
           if (formik.values.contributions != ""){
             fetch(`/usergoals/${userGoalId}`, {
               method: "PATCH",
@@ -70,6 +70,8 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         }    
     })
 
+    console.log(formik.values.goal_name)
+
     return(
     <Modal
         show = {show}
@@ -82,26 +84,26 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
-            <Form.Group className="mb-3" controlId="goalName">
+            <Form.Group className="mb-3" controlId="goal_name">
               <Form.Label>Goal Name</Form.Label>
               <Form.Control
                 as="input"
-                type="goalName"
-                name = 'goalName'
+                type="goal_name"
+                name = 'goal_name'
                 placeholder= {name}
-                value={formik.values.goalName}
+                value={formik.values.goal_name}
                 onChange={formik.handleChange}
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="goalAmt">
+            <Form.Group className="mb-3" controlId="goal_amt">
               <Form.Label>Goal Amount</Form.Label>
               <Form.Control
                 as="input"
-                type="goalAmt"
-                name = 'goalAmt'
+                type="goal_amt"
+                name = 'goal_amt'
                 placeholder= {amount}
-                value={formik.values.goalAmt}
+                value={formik.values.goal_amt}
                 onChange={formik.handleChange}
               />
             </Form.Group>

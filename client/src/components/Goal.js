@@ -27,6 +27,7 @@ function Goal() {
     .then (resp=>resp.json())
     .then(data => {
       setGoal(data)
+      console.log(data.user_goals)
       // console.log(data)
       })
   }, [goalId])
@@ -35,6 +36,8 @@ function Goal() {
   const goalAmount = (goal === null) ? null : goal.user_goals[0].goal.amount
   const userContributions = (goal === null) ? null : goal.user_goals[0].contributions
   const userGoalId = (goal === null) ? null : goal.user_goals[0].id
+
+  console.log(goalName)
 
   return (
     <>
