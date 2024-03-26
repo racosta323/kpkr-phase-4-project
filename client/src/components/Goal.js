@@ -14,7 +14,7 @@ import Stack from "react-bootstrap/Stack";
 function Goal() {
 
   const params = useParams()
-  const userGoalId = params.id
+  const goalId = params.id
 
   const [goal, setGoal] = useState(null)
   const [show, setShow] = useState(false)
@@ -23,17 +23,17 @@ function Goal() {
   const handleShow = () => setShow(true)
 
   useEffect(()=>{
-    fetch(`/usergoals/${userGoalId}`)
+    fetch(`/goals/${goalId}`)
     .then (resp=>resp.json())
     .then(data => {
       setGoal(data)
+      console.log(data)
       })
-  }, [userGoalId])
+  }, [goalId])
 
-  const goalName = (goal === null) ? null : goal.goal["goal_name"]
-  const goalAmount = (goal === null) ? null : goal.goal.amount
-  const userContributions = (goal === null) ? null : goal.contributions
-  const goalId = (goal === null) ? null : goal.id
+  const goalName = (goal === null) ? null : goal.user_goals[0].goal.goal_name
+  const goalAmount = (goal === null) ? null : goal.user_goals[0].goal.amount
+  const userContributions = (goal === null) ? null : goal.user_goals[0].contributions
 
   return (
     <>
@@ -45,7 +45,6 @@ function Goal() {
           <Row>
           <Col></Col>
           <Col>
-          {/* need to resize graph */}
             <Graph goalAmount={goalAmount} userContributions={userContributions}/>
             <button className="edit-button btn btn-secondary mt-4" onClick={handleShow}>Update your goal</button>
           </Col>
@@ -58,7 +57,6 @@ function Goal() {
           name={goalName} 
           amount={goalAmount}
           contributions={userContributions}
-          userGoalId = {userGoalId}
           goalId = {goalId}
         />
       </Container>

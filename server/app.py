@@ -75,6 +75,10 @@ class Goals(Resource):
 api.add_resource(Goals, '/goals')
 
 class GoalById(Resource):
+    def get(self,id):
+        user = User.query.get(id)
+        return make_response(user.to_dict())
+
     def delete(self,id):
         goal = Goal.query.get(id)
 
