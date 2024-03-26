@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button"
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
 
 function EditModal({ show, handleClose, name, amount, contributions }){
@@ -82,12 +83,19 @@ function EditModal({ show, handleClose, name, amount, contributions }){
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant='primary'>
-            Understood
-          </Button>
+            <Col>
+                <Button variant='danger' onClick={handleClose}>
+                    Delete
+                </Button>
+            </Col>
+            <Col>
+                <Button variant='secondary' onClick={handleClose}>
+                    Close
+                </Button>
+            <Button variant='primary'>
+                Understood
+            </Button>
+            </Col>
         </Modal.Footer>
       </Modal>
     )
