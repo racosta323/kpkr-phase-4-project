@@ -93,7 +93,7 @@ function EditModal({ show, handleClose, name, amount, contributions }){
                     Close
                 </Button>
             <Button variant='primary'>
-                Understood
+                Submit
             </Button>
             </Col>
         </Modal.Footer>

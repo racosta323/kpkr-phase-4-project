@@ -9,6 +9,7 @@ import Graph from "./Graph";
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container";
+import Stack from "react-bootstrap/Stack";
 
 function Goal() {
 
@@ -38,7 +39,9 @@ function Goal() {
       <NavBar/>
       <Row className="m-4"></Row>
       <Container fluid className="d-flex justify-content-center">
-        <Row>
+        <Stack>
+          <h2 className="d-flex justify-content-center mb-5">{goalName}</h2>
+          <Row>
           <Col></Col>
           <Col>
           {/* need to resize graph */}
@@ -47,6 +50,7 @@ function Goal() {
           </Col>
           <Col></Col>
         </Row>
+        </Stack>
         <EditModal 
           show={show} 
           handleClose={handleClose} 
