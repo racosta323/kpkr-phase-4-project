@@ -14,7 +14,10 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId }){
         }
         }) 
         .then(resp=>resp.json())
-        .then(data=>console.log(data))
+        .then(data=>{
+            console.log(data)
+            //nav back to all goals
+        })
     }
     
     // const formik = useFormik({
@@ -99,13 +102,13 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId }){
                     Delete
                 </Button>
             </Col>
-            <Col>
-                <Button variant='secondary' onClick={handleClose}>
+            <Col className="d-flex justify-content-end">
+                <Button variant='secondary' onClick={handleClose} className="mx-2">
                     Close
                 </Button>
-            <Button variant='primary'>
-                Submit
-            </Button>
+                <Button variant='primary'>
+                    Submit
+                </Button>
             </Col>
         </Modal.Footer>
       </Modal>
