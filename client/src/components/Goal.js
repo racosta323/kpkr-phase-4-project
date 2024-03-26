@@ -46,13 +46,14 @@ function Goal() {
           <h3 className="d-flex justify-content-center">Contributions made: ${userContributions}</h3>
           <h3 className="d-flex justify-content-center mb-5 text-warning">Amount to Goal: ${goalAmount-userContributions}</h3>
           <Row>
-          <Col></Col>
-          <Col>
-            <Graph goalAmount={goalAmount} userContributions={userContributions}/>
-            <button className="edit-button btn btn-secondary mt-4" onClick={handleShow}>Update your goal</button>
-          </Col>
-          <Col></Col>
-        </Row>
+            <Col></Col>
+            <Col>
+              <Graph goalAmount={goalAmount} userContributions={userContributions}/>
+              <button className="edit-button btn btn-secondary mb -4" onClick={handleShow}>Update your goal</button>
+              <Row className="m-4"></Row>
+            </Col>
+            <Col></Col>
+          </Row>
         </Stack>
         <EditModal 
           show={show} 
