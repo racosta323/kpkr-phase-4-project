@@ -27,7 +27,7 @@ function Goal() {
     .then (resp=>resp.json())
     .then(data => {
       setGoal(data)
-      console.log(data)
+      // console.log(data)
       })
   }, [goalId])
 

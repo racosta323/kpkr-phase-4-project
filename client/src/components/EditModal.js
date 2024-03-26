@@ -27,9 +27,10 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
           contributions:''
         },
         onSubmit: (values) => { 
-          if (formik.goalName != "" || formik.goalAmt != ""){
+          console.log(formik.values.contributions)
+          if (formik.values.goalName != "" || formik.values.goalAmt != ""){
             fetch(`/goals/${goalId}`, {
-              method: "POST",
+              method: "PATCH",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -46,7 +47,8 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 }
               )
           }
-          if (formik.contributions != ""){
+          console.log(formik.values.contributions)
+          if (formik.values.contributions != ""){
             fetch(`/usergoals/${userGoalId}`, {
               method: "PATCH",
               headers: {
@@ -79,7 +81,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
           <Modal.Title>Edit Goal</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="mb-3" controlId="goalName">
               <Form.Label>Goal Name</Form.Label>
               <Form.Control
@@ -87,23 +89,23 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 type="goalName"
                 name = 'goalName'
                 placeholder= {name}
-                value={formik.values["goalName"]}
+                value={formik.values.goalName}
                 onChange={formik.handleChange}
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="goalAmt">
               <Form.Label>Goal Amount</Form.Label>
               <Form.Control
                 as="input"
-                type="goalAmount"
-                name = 'goalAmount'
+                type="goalAmt"
+                name = 'goalAmt'
                 placeholder= {amount}
-                value={formik.values["goalAmt"]}
+                value={formik.values.goalAmt}
                 onChange={formik.handleChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="contributions">
               <Form.Label>Contribution Amount</Form.Label>
               <Form.Control
                 as="input"
@@ -111,26 +113,25 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 name = 'contributions'
                 placeholder= {contributions}
                 onChange={formik.handleChange}
-                value={formik.values["contributions"]}
+                value={formik.values.contributions}
               />
             </Form.Group>
+            <Modal.Footer>
+              <Col>
+                  <Button variant='danger' onClick={handleDelete}>
+                      Delete
+                  </Button>
+              </Col>
+              <Col className="d-flex justify-content-end">
+                  <Button variant='secondary' onClick={handleClose} className="mx-2">
+                      Close
+                  </Button>
+                  <Button variant='primary' as='input' type='submit' value='Submit'/>
+              </Col>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-            <Col>
-                <Button variant='danger' onClick={handleDelete}>
-                    Delete
-                </Button>
-            </Col>
-            <Col className="d-flex justify-content-end">
-                <Button variant='secondary' onClick={handleClose} className="mx-2">
-                    Close
-                </Button>
-                <Button variant='primary'>
-                    Submit
-                </Button>
-            </Col>
-        </Modal.Footer>
+        
       </Modal>
     )
 }
