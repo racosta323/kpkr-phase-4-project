@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik, Field } from "formik";
+import { useFormik, Field, Form } from "formik";
 import { useState } from 'react';
 // import CreateUser from "../AllForm-don't delete";
 
@@ -10,7 +10,7 @@ import Confirmation from "./OnboardingConfirmation";
 // import FakePage from "../AllGoals";
 import * as yup from 'yup';
 
-const formSchema = yup.object().shape({
+const SignupSchema = yup.object().shape({
   firstName: yup.string().required("Please enter a valid string as first name"),
   lastName: yup.string().required("Please enter a valid string as last name"),
   goalName: yup.string().required("Please enter valid goal"),
@@ -38,7 +38,7 @@ const formSchema = yup.object().shape({
       userId: '' 
     },
     // validate,
-    validationSchema: formSchema,
+    validationSchema: SignupSchema,
     onSubmit: (values) => { 
       fetch("/users", {
       method: "POST",
@@ -135,7 +135,7 @@ const formSchema = yup.object().shape({
 
 
 return (
-  <>
+  <Form>
     <div>
       {update()}
       <div>
@@ -160,7 +160,7 @@ return (
           ( <div style={{ color: "red" }}>{formik.errors.targetDate}</div> ) : null}
       </div>
     </div>
- </>
+ </Form>
 )
 }
-export default Intake
+export default Intake;
