@@ -29,6 +29,7 @@ function Goal() {
       })
   }, [userGoalId])
 
+  const goalName = (goal === null) ? null : goal.goal["goal_name"]
   const goalAmount = (goal === null) ? null : goal.goal.amount
   const userContributions = (goal === null) ? null : goal.contributions
 
@@ -37,15 +38,22 @@ function Goal() {
       <NavBar/>
       <Row className="m-4"></Row>
       <Container fluid className="d-flex justify-content-center">
-        <Row className="w-100">
+        <Row>
           <Col></Col>
           <Col>
-            <Graph goalAmount={goalAmount} userContributions={userContributions} />
-            <button className="edit-button btn btn-secondary" onClick={handleShow}>Update your goal</button>
+          {/* need to resize graph */}
+            <Graph goalAmount={goalAmount} userContributions={userContributions}/>
+            <button className="edit-button btn btn-secondary mt-4" onClick={handleShow}>Update your goal</button>
           </Col>
           <Col></Col>
         </Row>
-        <EditModal show={show} handleClose={handleClose}/>
+        <EditModal 
+          show={show} 
+          handleClose={handleClose} 
+          name={goalName} 
+          amount={goalAmount}
+          contributions={userContributions}
+        />
       </Container>
     </>
       // <div className='app-container'>
