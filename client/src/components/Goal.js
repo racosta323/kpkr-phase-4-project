@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import EditModal from "./EditModal";
 import NavBar from "./NavBar";
@@ -10,8 +11,13 @@ import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container";
 
 function Goal() {
-    const goalAmount = 15000
-    const userContributions = 500
+
+  const params = useParams()
+  const goalId = params.id
+  console.log(goalId)
+
+  const goalAmount = 15000
+  const userContributions = 500
 
   const [show, setShow] = useState(false)
 
@@ -31,7 +37,7 @@ function Goal() {
           </Col>
           <Col></Col>
         </Row>
-      <EditModal show={show} handleClose={handleClose}/>
+        <EditModal show={show} handleClose={handleClose}/>
       </Container>
     </>
       // <div className='app-container'>
