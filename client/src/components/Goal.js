@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import EditModal from "./EditModal";
@@ -13,16 +13,24 @@ import Container from "react-bootstrap/Container";
 function Goal() {
 
   const params = useParams()
-  const goalId = params.id
-  console.log(goalId)
+  const userGoalId = params.id
 
-  const goalAmount = 15000
-  const userContributions = 500
-
+  const [goal, setGoal] = useState(null)
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+  useEffect(()=>{
+    fetch(`/usergoals/${userGoalId}`)
+    .then (resp=>resp.json())
+    .then(data => {
+      setGoal(data)
+      })
+  }, [userGoalId])
+
+  const goalAmount = (goal === null) ? null : goal.goal.amount
+  const userContributions = (goal === null) ? null : goal.contributions
 
   return (
     <>
