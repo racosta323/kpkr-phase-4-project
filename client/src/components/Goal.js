@@ -41,7 +41,10 @@ function Goal() {
       <Row className="m-4"></Row>
       <Container fluid className="d-flex justify-content-center">
         <Stack>
-          <h2 className="d-flex justify-content-center mb-5">{goalName}</h2>
+          <h2 className="d-flex justify-content-center mb-4">{goalName}</h2>
+          <h3 className="d-flex justify-content-center">Goal Amount: ${goalAmount}</h3>
+          <h3 className="d-flex justify-content-center">Contributions made: ${userContributions}</h3>
+          <h3 className="d-flex justify-content-center mb-5 text-warning">Amount to Goal: ${goalAmount-userContributions}</h3>
           <Row>
           <Col></Col>
           <Col>
