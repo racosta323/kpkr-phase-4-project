@@ -7,22 +7,17 @@ const routes = [
     {
         path: '/',
         element: <App/>,
-        children: [
-            // {index: true, element: <App/>},
-            {
-                path: 'goals',
-                element: <AllGoals />
-                // children:[
-                //     {index: true, element: <App/>}
-                //     {
-                //         path: '/goals/:id',
-                //         element: <Goal/>
-                //     }
-                // ]
-            }
-            
-        ]
+    },
+    // {index: true, element: <App/>},
+    {
+        path: 'goals',
+        element: <AllGoals />,
+    },
+    {
+        path: 'goals/:id',
+        element: <Goal/>
     }
 ]
+
 
 export const router = createBrowserRouter(routes)
