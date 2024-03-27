@@ -17,6 +17,10 @@ class AuthUser(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
+    userId = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    user = db.relationship("User", back_populates='auth_users')
+
     @property
     def password_hash(self):
         return self._password_hash
@@ -45,6 +49,7 @@ class User(db.Model, SerializerMixin):
 
     user_goals = db.relationship("UserGoal", back_populates='user')
     goals = association_proxy('user_goals', 'goal')
+    auth_users = db.relationship("AuthUser", back_populates='user')
 
     def __repr__(self):
         return f'<User Id: {self.id}, first_name = {self.first_name}, last_name = {self.last_name}>'

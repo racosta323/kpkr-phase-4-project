@@ -4,18 +4,10 @@ import { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 import * as yup from "yup"
 
-
-import FirstName from "./OnboardingFlow/OnboardingFirstName";
-import Goals from "./OnboardingFlow/OnboardingGoals"
-import Contributions from "./OnboardingFlow/OnboardingContributions"
-import Confirmation from "./OnboardingFlow/OnboardingConfirmation";
-import NavBar from "./NavBar";
-
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { useParams } from 'react-router-dom'
 
   function Auth( ){
 
