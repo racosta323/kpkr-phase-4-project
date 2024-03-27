@@ -3,6 +3,7 @@ import Goal from "./components/Goal"
 import App from "./components/App"
 import Landing from "./components/Landing"
 import Auth from "./components/Auth"
+import Intake from "./components/OnboardingFlow/Intake"
 import { createBrowserRouter } from "react-router-dom"
 
 const routes = [
@@ -21,6 +22,10 @@ const routes = [
             {
                 path:'/signup',
                 element: <Auth/>
+            },
+            {
+                path:'/onboarding',
+                element: <Intake/>
             },
             {
                 path: '/goals',

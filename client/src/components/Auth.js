@@ -53,7 +53,7 @@ import Button from 'react-bootstrap/Button'
                     console.log(user.userId)
                     if (user.userId == null){
                       console.log(user.userId)
-                      navigate(`/`)
+                      navigate(`/onboarding`)
                     } else{
                       navigate(`/goals`)
                     }
