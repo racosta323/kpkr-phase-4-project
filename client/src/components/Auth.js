@@ -80,7 +80,7 @@ import { useParams } from 'react-router-dom'
 
 return (
   <>
-    <header><NavBar logoutUser={logoutUser}/></header>
+    {/* <header><NavBar logoutUser={logoutUser}/></header> */}
     <Row>
     <Col></Col>
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
