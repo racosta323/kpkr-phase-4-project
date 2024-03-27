@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom"
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -10,6 +11,8 @@ import AllGoals from "./AllGoals";
 
 
 function App() {
+
+  const navigate = useNavigate()
 
   const [loggedInUser, setLoggedInUser] = useState(null)
 
@@ -24,6 +27,7 @@ function App() {
 
   function logoutUser() {
     setLoggedInUser(null)
+    navigate(`/`)
   }
 
   console.log(loggedInUser)
