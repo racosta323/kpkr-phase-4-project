@@ -8,13 +8,14 @@ import FirstName from "./OnboardingFlow/OnboardingFirstName";
 import Goals from "./OnboardingFlow/OnboardingGoals"
 import Contributions from "./OnboardingFlow/OnboardingContributions"
 import Confirmation from "./OnboardingFlow/OnboardingConfirmation";
+import NavBar from "./NavBar";
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-  function Auth({ setUser }){
+  function Auth({ setUser, logoutUser }){
 
     const [signup, setSignUp] = useState(true)
     // const [display, setDisplay] = useState("")
@@ -51,10 +52,11 @@ import Button from 'react-bootstrap/Button'
       setSignUp((currentSignup) => !currentSignup)
   }
 
-  console.log(formik.values)
+ 
 
 return (
   <>
+    <header><NavBar logoutUser={logoutUser}/></header>
     <Row>
     <Col></Col>
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">

@@ -9,7 +9,7 @@ import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
-import FakePage from "../AllGoals";
+import NavBar from "../NavBar";
 
   function Intake(){
 
