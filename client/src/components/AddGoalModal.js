@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
 
+
 function AddGoalModal({ show, handleClose, name, amount, contributions, userGoalId }){
 
     let goalId
@@ -14,6 +15,7 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, userGoal
           amount:'',
           contributions:''
         },
+        validationSchema: SignupSchema,
         onSubmit: (values) => { 
           console.log(formik.values.goal_name)
           if (formik.values.goal_name != "" || formik.values.amount != ""){

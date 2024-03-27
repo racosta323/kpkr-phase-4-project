@@ -36,6 +36,11 @@ import * as yup from 'yup';
                 .nullable()
                 .typeError("Goal Amount must be a number")
                 .required(""),
+      contributions: yup
+                .number()
+                .nullable()
+                .typeError("You must contribute a numeric amount")
+                .required(""),
       // targetDate: yup.date()
       // .required('A target date is required')
       // .min(new Date(), 'Taregt should be a reasonable date in the future')

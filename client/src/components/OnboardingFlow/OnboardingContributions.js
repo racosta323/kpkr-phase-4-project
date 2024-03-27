@@ -30,7 +30,7 @@ return(
                 onChange={formik.handleChange}
                 value={formik.values.contributions}
             />
-            {/* contributions validation line */}
+            <p style={{ color: "red" }}> {formik.errors.contributions}</p>
             {/* consider adding ability to add another*/}
             <Stack direction='horizontal' gap={3}>
               <Button as="input" type="button" value="Next" onClick={click}/>{' '}
