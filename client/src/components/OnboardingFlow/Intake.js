@@ -10,19 +10,21 @@ import Confirmation from "./OnboardingConfirmation";
 // import FakePage from "../AllGoals";
 import * as yup from 'yup';
 
-const SignupSchema = yup.object().shape({
-  firstName: yup.string().required("Please enter a valid string as first name"),
-  lastName: yup.string().required("Please enter a valid string as last name"),
-  goalName: yup.string().required("Please enter valid goal"),
-  goalAmt: yup.number()
-  .required("A target savings in USD is required for your goal")
-  .integer("Goal must be a whole number"),
-  targetDate: yup.date()
-  .required('A target date is required')
-  .min(new Date(), 'Taregt should be a reasonable date in the future')
-})
 
   function Intake(){
+
+    const SignupSchema = yup.object().shape({
+      firstName: yup.string().required("Please enter a valid string as first name"),
+      lastName: yup.string().required("Please enter a valid string as last name"),
+      goalName: yup.string().required("Please enter valid goal"),
+      goalAmt: yup.number()
+      .required("A target savings in USD is required for your goal")
+      .integer("Goal must be a whole number"),
+      // targetDate: yup.date()
+      // .required('A target date is required')
+      // .min(new Date(), 'Taregt should be a reasonable date in the future')
+    })
+    
 
   const [display, setDisplay] = useState("")
 
@@ -132,32 +134,30 @@ const SignupSchema = yup.object().shape({
   // })
 
 
-
-
 return (
   <Form>
     <div>
       {update()}
       <div>
         <Field name="firstName" />
-        {formik.errors.firstName && formik.touched.firstName ?
-        ( <div style={{ color: "red" }}>{formik.errors.firstName}</div> ) : null}
+        {errors.firstName && touched.firstName ?
+        ( <div> {errors.firstName}</div> ) : null}
 
         <Field name="lastName" />
-          {formik.errors.lastName && formik.touched.lastName ?
-          ( <div style={{ color: "red" }}>{formik.errors.lastName}</div> ) : null}
+          {errors.lastName && touched.lastName ?
+          ( <div> {errors.lastName}</div> ) : null}
 
         <Field name="goalName" />
-          {formik.errors.goalName && formik.touched.goalName ?
-          ( <div style={{ color: "red" }}>{formik.errors.goalName}</div> ) : null}
+          {errors.goalName && touched.goalName ?
+          ( <div> {errors.goalName}</div> ) : null}
 
         <Field name="goalAmt" />
-          {formik.errors.goalAmt && formik.touched.goalAmt ?
-          ( <div style={{ color: "red" }}>{formik.errors.goalAmt}</div> ) : null}
+          {errors.goalAmt && touched.goalAmt ?
+          ( <div> {errors.goalAmt}</div> ) : null}
 
         <Field name="targetDate" />
-          {formik.errors.targetDate && formik.touched.targetDate ?
-          ( <div style={{ color: "red" }}>{formik.errors.targetDate}</div> ) : null}
+          {errors.targetDate && touched.targetDate ?
+          ( <div> {errors.targetDate}</div> ) : null}
       </div>
     </div>
  </Form>
