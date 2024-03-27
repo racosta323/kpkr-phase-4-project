@@ -16,23 +16,26 @@ import * as yup from 'yup';
     const SignupSchema = yup.object().shape({
       firstName: yup
                 .string()
+                .nullable()
                 .matches(
                   /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
                       'Name can only contain letters.')
-                .required("Please enter a valid string as first name"),
+                .required(""),
       lastName: yup
                 .string()
+                .nullable()
                 .matches(
                   /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
                       'Name can only contain letters.')
-                .required("Please enter a valid string as last name"),
+                .required(""),
       goalName: yup
                 .string()
-                .required("Please enter valid goal"),
+                .required(""),
       goalAmt: yup
                 .number()
-                .required("A target savings in USD is required for your goal")
-                .integer("Goal must be a whole number"),
+                .nullable()
+                .typeError("Goal Amount must be a number")
+                .required(""),
       // targetDate: yup.date()
       // .required('A target date is required')
       // .min(new Date(), 'Taregt should be a reasonable date in the future')
