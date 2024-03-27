@@ -10,6 +10,7 @@ import Confirmation from "./OnboardingConfirmation";
 // import FakePage from "../AllGoals";
 import * as yup from 'yup';
 
+import NavBar from "../NavBar";
 
   function Intake(){
 
@@ -113,8 +114,6 @@ import * as yup from 'yup';
           
         }
     })
-    
-    console.log(formik.errors)
 
     const nameClick= () => {
       setDisplay("goals")

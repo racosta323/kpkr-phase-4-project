@@ -37,7 +37,7 @@ function Goal() {
   const userContributions = (goal === null) ? null : goal.user_goals[0].contributions
   const userGoalId = (goal === null) ? null : goal.user_goals[0].id
 
-  // console.log(goalName)
+  console.log(goalName)
 
   return (
     <>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import Container from "react-bootstrap/Container"
+import { useOutletContext } from "react-router-dom"
 
 import AddGoalModal from "./AddGoalModal"
 
@@ -15,6 +16,8 @@ function AllGoals(){
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+
+    const { logoutUser } = useOutletContext()
 
     useEffect(()=>{
         fetch('/usergoals')
@@ -43,7 +46,7 @@ function AllGoals(){
 
     return(
         <>
-            <NavBar/>
+            <NavBar logoutUser={logoutUser}/>
             <Container>
                 <Row className="m-4"></Row>
                 <Stack direction="horizontal" gap={3}>

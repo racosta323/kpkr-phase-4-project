@@ -6,8 +6,6 @@ import * as Yup from 'yup'
 
 function FirstName({ formik, click }){
 
-console.log(typeof(formik.values.firstName))
-
 return(
     <>
     <Row>

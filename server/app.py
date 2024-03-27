@@ -4,13 +4,13 @@
 from datetime import datetime
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User, Goal, UserGoal
+from models import User, Goal, UserGoal, AuthUser
 
 # Views go here!
 
@@ -27,6 +27,7 @@ class Users(Resource):
         return make_response(new_user.to_dict(), 201)
 
 api.add_resource(Users, '/users')
+
 
 class UsersById(Resource):
     def get(self,id):
@@ -152,6 +153,53 @@ class UserGoalsById(Resource):
 
 api.add_resource(UserGoalsById, '/usergoals/<int:id>')
     
+class AuthUsers(Resource):
+    def post(self):
+        data = request.json
+        try:
+            user = AuthUser(username=data['username'])
+            user.password_hash = data['password']
+
+            db.session.add(user)
+            db.session.commit()
+
+            session['user_id'] = user.id
+            response = make_response(user.to_dict(), 201)
+        except:
+            return make_response({'error': "something went wrong"}, 400)
+
+        return response
+
+api.add_resource(AuthUsers, '/authusers')
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    user = AuthUser.query.filter_by(username=data['username']).first()
+    if not user:
+        return make_response({'error': 'invalid username'}, 404)
+
+    if user.authenticate(data['password']):
+        session['user_id'] = user.id
+        return make_response(user.to_dict(), 200)
+    else:
+        return make_response({'error': 'invalid username or password'}, 401)
+
+
+@app.route('/authorized', methods=['GET'])
+def authorized():
+    user_id = session.get('user_id')
+    if user_id:
+        user = AuthUser.query.filter_by(id=user_id).first()
+        return make_response(user.to_dict())
+    else:
+        return make_response({'error': 'Unauthorized'}, 401)
+
+@app.route('/logout', methods=['DELETE'])
+def logout():
+    session['user_id'] = None
+    return make_response({}, 204)
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
