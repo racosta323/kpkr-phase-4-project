@@ -28,6 +28,7 @@ class Users(Resource):
 
 api.add_resource(Users, '/users')
 
+
 class UsersById(Resource):
     def get(self,id):
         user = User.query.get(id)
@@ -152,6 +153,25 @@ class UserGoalsById(Resource):
 
 api.add_resource(UserGoalsById, '/usergoals/<int:id>')
     
+class AuthUsers(Resource):
+    def post(self):
+        data = request.json
+        try:
+            user = AuthUser(username=data['username'])
+            user.password_hash = data['password']
+
+            db.session.add(user)
+            db.session.commit()
+
+            session['user_id'] = user.id
+            response = make_response(user.to_dict(), 201)
+        except:
+            return make_response({'error': "something went wrong"}, 400)
+
+        return response
+
+api.add_resource(AuthUsers, '/authusers')
+
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json

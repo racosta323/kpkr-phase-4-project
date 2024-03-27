@@ -98,8 +98,6 @@ import FakePage from "../AllGoals";
           
         }
     })
-    
-    console.log(formik.errors)
 
     const nameClick= () => {
       setDisplay("goals")

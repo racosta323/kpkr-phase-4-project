@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from "react-bootstrap/esm/Container";
-import Intake from "./OnboardingFlow/Intake";
+import Auth from "./Auth";
+import Intake from './OnboardingFlow/Intake'
 
 
 
 function App() {
+
+  const [loggedInUser, setLoggedInUser] = useState(null)
+
+  useEffect(() => {
+    fetch('/authorized')
+      .then(resp => {
+        if (resp.ok) {
+          resp.json().then((user) => setLoggedInUser(user))
+        }
+      })
+  }, [])
 
   return (
     <>
@@ -23,7 +35,30 @@ function App() {
         </Row>
 
         <Row className="m-4"></Row>
-        <Intake />
+
+        <Row className="m-5">
+          <Col></Col>
+            <Col xs={6}>
+            <h4 className="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis lectus magna fringilla urna. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat.</h4>
+            </Col>
+            <Col></Col>
+        </Row>
+        {
+          !!loggedInUser ? <Intake />: <Auth setUser={setLoggedInUser}/>
+          
+        }
+        
+        {/* <button onClick={toggleSignup}>{signup ? 'Login instead!' : 'Register for an account'}</button> */}
+        {/* <Row className="m-5">
+          <Col></Col>
+            <Col xs={6}>
+              <a>Login</a>
+              <a>Sign Up - Goes to Onboarding</a>
+            </Col>
+            <Col></Col>
+        </Row> */}
+
+        
         <Row className="m-4"></Row>
         <Row>
           <p className="text-center"> 

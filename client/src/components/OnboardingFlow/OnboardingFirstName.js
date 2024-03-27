@@ -5,8 +5,6 @@ import Button from 'react-bootstrap/Button'
 
 function FirstName({ formik, click }){
 
-console.log(typeof(formik.values.firstName))
-
 return(
     <>
     <Row>
