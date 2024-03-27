@@ -32,12 +32,12 @@ function Goal() {
       })
   }, [goalId])
 
-  const goalName = (goal === null) ? null : goal.user_goals[0].goal.goal_name
-  const goalAmount = (goal === null) ? null : goal.user_goals[0].goal.amount
+  const goalName = (goal === null) ? null : goal.goal_name
+  const goalAmount = (goal === null) ? null : goal.amount
   const userContributions = (goal === null) ? null : goal.user_goals[0].contributions
   const userGoalId = (goal === null) ? null : goal.user_goals[0].id
 
-  console.log(goalName)
+  // console.log(goalName)
 
   return (
     <>
