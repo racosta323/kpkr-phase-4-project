@@ -31,7 +31,7 @@ import Button from 'react-bootstrap/Button'
       },
       onSubmit: (values) => {
         console.log(values)
-        const endpoint = signup ? '/authusers' : '/login'
+        const endpoint = !signup ? '/authusers' : '/login'
         fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -55,6 +55,7 @@ import Button from 'react-bootstrap/Button'
       setSignUp((currentSignup) => !currentSignup)
   }
 
+  console.log(signup)
  
 
 return (
@@ -63,7 +64,7 @@ return (
     <Row>
     <Col></Col>
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
-      <button onClick={toggleSignup}>{signup ? 'Login instead!' : 'Register for an account'}</button>
+      <button onClick={toggleSignup}>{!signup ? 'Login instead!' : 'Register for an account'}</button>
         <Form className="w-75 m-5" onSubmit={formik.handleSubmit}> 
           <Form.Group>
             <Form.Label className="fs-3">Login</Form.Label>
@@ -89,7 +90,7 @@ return (
                 onChange={formik.handleChange}
                 className="my-3"
             />
-            {signup && <>
+            {!signup && <>
                 <label htmlFor='phase'>Confirm Password</label>
                 <input 
                     id="passwordConfirmation" 
