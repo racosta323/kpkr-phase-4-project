@@ -30,8 +30,6 @@ function App() {
     navigate(`/`)
   }
 
-  console.log(loggedInUser)
-
   let context = {
     loggedInUser,
     setLoggedInUser,

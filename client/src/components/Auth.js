@@ -19,15 +19,12 @@ import Button from 'react-bootstrap/Button'
           return true
         }
     }
-    console.log(changeToSignup())
+
 
     const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
     const [signup, setSignUp] = useState(changeToSignup)
     const navigate = useNavigate()
     // const [display, setDisplay] = useState("")
-
-    //change signup state to false if endpoint is signup
-    console.log(signup)
     
     // let browserPathname = window.location.pathname
     //     if (browserPathname = '/signup'){
@@ -42,7 +39,6 @@ import Button from 'react-bootstrap/Button'
         passwordConfirmation: '' 
       },
       onSubmit: (values) => {
-        console.log(signup)
         const endpoint = !signup ? '/authusers' : '/login'
         fetch(endpoint, {
             method: 'POST',
@@ -54,7 +50,13 @@ import Button from 'react-bootstrap/Button'
             if (resp.ok) {
                 resp.json().then((user) => {
                     setLoggedInUser(user)
-                    navigate(`/goals`)
+                    console.log(user.userId)
+                    if (user.userId == null){
+                      console.log(user.userId)
+                      navigate(`/`)
+                    } else{
+                      navigate(`/goals`)
+                    }
                 })
             } else { 
                 console.log('errors? handle them')
@@ -67,7 +69,7 @@ import Button from 'react-bootstrap/Button'
       setSignUp((currentSignup) => !currentSignup)
   }
 
-  console.log(signup)
+
  
 
 return (
