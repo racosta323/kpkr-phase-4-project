@@ -1,8 +1,10 @@
 import GoalsList from "./GoalsList"
 import NavBar from "./NavBar"
 import Row from "react-bootstrap/Row"
-import Column from "react-bootstrap/Col"
 import { useEffect, useState } from "react"
+import Stack from 'react-bootstrap/Stack'
+import Button from 'react-bootstrap/Button'
+import Container from "react-bootstrap/Container"
 
 function AllGoals(){
 
@@ -36,10 +38,15 @@ function AllGoals(){
     return(
         <>
             <NavBar/>
-            <Row className="m-4"></Row>
-            <h1 className="mx-5">Your Goals</h1>
-            <Row className="m-4"></Row>
-            {renderGoals}
+            <Container>
+                <Row className="m-4"></Row>
+                <Stack direction="horizontal" gap={3}>
+                    <h1>Your Goals</h1>
+                    <Button as="input" value="Add a Goal" className='ms-auto'/>
+                </Stack>
+                <Row className="m-4"></Row>
+                {renderGoals}
+            </Container>
         </>
     )
 }
