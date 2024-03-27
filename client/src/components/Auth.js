@@ -15,13 +15,33 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { useParams } from 'react-router-dom'
 
   function Auth( ){
 
+    const changeToSignup = () => {
+      let browserPathname = window.location.pathname
+        if (browserPathname == '/signup'){
+          return false
+        } else{
+          return true
+        }
+    }
+    console.log(changeToSignup())
+
     const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
-    const [signup, setSignUp] = useState(true)
+    const [signup, setSignUp] = useState(changeToSignup)
     const navigate = useNavigate()
     // const [display, setDisplay] = useState("")
+
+    //change signup state to false if endpoint is signup
+    console.log(signup)
+    
+    // let browserPathname = window.location.pathname
+    //     if (browserPathname = '/signup'){
+    //       setSignUp(false)
+    //     }
+
 
     const formik = useFormik({
       initialValues:{
@@ -30,7 +50,7 @@ import Button from 'react-bootstrap/Button'
         passwordConfirmation: '' 
       },
       onSubmit: (values) => {
-        console.log(values)
+        console.log(signup)
         const endpoint = !signup ? '/authusers' : '/login'
         fetch(endpoint, {
             method: 'POST',
