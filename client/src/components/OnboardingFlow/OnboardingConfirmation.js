@@ -33,6 +33,7 @@ function Contributions({ formik, click }){
     function editOptions(type){
      
       return(
+        <>
         <Form.Control 
           as="input" 
           type={type}
@@ -42,7 +43,11 @@ function Contributions({ formik, click }){
           onChange={formik.handleChange}
           value={formik.values[type]}
         />
+        <p style={{ color: "red" }}> {formik.errors.type}</p>
+        </>
+
       )
+      
     }
 
 
@@ -60,6 +65,12 @@ function Contributions({ formik, click }){
           </Stack>
           {options('firstName')}
           {options('lastName')}
+          {formik.errors && formik.errors.firstName && (
+            <p style={{ color: "red" }}>{formik.errors.firstName}</p>
+          )}
+          {formik.errors && formik.errors.lastName && (
+            <p style={{ color: "red" }}>{formik.errors.lastName}</p>
+          )}
         </>
       )
     } else if (nameEdit==="edit"){

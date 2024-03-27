@@ -135,14 +135,15 @@ import * as yup from 'yup';
 
     const update = () => {
       if (display === ""){
-        return <FirstName formik={formik} click={nameClick}/>
+        return <FirstName formik={formik} click={nameClick} errors={formik.errors}/>
       } else if (display === "goals"){
-          return <Goals formik={formik} click={goalClick}/>
+          return <Goals formik={formik} click={goalClick} errors={formik.errors}/>
       } else if (display === "contributions"){
-          return <Contributions formik={formik} click={contributionClick}/>
+          return <Contributions formik={formik} click={contributionClick} errors={formik.errors}/>
       } else if (display === "confirmation"){
           return <Confirmation formik={formik}/>
       }
+      
     }
 
 
