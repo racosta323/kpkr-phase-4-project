@@ -66,4 +66,4 @@ function AllGoals(){
     )
 }
 
-export default AllGoals
+export default AllGoals;

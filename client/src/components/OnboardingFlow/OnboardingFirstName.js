@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 function FirstName({ formik, click }){
 
+console.log(typeof(formik.values.firstName))
 
 return(
     <>
@@ -24,6 +25,7 @@ return(
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
             />
+            <p style={{ color: "red" }}> {formik.errors.firstName}</p>
             <Form.Control 
                 as="input" 
                 type='lastName' 
