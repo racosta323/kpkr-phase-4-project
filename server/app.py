@@ -59,12 +59,12 @@ api.add_resource(UsersById, '/users/<int:id>')
 
 class Goals(Resource):
     def post(self):
-        date_object = datetime.strptime(request.get_json()["targetDate"], '%m/%d/%Y').date()
+        # date_object = datetime.strptime(request.get_json()["targetDate"], '%m/%d/%Y').date()
 
         goal = Goal(
             amount=request.get_json()["goalAmt"],
             goal_name=request.get_json()["goalName"],
-            target_date=date_object
+            # target_date=date_object
             )
         
         db.session.add(goal)
@@ -75,6 +75,10 @@ class Goals(Resource):
 api.add_resource(Goals, '/goals')
 
 class GoalById(Resource):
+    def get(self,id):
+        user = Goal.query.get(id)
+        return make_response(user.to_dict())
+
     def delete(self,id):
         goal = Goal.query.get(id)
 
@@ -82,6 +86,18 @@ class GoalById(Resource):
         db.session.commit()
 
         return make_response({}, 204)
+    
+    def patch(self,id):
+        goal = Goal.query.get(id)
+
+        request_body = request.json
+
+        for attr in request_body:
+            setattr(goal, attr, request_body[attr])
+
+        db.session.commit()
+
+        return make_response(goal.to_dict())
 
 api.add_resource(GoalById, '/goals/<int:id>')
 
@@ -125,7 +141,7 @@ class UserGoalsById(Resource):
 
         db.session.commit()
 
-        make_response(user_goal.to_dict())
+        return make_response(user_goal.to_dict())
 
     def delete(self,id):
         user_goal = UserGoal.query.get(id)

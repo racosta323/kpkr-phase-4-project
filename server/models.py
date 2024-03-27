@@ -59,7 +59,7 @@ class UserGoal(db.Model, SerializerMixin):
 class Goal(db.Model, SerializerMixin):
     __tablename__ = 'goals' 
 
-    serialize_rules = ('-goal.user_goals',)
+    serialize_rules = ('-user_goals.goal',)
 
     id=db.Column(db.Integer, primary_key=True)
     amount=db.Column(db.Integer, nullable=False)

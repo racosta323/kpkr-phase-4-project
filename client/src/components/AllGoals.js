@@ -1,12 +1,20 @@
 import GoalsList from "./GoalsList"
 import NavBar from "./NavBar"
 import Row from "react-bootstrap/Row"
-import Column from "react-bootstrap/Col"
 import { useEffect, useState } from "react"
+import Stack from 'react-bootstrap/Stack'
+import Button from 'react-bootstrap/Button'
+import Container from "react-bootstrap/Container"
+
+import AddGoalModal from "./AddGoalModal"
 
 function AllGoals(){
 
     const [goals, setGoals] = useState([])
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
 
     useEffect(()=>{
         fetch('/usergoals')
@@ -18,10 +26,11 @@ function AllGoals(){
     let renderGoals = goals.map((goal)=>{
         //this needs to change based on user id
         if (goal.user_id === 2){
-            console.log(goal)
+            
             return(
                 <GoalsList
                     key={goal.id}
+                    id={goal.id}
                     name={goal.goal.goal_name}
                     amount={goal.goal.amount}
                     //looks like we probably don't need progress -- will remove later
@@ -30,20 +39,31 @@ function AllGoals(){
                 />
             )
         }
-        
     })
-
-    console.log(renderGoals)
 
     return(
         <>
             <NavBar/>
-            <Row className="m-4"></Row>
-            <h1 className="mx-5">Your Goals</h1>
-            <Row className="m-4"></Row>
-            {renderGoals}
+            <Container>
+                <Row className="m-4"></Row>
+                <Stack direction="horizontal" gap={3}>
+                    <h1>Your Goals</h1>
+                    <Button as="input" value="Add a Goal" className="edit-button btn btn-primary ms-auto" onClick={handleShow}/>
+                </Stack>
+                <AddGoalModal 
+                    show={show} 
+                    handleClose={handleClose} 
+                    // name={goalName} 
+                    // amount={goalAmount}
+                    // contributions={userContributions}
+                    // goalId = {goalId}
+                    // userGoalId = {userGoalId}
+                />
+                <Row className="m-4"></Row>
+                {renderGoals}
+            </Container>
         </>
     )
 }
 
-export default AllGoals
+export default AllGoals;
