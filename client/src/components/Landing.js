@@ -78,8 +78,8 @@ function Landing(){
             <Col></Col>
         </Row> */}
 
-        <Button value="Login" href='/login'>Login</Button>
-        <Button as="input" value="Sign Up"/>
+        <Button value="Login" href='/login' className="me-2">Login</Button>
+        <Button value="Sign Up" href='/signup'>Sign Up</Button>
         
         <Row className="m-4"></Row>
         <Row>

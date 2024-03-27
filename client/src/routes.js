@@ -19,6 +19,14 @@ const routes = [
                 element: <Auth/>
             },
             {
+                path:'/signup',
+                element: <Auth/>
+            },
+            {
+                path: '/goals',
+                element: <AllGoals />,
+            },
+            {
                 path: '/goals',
                 element: <AllGoals />,
             }
