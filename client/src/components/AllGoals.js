@@ -6,9 +6,15 @@ import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import Container from "react-bootstrap/Container"
 
+import AddGoalModal from "./AddGoalModal"
+
 function AllGoals(){
 
     const [goals, setGoals] = useState([])
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
 
     useEffect(()=>{
         fetch('/usergoals')
@@ -42,8 +48,17 @@ function AllGoals(){
                 <Row className="m-4"></Row>
                 <Stack direction="horizontal" gap={3}>
                     <h1>Your Goals</h1>
-                    <Button as="input" value="Add a Goal" className='ms-auto'/>
+                    <Button as="input" value="Add a Goal" button className="edit-button btn btn-primary ms-auto" onClick={handleShow}/>
                 </Stack>
+                <AddGoalModal 
+                    show={show} 
+                    handleClose={handleClose} 
+                    // name={goalName} 
+                    // amount={goalAmount}
+                    // contributions={userContributions}
+                    // goalId = {goalId}
+                    // userGoalId = {userGoalId}
+                />
                 <Row className="m-4"></Row>
                 {renderGoals}
             </Container>
