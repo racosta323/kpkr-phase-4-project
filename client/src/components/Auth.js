@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useState } from 'react';
+import { useOutletContext } from "react-router-dom";
 import * as yup from "yup"
 
 
@@ -15,7 +16,9 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-  function Auth({ setUser, logoutUser }){
+  function Auth( ){
+
+    const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
 
     const [signup, setSignUp] = useState(true)
     // const [display, setDisplay] = useState("")
@@ -38,7 +41,7 @@ import Button from 'react-bootstrap/Button'
           }).then((resp) => {
             if (resp.ok) {
                 resp.json().then((user) => {
-                    setUser(user)
+                    setLoggedInUser(user)
                     // navigate into site
                 })
             } else { 

@@ -15,7 +15,7 @@ import Button from "react-bootstrap/Button";
 
 function Landing(){
 
-  const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
+  
 
 
   // const handleLoginClick  = () => {
@@ -33,7 +33,6 @@ function Landing(){
         //introduce intake if info hasn't been gathered
         
         
-  console.log(loggedInUser)
 
     return(
       <>
