@@ -23,12 +23,12 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
     const formik = useFormik({
         initialValues:{
           goal_name:'',
-          goal_amt:'',
+          amount:'',
           contributions:''
         },
         onSubmit: (values) => { 
           console.log(formik.values.goal_name)
-          if (formik.values.goal_name != "" || formik.values.goal_amt != ""){
+          if (formik.values.goal_name != "" || formik.values.amount != ""){
             fetch(`/goals/${goalId}`, {
               method: "PATCH",
               headers: {
@@ -70,7 +70,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         }    
     })
 
-    console.log(formik.values.goal_name)
+    console.log(formik.values.amount)
 
     return(
     <Modal
@@ -96,14 +96,14 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="goal_amt">
+            <Form.Group className="mb-3" controlId="amount">
               <Form.Label>Goal Amount</Form.Label>
               <Form.Control
                 as="input"
-                type="goal_amt"
-                name = 'goal_amt'
+                type="amount"
+                name = 'amount'
                 placeholder= {amount}
-                value={formik.values.goal_amt}
+                value={formik.values.amount}
                 onChange={formik.handleChange}
               />
             </Form.Group>
