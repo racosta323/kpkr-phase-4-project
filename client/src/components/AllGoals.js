@@ -48,7 +48,7 @@ function AllGoals(){
                 <Row className="m-4"></Row>
                 <Stack direction="horizontal" gap={3}>
                     <h1>Your Goals</h1>
-                    <Button as="input" value="Add a Goal" button className="edit-button btn btn-primary ms-auto" onClick={handleShow}/>
+                    <Button as="input" value="Add a Goal" className="edit-button btn btn-primary ms-auto" onClick={handleShow}/>
                 </Stack>
                 <AddGoalModal 
                     show={show} 

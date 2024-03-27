@@ -6,19 +6,6 @@ import { useFormik } from "formik";
 
 function AddGoalModal({ show, handleClose, name, amount, contributions, goalId, userGoalId }){
 
-    const handleDelete = () => {
-        fetch(`/goals/${goalId}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-        }) 
-        .then(resp=>resp.json())
-        .then(data=>{
-            console.log(data)
-            //nav back to all goals
-        })
-    }
     
     const formik = useFormik({
         initialValues:{
@@ -29,8 +16,8 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, goalId, 
         onSubmit: (values) => { 
           console.log(formik.values.goal_name)
           if (formik.values.goal_name != "" || formik.values.amount != ""){
-            fetch(`/goals/${goalId}`, {
-              method: "PATCH",
+            fetch(`/goals`, {
+              method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
@@ -48,29 +35,31 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, goalId, 
               )
           }
           // console.log(formik.values.contributions)
-          if (formik.values.contributions != ""){
-            fetch(`/usergoals/${userGoalId}`, {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(values, null, 2)
-              }).then(
-                (res) => {
-                  if(res.status == 201){
-                    return res.json()
-                  }
-                }
-              ).then(
-                (data)=>{
-                  console.log(data)
-                }
-              )
-          }
+          // if (formik.values.contributions != ""){
+          //   fetch(`/usergoals`, {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify(values, null, 2)
+          //     }).then(
+          //       (res) => {
+          //         if(res.status == 201){
+          //           return res.json()
+          //         }
+          //       }
+          //     ).then(
+          //       (data)=>{
+          //         console.log(data)
+          //       }
+          //     )
+          // }
         }    
     })
 
+    console.log(formik.values.goal_name)
     console.log(formik.values.amount)
+    console.log(formik.values.contributions)
 
     return(
     <Modal
