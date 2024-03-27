@@ -2,8 +2,6 @@ import React from "react";
 import { useFormik, Field, Form } from "formik";
 import { useState } from 'react';
 import CreateUser from "../AllForm-don't delete";
-import * as yup from "yup"
-
 
 import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
@@ -16,19 +14,31 @@ import * as yup from 'yup';
   function Intake(){
 
     const SignupSchema = yup.object().shape({
-      firstName: yup.string().required("Please enter a valid string as first name"),
-      lastName: yup.string().required("Please enter a valid string as last name"),
-      goalName: yup.string().required("Please enter valid goal"),
-      goalAmt: yup.number()
-      .required("A target savings in USD is required for your goal")
-      .integer("Goal must be a whole number"),
+      firstName: yup
+                .string()
+                .matches(
+                  /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+                      'Name can only contain letters.')
+                .required("Please enter a valid string as first name"),
+      lastName: yup
+                .string()
+                .matches(
+                  /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+                      'Name can only contain letters.')
+                .required("Please enter a valid string as last name"),
+      goalName: yup
+                .string()
+                .required("Please enter valid goal"),
+      goalAmt: yup
+                .number()
+                .required("A target savings in USD is required for your goal")
+                .integer("Goal must be a whole number"),
       // targetDate: yup.date()
       // .required('A target date is required')
       // .min(new Date(), 'Taregt should be a reasonable date in the future')
     })
 
-    
-
+  
     const [display, setDisplay] = useState("")
 
     const formik = useFormik({
@@ -138,32 +148,7 @@ import * as yup from 'yup';
 
 
 return (
-  <Form>
-    <div>
-      {update()}
-      <div>
-        <Field name="firstName" />
-        {errors.firstName && touched.firstName ?
-        ( <div> {errors.firstName}</div> ) : null}
-
-        <Field name="lastName" />
-          {errors.lastName && touched.lastName ?
-          ( <div> {errors.lastName}</div> ) : null}
-
-        <Field name="goalName" />
-          {errors.goalName && touched.goalName ?
-          ( <div> {errors.goalName}</div> ) : null}
-
-        <Field name="goalAmt" />
-          {errors.goalAmt && touched.goalAmt ?
-          ( <div> {errors.goalAmt}</div> ) : null}
-
-        <Field name="targetDate" />
-          {errors.targetDate && touched.targetDate ?
-          ( <div> {errors.targetDate}</div> ) : null}
-      </div>
-    </div>
- </Form>
+      update() 
 )
-}
+  }
 export default Intake;

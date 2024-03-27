@@ -36,6 +36,8 @@ return(
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
             />   
+            <p style={{ color: "red" }}> {formik.errors.lastName}</p>
+
             <Button as="input" type="button" value="Next" onClick={click}/>{' '}
           </Form.Group>
         </Form>
