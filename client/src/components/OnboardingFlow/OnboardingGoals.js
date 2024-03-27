@@ -36,7 +36,9 @@ return(
                 onChange={formik.handleChange}
                 value={formik.values.goalAmt}
             />   
-            <Form.Control 
+            <p style={{ color: "red" }}> {formik.errors.goalAmt}</p>
+
+            {/* <Form.Control 
                 as="input" 
                 type='targetDate' 
                 name='targetDate'
@@ -44,7 +46,7 @@ return(
                 className="my-3"
                 onChange={formik.handleChange}
                 value={formik.values.targetDate}
-            />   
+            />    */}
             <Button as="input" type="button" value="Next" onClick={click}/>{' '}
           </Form.Group>
         </Form>

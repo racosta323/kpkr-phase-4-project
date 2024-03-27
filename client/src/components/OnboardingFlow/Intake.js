@@ -1,32 +1,47 @@
 import React from "react";
-import { useFormik } from "formik";
+import { useFormik, Field, Form } from "formik";
 import { useState } from 'react';
 import CreateUser from "../AllForm-don't delete";
-import * as yup from "yup"
-
 
 import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
-import FakePage from "../AllGoals";
+// import FakePage from "../AllGoals";
+import * as yup from 'yup';
+
 
   function Intake(){
 
     const SignupSchema = yup.object().shape({
-      firstName: yup.string().required("Please enter a valid string as first name"),
-      lastName: yup.string().required("Please enter a valid string as last name"),
-      goalName: yup.string().required("Please enter valid goal"),
-      goalAmt: yup.number()
-      .required("A target savings in USD is required for your goal")
-      .integer("Goal must be a whole number"),
+      firstName: yup
+                .string()
+                .nullable()
+                .matches(
+                  /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+                      'Name can only contain letters.')
+                .required(""),
+      lastName: yup
+                .string()
+                .nullable()
+                .matches(
+                  /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+                      'Name can only contain letters.')
+                .required(""),
+      goalName: yup
+                .string()
+                .required(""),
+      goalAmt: yup
+                .number()
+                .nullable()
+                .typeError("Goal Amount must be a number")
+                .required(""),
       // targetDate: yup.date()
       // .required('A target date is required')
       // .min(new Date(), 'Taregt should be a reasonable date in the future')
     })
 
-    
-
+  
     const [display, setDisplay] = useState("")
 
     const formik = useFormik({
@@ -135,12 +150,8 @@ import FakePage from "../AllGoals";
     // })
 
 
-
-
 return (
-  <>
-    {update()}
-  </>
+      update() 
 )
-}
-export default Intake
+  }
+export default Intake;

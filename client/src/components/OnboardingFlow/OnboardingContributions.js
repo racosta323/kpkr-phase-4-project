@@ -30,6 +30,7 @@ return(
                 onChange={formik.handleChange}
                 value={formik.values.contributions}
             />
+            {/* contributions validation line */}
             {/* consider adding ability to add another*/}
             <Stack direction='horizontal' gap={3}>
               <Button as="input" type="button" value="Next" onClick={click}/>{' '}
