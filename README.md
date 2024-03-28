@@ -58,7 +58,7 @@ Thank you for being participants in the Friday Fund App! We look forward to revi
 Happy coding! 🚀
 
 # Contributers 
-Rene Accosta 
-Kairi Wright 
-Parker Connolly
+Rene Accosta ,
+Kairi Wright ,
+Parker Connolly ,
 Kent Riggs
