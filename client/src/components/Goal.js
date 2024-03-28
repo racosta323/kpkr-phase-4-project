@@ -66,6 +66,7 @@ function Goal() {
           contributions={userContributions}
           goalId = {goalId}
           userGoalId = {userGoalId}
+          setGoal={setGoal}
         />
       </Container>
     </>
