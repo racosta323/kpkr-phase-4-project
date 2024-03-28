@@ -5,8 +5,6 @@ import Button from 'react-bootstrap/Button'
 
 function Goals({ formik, click }){
 
-    // console.log(formik)
-
 return(
     <>
     <Row>
@@ -16,7 +14,7 @@ return(
           <Form.Group>
             <Form.Label className="fs-3">What are your goals?</Form.Label>
               <p className='fs-5'>Briefly describe your goal, the amount needed to reach that goal, and the date you anticipate reaching that goal.</p>
-              <p>For example, "Trip to Tahiti." Target amount: $1000 Target date: 01/22/2027</p>
+              <p>For example, "Trip to Tahiti."; Target amount: 1000. (No need to add a dollar sign!)</p>
   
             <Form.Control 
                 as="textarea" 
@@ -37,16 +35,6 @@ return(
                 value={formik.values.goalAmt}
             />   
             <p style={{ color: "red" }}> {formik.errors.goalAmt}</p>
-
-            {/* <Form.Control 
-                as="input" 
-                type='targetDate' 
-                name='targetDate'
-                placeholder="Enter target date" 
-                className="my-3"
-                onChange={formik.handleChange}
-                value={formik.values.targetDate}
-            />    */}
             <Button as="input" type="button" value="Next" onClick={click}/>{' '}
           </Form.Group>
         </Form>

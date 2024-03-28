@@ -80,7 +80,6 @@ import * as yup from 'yup';
         const userData = await userResponse.json();
         console.log(userData)
         formik.values.userId = userData.id;
-        // console.log('From user post', userData);
 
         const goalResponse = await fetch("/goals", {
           method: "POST",
@@ -93,7 +92,6 @@ import * as yup from 'yup';
       if (goalResponse.status === 201) {
         const goalData = await goalResponse.json();
         formik.values.goalId = goalData.id;
-        // console.log('From goal post', goalData);
 
         const userGoalResponse = await fetch('/usergoals', {
           method: "POST",
@@ -105,11 +103,6 @@ import * as yup from 'yup';
 
       if (userGoalResponse.status === 201) {
         formik.values.username = loggedInUser.username
-        console.log(formik.values.userId)
-        // const userGoalData = await userGoalResponse.json();
-        // formik.values.userGoalId = userGoalData.id
-        // console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
-        // console.log(userGoalData);
         const authUserResponse = await fetch('/founduser', {
           method: "POST",
           headers: {
