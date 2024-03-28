@@ -160,7 +160,7 @@ class AuthUsers(Resource):
         try:
             user = AuthUser(username=data['username'])
             user.password_hash = data['password']
-
+            
             db.session.add(user)
             db.session.commit()
 
@@ -172,6 +172,27 @@ class AuthUsers(Resource):
         return response
 
 api.add_resource(AuthUsers, '/authusers')
+
+# class AuthById(Resource):
+#     def post(self, id):
+#         data = request.json
+#         try:
+#             # ipdb.set_trace()
+#             user = AuthUser(username=data['username'])
+#             # user.password_hash = data['password']
+#             user.userId = data["userId"]
+#             ipdb.set_trace()
+#             db.session.add(user)
+#             db.session.commit()
+
+#             session['user_id'] = user.id
+#             response = make_response(user.to_dict(), 201)
+#         except:
+#             return make_response({'error': "something went wrong"}, 400)
+
+#         return response
+
+# api.add_resource(AuthById, '/authusers/<int:id>')
 
 @app.route('/login', methods=['POST'])
 def login():
