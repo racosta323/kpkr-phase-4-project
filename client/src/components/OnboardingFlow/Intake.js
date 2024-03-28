@@ -57,63 +57,159 @@ import NavBar from "../NavBar";
         userId: '' 
       },
       validationSchema: SignupSchema,
-      onSubmit: (values) => { 
-        fetch("/users", {
+  onSubmit: async (values) => { 
+    try {
+      const userResponse = await fetch("/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values, null, 2)
-        }).then(
-          (res) => {
-            if(res.status == 201){
-              return res.json()
-            }
-          }
-        ).then(
-          (data)=>{
-            formik.values.userId = data["id"]
-          }
-        )
-        fetch("/goals",{
+      });
+
+      if (userResponse.status === 201) {
+        const userData = await userResponse.json();
+        formik.values.userId = userData.id;
+        console.log('From user post', userData);
+
+        const goalResponse = await fetch("/goals", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values, null, 2)
-        }).then(
-          (res) => {
-            if(res.status == 201){
-              return res.json()
-            }
+        });
+
+        if (goalResponse.status === 201) {
+          const goalData = await goalResponse.json();
+          formik.values.goalId = goalData.id;
+          console.log('From goal post', goalData);
+
+          const userGoalResponse = await fetch('/usergoals', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values, null, 2)
+          });
+
+          if (userGoalResponse.status === 201) {
+            const userGoalData = await userGoalResponse.json();
+            console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
+            console.log(userGoalData);
+            formik.values.userId = '';
+            formik.values.goalId = '';
+            // return <FakePage />
           }
-        ).then(
-          (data)=>{
-            formik.values.goalId = data["id"]
-            // console.log(data)
-          }
-        )
-        fetch('/usergoals', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values, null, 2)
-          }).then(
-            (res) => {
-              if(res.status == 201){
-                return res.json()
-              }
-            }
-          ).then(
-            (data)=>{
-              console.log(data)
-              // return <FakePage />
-            }
-          )
-          
         }
-    })
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+});
+      // onSubmit: (values) => { 
+      //   fetch("/users", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(values, null, 2)
+      //   }).then(
+      //     (res) => {
+      //       if(res.status == 201){
+      //         return res.json()
+      //       }
+      //     }
+      //   ).then(
+      //     (data)=>{
+      //       formik.values.userId = data.id
+      //       console.log('From user post', data)
+      //     }
+      //   ).then(
+      //     fetch("/goals",{
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify(values, null, 2)
+      //     }).then(
+      //       (res) => {
+      //         if(res.status == 201){
+      //           return res.json()
+      //         }
+      //       }
+      //     ).then(
+      //       (data)=>{
+      //         formik.values.goalId = data.id
+      //         console.log('from goal post', data)
+      //       }).then(
+      //         fetch('/usergoals', {
+      //           method: "POST",
+      //           headers: {
+      //             "Content-Type": "application/json",
+      //           },
+      //           body: JSON.stringify(values, null, 2)
+      //           }).then(
+      //             (res) => {
+      //               if(res.status == 201){
+      //                 return res.json()
+      //               }
+      //             }
+      //           ).then(
+      //             (data)=>{
+      //               console.log("From usergoals post", data, formik.values.userId, formik.values.goalId)
+      //               console.log(data)
+      //               formik.values.userId = ''
+      //               formik.values.goalId = ''
+      //               // return <FakePage />
+      //             }
+      //           )
+      //       )
+      //   )
+
+
+        // fetch("/goals",{
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(values, null, 2)
+        // }).then(
+        //   (res) => {
+        //     if(res.status == 201){
+        //       return res.json()
+        //     }
+        //   }
+        // ).then(
+        //   (data)=>{
+        //     formik.values.goalId = data["id"]
+        //     // console.log(data)
+        //   }
+        // )
+        // fetch('/usergoals', {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(values, null, 2)
+        //   }).then(
+        //     (res) => {
+        //       if(res.status == 201){
+        //         return res.json()
+        //       }
+        //     }
+        //   ).then(
+        //     (data)=>{
+        //       console.log(data)
+        //       // return <FakePage />
+        //     }
+        //   )
+          
+    //     }
+    // }
+    // )
+
 
     const nameClick= () => {
       setDisplay("goals")

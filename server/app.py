@@ -11,6 +11,7 @@ from flask_restful import Resource
 from config import app, db, api
 # Add your model imports
 from models import User, Goal, UserGoal, AuthUser
+import ipdb
 
 # Views go here!
 
@@ -77,8 +78,8 @@ api.add_resource(Goals, '/goals')
 
 class GoalById(Resource):
     def get(self,id):
-        user = Goal.query.get(id)
-        return make_response(user.to_dict())
+        goal = Goal.query.get(id)
+        return make_response(goal.to_dict())
 
     def delete(self,id):
         goal = Goal.query.get(id)
