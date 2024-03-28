@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
 
-import FakePage from '../AllGoals'
 
 function Contributions({ formik, click }){
 
@@ -20,7 +19,7 @@ return(
             <Form.Label className="fs-3">What are your Contributions?</Form.Label>
               <p className='fs-5'>Have you made any contributions towards that goal?</p>
               <p>Enter an amount you've contributed. No need to add dollar signs! Example, "50."</p>
-              <p>Press "Skip" if you haven't yet made contributions. You'll be able to add later as well.</p>
+              <p>Enter 0 if you have not made any yet. You'll be able to add later as well!</p>
             <Form.Control 
                 as="input" 
                 type='contribution'
@@ -34,7 +33,7 @@ return(
             {/* consider adding ability to add another*/}
             <Stack direction='horizontal' gap={3}>
               <Button as="input" type="button" value="Next" onClick={click}/>{' '}
-              <a href="#" className='ms-auto' onClick={click}>Skip</a>
+              {/* <a href="#" className='ms-auto' onClick={click}>Skip</a> */}
             </Stack>
           </Form.Group>
         </Form>

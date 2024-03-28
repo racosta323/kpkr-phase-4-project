@@ -115,6 +115,7 @@ import * as yup from 'yup';
               formik.values.userId = '';
               formik.values.goalId = '';
               navigate(`/goals`)
+              window.location.reload()
           }
           }
 

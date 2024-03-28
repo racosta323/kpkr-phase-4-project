@@ -3,9 +3,11 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
-import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 function AddGoalModal({ show, setShow, handleClose, userId }){
+
+  const navigate = useNavigate()
 
   console.log(show)
   function showClick(){
@@ -48,61 +50,14 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
 
           if (userGoalResponse.status === 201){
             const userGoalData = await userGoalResponse.json()
-            
-            console.log(userGoalData)
           }
           } catch(error){
-            console.error(error)
+            
           }
+          navigate(`/goals`)
+          window.location.reload()
         }
       })
-          // console.log(formik.values.goal_name)
-          // if (formik.values.goal_name != "" || formik.values.amount != ""){
-          //   fetch(`/goals`, {
-          //     method: "POST",
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify(values, null, 2)
-          //     }).then(
-          //       (res) => {
-          //         if(res.status == 201){
-          //           return res.json()
-          //         }
-          //       }
-          //     ).then(
-          //       (data)=>{
-          //         goalId=data.id
-          //         console.log(goalId)
-          //       }
-          //     )
-              // .then(
-              //   fetch(`/usergoals`, {
-              //     method: "POST",
-              //     headers: {
-              //       "Content-Type": "application/json",
-              //     },
-              //     body: JSON.stringify(
-              //       {
-              //         "contributions": formik.values.contributions,
-              //         "goalId": goalId
-              //       })
-              //     }).then(
-              //       (res) => {
-              //         if(res.status == 201){
-              //           return res.json()
-              //         }
-              //       }
-              //     ).then(
-              //       (data)=>{
-              //         console.log(data)
-              //       }
-              //     )
-              // )
-        //   }
-          
-        // }    
-    // })
 
     return(
     <Modal
