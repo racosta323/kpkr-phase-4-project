@@ -14,10 +14,10 @@ return(
       <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
         <Form className="w-75 m-5"> 
           <Form.Group>
-            <Form.Label className="fs-3">What are your Contributions?</Form.Label>
-              <p className='fs-5'>Have you made any contributions towards that goal?</p>
-              <p>Enter an amount you've contributed. No need to add dollar signs! Example, "50."</p>
-              <p>Enter 0 if you have not made any yet. You'll be able to add later as well!</p>
+            <Form.Label className="fs-3">Do you have any initial savings?</Form.Label>
+              <p className='fs-5'>Have you made any contributions yet?</p>
+              <p>Enter a contribution amount without dollar signs. Example, "50"</p>
+              <p>Press "Skip" if you're just getting started</p>
             <Form.Control 
                 as="input" 
                 type='contribution'
