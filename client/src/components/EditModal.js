@@ -32,6 +32,8 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         navigate(`/goals`)
     }
     
+    // formik.values.goal_name ? name : formik.values.goal_name
+
     const formik = useFormik({
         initialValues:{
           goal_name:'',
@@ -39,6 +41,9 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
           contributions:''
         },
         onSubmit: (values) => { 
+          formik.values.goal_name = formik.values.goal_name ? formik.values.goal_name : name
+          formik.values.amount = formik.values.amount ? formik.values.amount : amount
+          formik.values.contributions = formik.values.contributions ? formik.values.contributions : name
           console.log(formik.values.goal_name)
           if (formik.values.goal_name != "" || formik.values.amount != ""){
             fetch(`/goals/${goalId}`, {
@@ -117,7 +122,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 type="goal_name"
                 name = 'goal_name'
                 placeholder= {name}
-                value={formik.values.goal_name}
+                value = {formik.values.goal_name}
                 onChange={formik.handleChange}
                 autoFocus
               />
