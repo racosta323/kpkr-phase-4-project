@@ -42,8 +42,8 @@ function Landing(){
           <Col></Col>
           <Col xs={6}>
               <img className="rounded mx-auto d-block" src="https://cdn.discordapp.com/attachments/1102300163525058591/1220789201507848253/F2-3.png?ex=6610378a&is=65fdc28a&hm=d762b3e82ba9352179982cf5867ca00401239700edd5f46040a08c412f79a46b&" alt="F2 logo" style={{ width: '100px', height: 'auto' }}/>
-              <h1 className="text-center mt-4"> 💎💎💎 Welcome to FridayFund 💎💎💎</h1>
-              <h2 className="text-center">Set your savings goals and track your progress!</h2>
+              <h1 className="text-center mt-4"> 💎💎💎 FridayFund 💎💎💎</h1>
+              <h2 className="text-center">Savings goals made simple</h2>
           </Col>
           <Col></Col>
         </Row>
@@ -53,7 +53,7 @@ function Landing(){
         <Row className="m-5">
           <Col></Col>
             <Col xs={6}>
-            <h4 className="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis lectus magna fringilla urna. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat.</h4>
+            <h4 className="text-center">Perception is reality. By having a simple mechanism to track and visualize your savings goals it becomes easier and even encouraging to save up for what you desire most.</h4>
             </Col>
             <Col></Col>
         </Row>
@@ -84,9 +84,8 @@ function Landing(){
         <Row className="m-4"></Row>
         <Row>
           <p className="text-center"> 
-            $avings. Made. $imple. 
-            In a technical world full of options and confusion we want to simplify for you. 
-            Decide what you want, and track your progress toward that goal.
+            Create an account or sign in on the left. 
+            Add a goal to your profile, submit your desired amount, watch your savings grow!
           </p>
         </Row>
       </Container>

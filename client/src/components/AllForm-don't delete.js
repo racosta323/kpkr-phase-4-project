@@ -65,7 +65,7 @@ const CreateUser = () => {
 return (
   <form style={{width:"50%", margin:"auto", padding:"25px"}} onSubmit={formik.handleSubmit}>
 {/* Output for firstname */}
-    <label htmlFor="firstName">$et my $avings</label>
+    <label htmlFor="firstName">Set my savings</label>
     <input 
       type="text"
       id="firstName" 
