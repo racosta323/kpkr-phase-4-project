@@ -27,20 +27,9 @@ Fetch API Integration:
 The Fetch API is utilized to connect the frontend with the backend, enabling seamless data retrieval and interaction.
 
 # Setup
-Setup:
-
-To play How a Spud Got Away:
-
-Clone this repository to your local environment
-cd into the root directory of hkk-p3-project
-Install additional dependencies with pipenv install once in the root directory
-Use pipenv shell to ensure you're in the virtual environment
-cd into the lib sub-directory
-use the command: python detective-game.py to run the game
-To start using Friday Fund:
 
 1. Clone this repository to your local machine.
-2. cd into the root directory of ' kpkr-phase-2-project '
+2. cd into the root directory of ' kpkr-phase-4-project '
 3. Install backend dependencies by running :
 
       $ pipenv install
