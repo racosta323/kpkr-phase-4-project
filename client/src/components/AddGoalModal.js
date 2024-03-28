@@ -4,17 +4,19 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
 
-function AddGoalModal({ show, handleClose, name, amount, contributions, userGoalId }){
+function AddGoalModal({ show, handleClose, userId }){
 
-    // console.log(userGoalId)
+    console.log(userId)
     
+
+
     const formik = useFormik({
         initialValues:{
-          goal_name:'',
-          amount:'',
+          goalName:'',
+          goalAmt:'',
           contributions:'',
           goalId: '',
-          userGoalId: ''
+          userId: ''
         },
         onSubmit: async (values) => { 
           try {
@@ -29,22 +31,23 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, userGoal
             if (goalResponse.status === 201){
               const goalData = await goalResponse.json()
               formik.values.goalId = goalData.id
-              console.log(formik.values.goalId)
+              formik.values.userId = userId
+              console.log('goal id', formik.values.goalId, 'user id:', formik.values.userId)
             }
 
-            await new Promise((resolve) => {
-              if (userGoalId) {
-                formik.values.userGoalId = userGoalId
-                resolve();
-              } else {
-                const interval = setInterval(() => {
-                  if (userGoalId) {
-                    clearInterval(interval);
-                    resolve();
-                  }
-                }, 100);
-              }
-            });
+            // await new Promise((resolve) => {
+            //   if (userGoalId) {
+            //     formik.values.userGoalId = userGoalId
+            //     resolve();
+            //   } else {
+            //     const interval = setInterval(() => {
+            //       if (userGoalId) {
+            //         clearInterval(interval);
+            //         resolve();
+            //       }
+            //     }, 100);
+            //   }
+            // });
 
             const userGoalResponse = await fetch(`/usergoals`,{
               method: "POST",
@@ -129,10 +132,10 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, userGoal
               <p>What will you be saving toward?</p>
               <Form.Control
                 as="input"
-                type="goal_name"
-                name = 'goal_name'
-                placeholder= {name}
-                value={formik.values.goal_name}
+                type="goalName"
+                name = 'goalName'
+                placeholder= 'Enter a goal'
+                value={formik.values.goalName}
                 onChange={formik.handleChange}
                 autoFocus
               />
@@ -142,10 +145,10 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, userGoal
               <p>How much do you estimate it will cost?</p>
               <Form.Control
                 as="input"
-                type="amount"
-                name = 'amount'
-                placeholder= {amount}
-                value={formik.values.amount}
+                type="goalAmt"
+                name = 'goalAmt'
+                placeholder= "Enter a goal amount"
+                value={formik.values.goalAmt}
                 onChange={formik.handleChange}
               />
             </Form.Group>
@@ -156,7 +159,7 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, userGoal
                 as="input"
                 type="contributions"
                 name = 'contributions'
-                placeholder= {contributions}
+                placeholder= 'Enter a contribution amount'
                 onChange={formik.handleChange}
                 value={formik.values.contributions}
               />

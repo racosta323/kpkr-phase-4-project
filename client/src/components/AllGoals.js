@@ -122,9 +122,6 @@ function AllGoals(){
                 <AddGoalModal 
                     show={show} 
                     handleClose={handleClose} 
-                    // name={goalName} 
-                    // amount={goalAmount}
-                    // contributions={userContributions}
                     // goalId = {goalId}
                     userId = {userId}
                 />
