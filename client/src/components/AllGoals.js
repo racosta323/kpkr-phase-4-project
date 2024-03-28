@@ -43,7 +43,7 @@ function AllGoals(){
             id={goal.id}
             name={goal.goal_name}
             amount={goal.amount}
-            // contributions={goal.contributions}
+            contributions={goal.contributions}
           />
         ));
     }
