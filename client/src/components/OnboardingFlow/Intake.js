@@ -7,12 +7,16 @@ import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
+import { useNavigate } from "react-router-dom";
+
 // import FakePage from "../AllGoals";
 import * as yup from 'yup';
 
 import NavBar from "../NavBar";
 
   function Intake(){
+
+    const navigate = useNavigate()
 
     const SignupSchema = yup.object().shape({
       firstName: yup
@@ -70,7 +74,7 @@ import NavBar from "../NavBar";
       if (userResponse.status === 201) {
         const userData = await userResponse.json();
         formik.values.userId = userData.id;
-        console.log('From user post', userData);
+        // console.log('From user post', userData);
 
         const goalResponse = await fetch("/goals", {
           method: "POST",
@@ -83,7 +87,7 @@ import NavBar from "../NavBar";
         if (goalResponse.status === 201) {
           const goalData = await goalResponse.json();
           formik.values.goalId = goalData.id;
-          console.log('From goal post', goalData);
+          // console.log('From goal post', goalData);
 
           const userGoalResponse = await fetch('/usergoals', {
             method: "POST",
@@ -95,11 +99,12 @@ import NavBar from "../NavBar";
 
           if (userGoalResponse.status === 201) {
             const userGoalData = await userGoalResponse.json();
-            console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
-            console.log(userGoalData);
+            // console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
+            // console.log(userGoalData);
             formik.values.userId = '';
             formik.values.goalId = '';
-            // return <FakePage />
+            navigate(`/goals`)
+            
           }
         }
       }
