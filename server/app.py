@@ -157,9 +157,11 @@ api.add_resource(UserGoalsById, '/usergoals/<int:id>')
 class AuthUsers(Resource):
     def post(self):
         data = request.json
+        
         try:
             user = AuthUser(username=data['username'])
             user.password_hash = data['password']
+            user.userId = data["userId"]
             
             db.session.add(user)
             db.session.commit()
@@ -172,6 +174,27 @@ class AuthUsers(Resource):
         return response
 
 api.add_resource(AuthUsers, '/authusers')
+
+class FindUserbyUn(Resource):
+    def post(self):
+        
+        data = request.json
+    
+        client_username = data["username"]
+      
+      
+        user = AuthUser.query.filter_by(username=client_username).first()
+        user.userId = data["userId"]
+ 
+
+        db.session.add(user)
+        db.session.commit()
+
+        return make_response({})
+
+       
+
+api.add_resource(FindUserbyUn, '/founduser')
 
 # class AuthById(Resource):
 #     def post(self, id):

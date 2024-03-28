@@ -36,7 +36,8 @@ import Button from 'react-bootstrap/Button'
       initialValues:{
         username:'',
         password:'',
-        passwordConfirmation: '' 
+        passwordConfirmation: '',
+        userId: '' 
       },
       onSubmit: (values) => {
         const endpoint = !signup ? '/authusers' : '/login'
@@ -50,12 +51,13 @@ import Button from 'react-bootstrap/Button'
             if (resp.ok) {
                 resp.json().then((user) => {
                     setLoggedInUser(user)
-                    console.log(user.userId)
+                    formik.values.username = user.username
+                    console.log(user)
                     if (user.userId == null){
                       console.log(user.userId)
                       navigate(`/onboarding`)
                     } else{
-                      navigate(`/goals`)
+                      // navigate(`/goals`)
                     }
                 })
             } else { 

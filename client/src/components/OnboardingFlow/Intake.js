@@ -7,7 +7,7 @@ import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 // import FakePage from "../AllGoals";
 import * as yup from 'yup';
@@ -15,6 +15,9 @@ import * as yup from 'yup';
 import NavBar from "../NavBar";
 
   function Intake(){
+
+    const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
+    console.log(loggedInUser)
 
     const navigate = useNavigate()
 
@@ -58,7 +61,8 @@ import NavBar from "../NavBar";
         targetDate:'',
         contributions:'',
         goalId: '',
-        userId: '' 
+        userId: '',
+        username: ''
       },
       validationSchema: SignupSchema,
   onSubmit: async (values) => { 
@@ -98,15 +102,28 @@ import NavBar from "../NavBar";
           });
 
           if (userGoalResponse.status === 201) {
-            const userGoalData = await userGoalResponse.json();
+            formik.values.username = loggedInUser.username
+            console.log(formik.values.userId)
+            // const userGoalData = await userGoalResponse.json();
+            // formik.values.userGoalId = userGoalData.id
             // console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
             // console.log(userGoalData);
-            formik.values.userId = '';
-            formik.values.goalId = '';
-            navigate(`/goals`)
+            const authUserResponse = await fetch('/founduser', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values, null, 2)
+              
+            });
             
+              formik.values.userId = '';
+              formik.values.goalId = '';
+              // navigate(`/goals`)
           }
-        }
+          }
+
+          
       }
     } catch (error) {
       console.error(error);
