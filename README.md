@@ -4,7 +4,7 @@
 
 Friday Fund is a comprehensive web application developed to showcase proficiency in various aspects of web development, specifically focusing on models, relationships, validations, routes, and RESTful API implementation. This project serves as a culmination of skills learned and practiced during the development phase.
 
-The application aims to streamline financial management and investment tracking for users, providing intuitive tools and functionalities to facilitate informed decision-making regarding their funds. App users are privy to creating their own goals, and being able to add/move money consistently to reach those goals. This is saving made simple!
+The application aims to streamline financial management and investment tracking for users, providing intuitive tools and functionalities to facilitate informed decision-making regarding their funds. App users are privy to creating their own goals, and being able to add/move money consistently to reach those goals. This is saving made simple! Our Motto Reads: Perception IS Reality! By having a simple mechanism to track and visualize your saving goals it becomes even more encouraging to save up for what you desire most! 
 
 # Deliverables Met
 
@@ -58,7 +58,7 @@ Thank you for being participants in the Friday Fund App! We look forward to revi
 Happy coding! 🚀
 
 # Contributers 
-Rene Accosta ,
+Rene Acosta ,
 Kairi Wright ,
 Parker Connolly ,
 Kent Riggs

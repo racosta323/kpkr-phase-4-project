@@ -3,11 +3,12 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
-import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 function AddGoalModal({ show, setShow, handleClose, userId }){
 
-  console.log(show)
+  const navigate = useNavigate()
+
   function showClick(){
     setShow(!show)
   }
@@ -34,7 +35,6 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
             const goalData = await goalResponse.json()
             formik.values.goalId = goalData.id
             formik.values.userId = userId
-            console.log('goal id', formik.values.goalId, 'user id:', formik.values.userId)
           }
 
           const userGoalResponse = await fetch(`/usergoals`,{
@@ -48,61 +48,14 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
 
           if (userGoalResponse.status === 201){
             const userGoalData = await userGoalResponse.json()
-            
-            console.log(userGoalData)
           }
           } catch(error){
-            console.error(error)
+            
           }
+          navigate(`/goals`)
+          window.location.reload()
         }
       })
-          // console.log(formik.values.goal_name)
-          // if (formik.values.goal_name != "" || formik.values.amount != ""){
-          //   fetch(`/goals`, {
-          //     method: "POST",
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify(values, null, 2)
-          //     }).then(
-          //       (res) => {
-          //         if(res.status == 201){
-          //           return res.json()
-          //         }
-          //       }
-          //     ).then(
-          //       (data)=>{
-          //         goalId=data.id
-          //         console.log(goalId)
-          //       }
-          //     )
-              // .then(
-              //   fetch(`/usergoals`, {
-              //     method: "POST",
-              //     headers: {
-              //       "Content-Type": "application/json",
-              //     },
-              //     body: JSON.stringify(
-              //       {
-              //         "contributions": formik.values.contributions,
-              //         "goalId": goalId
-              //       })
-              //     }).then(
-              //       (res) => {
-              //         if(res.status == 201){
-              //           return res.json()
-              //         }
-              //       }
-              //     ).then(
-              //       (data)=>{
-              //         console.log(data)
-              //       }
-              //     )
-              // )
-        //   }
-          
-        // }    
-    // })
 
     return(
     <Modal
@@ -118,7 +71,7 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="mb-3" controlId="goal_name">
               <Form.Label>Goal Name</Form.Label>
-              <p>What will you be saving toward?</p>
+              <p>What will you be saving for?</p>
               <Form.Control
                 as="input"
                 type="goalName"
@@ -131,7 +84,7 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
             </Form.Group>
             <Form.Group className="mb-3" controlId="amount">
               <Form.Label>Goal Amount</Form.Label>
-              <p>How much do you estimate it will cost?</p>
+              <p>How much do you need to save to reach your goal?</p>
               <Form.Control
                 as="input"
                 type="goalAmt"
@@ -143,7 +96,7 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
             </Form.Group>
             <Form.Group className="mb-3" controlId="contributions">
               <Form.Label>Contribution Amount</Form.Label>
-              <p>Have you made any contributions towards it? (Enter "0" if you have not yet made a contribution.)</p>
+              <p>Do you have any savings for your goal already? (Enter "0" if you're starting from the beginning')</p>
               <Form.Control
                 as="input"
                 type="contributions"

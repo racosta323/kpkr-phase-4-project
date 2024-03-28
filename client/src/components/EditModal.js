@@ -26,13 +26,11 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         .then(resp=>resp.json())
         .then(data=>{
             console.log(data)
-            //nav back to all goals
-            
         })
         navigate(`/goals`)
+        window.location.reload()
     }
     
-    // formik.values.goal_name ? name : formik.values.goal_name
 
     const formik = useFormik({
         initialValues:{
@@ -44,7 +42,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
           formik.values.goal_name = formik.values.goal_name ? formik.values.goal_name : name
           formik.values.amount = formik.values.amount ? formik.values.amount : amount
           formik.values.contributions = formik.values.contributions ? formik.values.contributions : name
-          console.log(formik.values.goal_name)
+          
           if (formik.values.goal_name != "" || formik.values.amount != ""){
             fetch(`/goals/${goalId}`, {
               method: "PATCH",
@@ -65,7 +63,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
               )
           }
           navigate(`/goals/${userGoalId}`)
-          // console.log(formik.values.contributions)
+         
           if (formik.values.contributions != ""){
             fetch(`/usergoals/${userGoalId}`, {
               method: "PATCH",

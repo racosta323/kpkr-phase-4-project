@@ -20,17 +20,9 @@ import Button from 'react-bootstrap/Button'
         }
     }
 
-
     const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
     const [signup, setSignUp] = useState(changeToSignup)
     const navigate = useNavigate()
-    // const [display, setDisplay] = useState("")
-    
-    // let browserPathname = window.location.pathname
-    //     if (browserPathname = '/signup'){
-    //       setSignUp(false)
-    //     }
-
 
     const formik = useFormik({
       initialValues:{
@@ -52,9 +44,7 @@ import Button from 'react-bootstrap/Button'
               resp.json().then((user) => {
                   setLoggedInUser(user)
                   formik.values.username = user.username
-                  console.log(user)
                   if (user.userId == ""){
-                    console.log(user.userId)
                     navigate(`/onboarding`)
                   } else{
                     navigate(`/goals`)
@@ -73,18 +63,27 @@ import Button from 'react-bootstrap/Button'
   }
 
 
- 
+const title = () => {
+  if (!signup){
+    return 'Sign Up'
+  } else {
+    return 'Login'
+  }
+}
 
 return (
   <>
-    {/* <header><NavBar logoutUser={logoutUser}/></header> */}
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
     <Row>
     <Col></Col>
-      <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
-      <button onClick={toggleSignup}>{!signup ? 'Login instead!' : 'Register for an account'}</button>
+      <Col className="border border-dark d-flex align-items-center">
         <Form className="w-75 m-5" onSubmit={formik.handleSubmit}> 
           <Form.Group>
-            <Form.Label className="fs-3">Login</Form.Label>
+            <Form.Label className="fs-3">{title()}</Form.Label>
             <p>Enter your login details to enter</p>
             <Form.Control 
                 as="input" 
@@ -101,26 +100,34 @@ return (
                 id='password' 
                 name="password"
                 type='password'
-                placeholder='password'
+                placeholder='Password'
                 required
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 className="my-3"
             />
             {!signup && <>
-                <label htmlFor='phase'>Confirm Password</label>
-                <input 
-                    id="passwordConfirmation" 
-                    name="passwordConfirmation"
-                    type='password' 
-                    placeholder="Password Confirmation" 
-                    value={formik.values.passwordConfirmation}
-                    onChange={formik.handleChange}
+              <Form.Group>
+                <Form.Label className="mt-4">Confirm Password</Form.Label>
+    
+                <Form.Control 
+                  as="input" 
+                  id="passwordConfirmation" 
+                  name="passwordConfirmation"
+                  type='password' 
+                  placeholder="Password Confirmation" 
+                  value={formik.values.passwordConfirmation}
+                  onChange={formik.handleChange}
+                  required
+                  className="mb-4"
                 />
-            </>}   
+            </Form.Group>
+              </>} 
+   
             <Button as="input" type="submit" value="Submit"/>{' '}
           </Form.Group>
         </Form>
+        <Button className="me-1" variant="secondary" onClick={toggleSignup}>{!signup ? 'Login instead!' : 'Register for an account'}</Button>
       </Col>
       <Col></Col>
     </Row>

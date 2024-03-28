@@ -14,7 +14,7 @@ return(
         <Form className="w-75 m-5"> 
           <Form.Group>
             <Form.Label className="fs-3">What is your first and last name?</Form.Label>
-            <p>Enter your first and last name, then press next</p>
+            <p>Enter your first and last name and click next</p>
             <Form.Control 
                 as="input" 
                 type='firstName'

@@ -35,8 +35,6 @@ function App() {
     setLoggedInUser,
     logoutUser
   }
-    
-  console.log(loggedInUser)
 
   return (
     <>
