@@ -9,7 +9,6 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
 
   const navigate = useNavigate()
 
-  console.log(show)
   function showClick(){
     setShow(!show)
   }
@@ -36,7 +35,6 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
             const goalData = await goalResponse.json()
             formik.values.goalId = goalData.id
             formik.values.userId = userId
-            console.log('goal id', formik.values.goalId, 'user id:', formik.values.userId)
           }
 
           const userGoalResponse = await fetch(`/usergoals`,{

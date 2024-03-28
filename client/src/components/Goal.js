@@ -28,7 +28,7 @@ function Goal() {
     .then(data => {
       setGoal(data)
       console.log(data.user_goals)
-      // console.log(data)
+      
       })
   }, [goalId])
 
@@ -37,7 +37,7 @@ function Goal() {
   const userContributions = (goal === null) ? null : goal.user_goals[0].contributions
   const userGoalId = (goal === null) ? null : goal.user_goals[0].id
 
-  console.log(goalName)
+
 
   return (
     <>

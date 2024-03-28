@@ -9,8 +9,6 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-//need to add validation
-
   function Auth( ){
 
     const changeToSignup = () => {
@@ -33,7 +31,6 @@ import Button from 'react-bootstrap/Button'
         passwordConfirmation: '',
         userId: '' 
       },
-      //needs error handling when you do not have an account
       onSubmit: (values) => {
         const endpoint = !signup ? '/authusers' : '/login'
         fetch(endpoint, {
@@ -47,9 +44,7 @@ import Button from 'react-bootstrap/Button'
               resp.json().then((user) => {
                   setLoggedInUser(user)
                   formik.values.username = user.username
-                  console.log(user)
                   if (user.userId == ""){
-                    console.log(user.userId)
                     navigate(`/onboarding`)
                   } else{
                     navigate(`/goals`)
@@ -127,15 +122,6 @@ return (
                   className="mb-4"
                 />
             </Form.Group>
-                {/* <label htmlFor='phase'>Confirm Password</label>
-                <input 
-                    id="passwordConfirmation" 
-                    name="passwordConfirmation"
-                    type='password' 
-                    placeholder="Password Confirmation" 
-                    value={formik.values.passwordConfirmation}
-                    onChange={formik.handleChange}
-                /> */}
               </>} 
    
             <Button as="input" type="submit" value="Submit"/>{' '}

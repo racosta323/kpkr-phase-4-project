@@ -42,7 +42,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
           formik.values.goal_name = formik.values.goal_name ? formik.values.goal_name : name
           formik.values.amount = formik.values.amount ? formik.values.amount : amount
           formik.values.contributions = formik.values.contributions ? formik.values.contributions : name
-          console.log(formik.values.goal_name)
+          
           if (formik.values.goal_name != "" || formik.values.amount != ""){
             fetch(`/goals/${goalId}`, {
               method: "PATCH",
@@ -63,7 +63,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
               )
           }
           navigate(`/goals/${userGoalId}`)
-          // console.log(formik.values.contributions)
+         
           if (formik.values.contributions != ""){
             fetch(`/usergoals/${userGoalId}`, {
               method: "PATCH",

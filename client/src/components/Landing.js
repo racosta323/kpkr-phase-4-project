@@ -1,13 +1,7 @@
 import React, { useState, useEffect} from "react";
-import { Outlet } from "react-router-dom";
-import { useOutletContext, NavLink } from "react-router-dom";
-import NavBar from "./NavBar";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from "react-bootstrap/esm/Container";
-import Auth from "./Auth";
-import Intake from './OnboardingFlow/Intake'
-import AllGoals from "./AllGoals";
 import Button from "react-bootstrap/Button";
 
 

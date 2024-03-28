@@ -1,16 +1,14 @@
 import React from "react";
-import { useFormik, Field, Form } from "formik";
+import { useFormik } from "formik";
 import { useState } from 'react';
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
-import { useNavigate, useOutletContext } from "react-router-dom";
 import NavBar from "../NavBar"
-
 
 import * as yup from 'yup';
 
@@ -18,7 +16,6 @@ import * as yup from 'yup';
   function Intake(){
 
     const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
-    // console.log(loggedInUser)
 
     const navigate = useNavigate()
 
@@ -45,9 +42,6 @@ import * as yup from 'yup';
                 .nullable()
                 .typeError("Goal Amount must be a number")
                 .required(""),
-      // targetDate: yup.date()
-      // .required('A target date is required')
-      // .min(new Date(), 'Taregt should be a reasonable date in the future')
     })
 
   
@@ -119,7 +113,6 @@ import * as yup from 'yup';
           }
           }
 
-          
       }
     } catch (error) {
       console.error(error);
@@ -150,16 +143,6 @@ import * as yup from 'yup';
           return <Confirmation formik={formik}/>
       }
     }
-
-
-      //not this
-    //   } catch (error) {
-    //     console.error("Error submitting form", error)
-    //     alert("Error submitting form, please try again when you have more money")
-    //   }
-    // }
-    // })
-
 
 return (
     <>
