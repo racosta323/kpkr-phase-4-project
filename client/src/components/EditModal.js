@@ -32,7 +32,6 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
     }
     
 
-
     const formik = useFormik({
         initialValues:{
           goal_name:'',
