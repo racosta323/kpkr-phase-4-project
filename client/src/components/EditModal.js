@@ -26,10 +26,9 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         .then(resp=>resp.json())
         .then(data=>{
             console.log(data)
-            //nav back to all goals
-            
         })
         navigate(`/goals`)
+        window.location.reload()
     }
     
 

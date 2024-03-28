@@ -42,18 +42,17 @@ function Goal() {
   return (
     <>
       <NavBar/>
-      <Row className="m-4"></Row>
+      <Row className="m-3"></Row>
       <Container fluid className="d-flex justify-content-center">
         <Stack>
-          {/* {update colors} */}
-          <h2 className="d-flex justify-content-center mb-4">{goalName}</h2>
-          <h3 className="d-flex justify-content-center text-danger">Goal Amount: ${goalAmount}</h3>
-          <h3 className="d-flex justify-content-center text-primary">Contributions made: ${userContributions}</h3>
-          <h3 className="d-flex justify-content-center mb-5 text-warning">Amount to Goal: ${goalAmount-userContributions}</h3>
+          <h2 className="d-flex justify-content-center mb-3 fs-2">{goalName}</h2>
+          <h3 className="d-flex justify-content-center text-danger fs-4">Goal Amount: ${goalAmount}</h3>
+          <h3 className="d-flex justify-content-center text-info fs-4">Contributions made: ${userContributions}</h3>
+          <h3 className="d-flex justify-content-center mb-4 text-warning fs-4">Amount to Goal: ${goalAmount-userContributions}</h3>
           <Row>
             <Col></Col>
             <Col>
-              <Graph goalAmount={goalAmount} userContributions={userContributions}/>
+              <Graph goalAmount={goalAmount} userContributions={userContributions} className="mt-1"/>
               <button className="edit-button btn btn-secondary mb -4" onClick={handleShow}>Update your goal</button>
               <Row className="m-4"></Row>
             </Col>
@@ -72,13 +71,6 @@ function Goal() {
         />
       </Container>
     </>
-      // <div className='app-container'>
-      //   <NavBar/>
-      //   <div className="graph-box">
-      //     <Graph goalAmount={goalAmount} userContributions={userContributions} />
-      //   </div>
-      //   <button className="edit-button btn btn-secondary">Update your goal</button>
-      // </div>
     );
   }
     
