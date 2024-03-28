@@ -9,6 +9,8 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+//need to add validation
+
   function Auth( ){
 
     const changeToSignup = () => {
@@ -20,17 +22,9 @@ import Button from 'react-bootstrap/Button'
         }
     }
 
-
     const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
     const [signup, setSignUp] = useState(changeToSignup)
     const navigate = useNavigate()
-    // const [display, setDisplay] = useState("")
-    
-    // let browserPathname = window.location.pathname
-    //     if (browserPathname = '/signup'){
-    //       setSignUp(false)
-    //     }
-
 
     const formik = useFormik({
       initialValues:{
@@ -77,11 +71,14 @@ import Button from 'react-bootstrap/Button'
 
 return (
   <>
-    {/* <header><NavBar logoutUser={logoutUser}/></header> */}
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
+    <Row className="m-4"></Row>
     <Row>
     <Col></Col>
-      <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
-      <button onClick={toggleSignup}>{!signup ? 'Login instead!' : 'Register for an account'}</button>
+      <Col className="border border-dark d-flex align-items-center">
         <Form className="w-75 m-5" onSubmit={formik.handleSubmit}> 
           <Form.Group>
             <Form.Label className="fs-3">Login</Form.Label>
@@ -117,10 +114,12 @@ return (
                     value={formik.values.passwordConfirmation}
                     onChange={formik.handleChange}
                 />
-            </>}   
+            </>} 
+   
             <Button as="input" type="submit" value="Submit"/>{' '}
           </Form.Group>
         </Form>
+        <Button className="me-1" variant="secondary" onClick={toggleSignup}>{!signup ? 'Login instead!' : 'Register for an account'}</Button>
       </Col>
       <Col></Col>
     </Row>
