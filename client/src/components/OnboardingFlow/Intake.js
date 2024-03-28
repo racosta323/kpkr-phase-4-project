@@ -119,7 +119,7 @@ import NavBar from "../NavBar";
             
               formik.values.userId = '';
               formik.values.goalId = '';
-              // navigate(`/goals`)
+              navigate(`/goals`)
           }
           }
 

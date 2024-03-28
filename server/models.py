@@ -9,7 +9,7 @@ from config import db, bcrypt
 class AuthUser(db.Model, SerializerMixin):
     __tablename__ = 'auth_users'
 
-    serialize_rules = ('-created_at', '-updated_at', '-_password_hash')
+    serialize_rules = ('-created_at', '-updated_at', '-_password_hash', '-user.auth_users')
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
@@ -39,7 +39,7 @@ class AuthUser(db.Model, SerializerMixin):
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ('-user_goals.user',)
+    serialize_rules = ('-user_goals.user', '-auth_users.user')
 
     id=db.Column(db.Integer, primary_key=True)
     first_name=db.Column(db.String, nullable=False)

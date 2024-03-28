@@ -30,10 +30,6 @@ const routes = [
             {
                 path: '/goals',
                 element: <AllGoals />,
-            },
-            {
-                path: '/goals',
-                element: <AllGoals />,
             }
         ]
     },
