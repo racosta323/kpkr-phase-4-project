@@ -13,10 +13,10 @@ function GoalsList({ name, amount, contributions, id }){
                 <a href={href} className="rounded border border-primary-subtle list-group-item list-group-item-action mb-4">
                     <Stack direction="horizontal" gap={3}>
                         <h4>Goal</h4>
-                        <h4 className="ms-auto">Total amount: ${amount}</h4>
+                        <h4 className="ms-auto">${contributions} of ${amount} saved</h4>
                     </Stack>
                     <p>{name}</p>
-                    {/* <ProgressBar now={(contributions/amount)*100}/> */}
+                    <ProgressBar now={(contributions/amount)*100}/>
                 </a>
             </div>
         </Container>
