@@ -50,13 +50,15 @@ function AllGoals(){
     console.log(filterGoals)
 
     const renderGoals = () => {
-        console.log(filterGoals)
-        filterGoals.map((goal)=>{
-            return goal
-        })
-        return(
-            <GoalsList/>
-        )
+        return filterGoals.map((goal) => (
+          <GoalsList
+            key={goal.id}
+            id={goal.id}
+            name={goal.goal_name}
+            amount={goal.amount}
+            // contributions={goal.contributions}
+          />
+        ));
     }
 
     // console.log(renderGoals)
