@@ -1,7 +1,8 @@
 import React from "react";
 import { useFormik, Field, Form } from "formik";
 import { useState } from 'react';
-import CreateUser from "../AllForm-don't delete";
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
@@ -10,7 +11,7 @@ import Confirmation from "./OnboardingConfirmation";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import NavBar from "../NavBar"
 
-// import FakePage from "../AllGoals";
+
 import * as yup from 'yup';
 
 
@@ -131,108 +132,6 @@ import * as yup from 'yup';
     }
   }
 });
-      // onSubmit: (values) => { 
-      //   fetch("/users", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(values, null, 2)
-      //   }).then(
-      //     (res) => {
-      //       if(res.status == 201){
-      //         return res.json()
-      //       }
-      //     }
-      //   ).then(
-      //     (data)=>{
-      //       formik.values.userId = data.id
-      //       console.log('From user post', data)
-      //     }
-      //   ).then(
-      //     fetch("/goals",{
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify(values, null, 2)
-      //     }).then(
-      //       (res) => {
-      //         if(res.status == 201){
-      //           return res.json()
-      //         }
-      //       }
-      //     ).then(
-      //       (data)=>{
-      //         formik.values.goalId = data.id
-      //         console.log('from goal post', data)
-      //       }).then(
-      //         fetch('/usergoals', {
-      //           method: "POST",
-      //           headers: {
-      //             "Content-Type": "application/json",
-      //           },
-      //           body: JSON.stringify(values, null, 2)
-      //           }).then(
-      //             (res) => {
-      //               if(res.status == 201){
-      //                 return res.json()
-      //               }
-      //             }
-      //           ).then(
-      //             (data)=>{
-      //               console.log("From usergoals post", data, formik.values.userId, formik.values.goalId)
-      //               console.log(data)
-      //               formik.values.userId = ''
-      //               formik.values.goalId = ''
-      //               // return <FakePage />
-      //             }
-      //           )
-      //       )
-      //   )
-
-
-        // fetch("/goals",{
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(values, null, 2)
-        // }).then(
-        //   (res) => {
-        //     if(res.status == 201){
-        //       return res.json()
-        //     }
-        //   }
-        // ).then(
-        //   (data)=>{
-        //     formik.values.goalId = data["id"]
-        //     // console.log(data)
-        //   }
-        // )
-        // fetch('/usergoals', {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(values, null, 2)
-        //   }).then(
-        //     (res) => {
-        //       if(res.status == 201){
-        //         return res.json()
-        //       }
-        //     }
-        //   ).then(
-        //     (data)=>{
-        //       console.log(data)
-        //       // return <FakePage />
-        //     }
-        //   )
-          
-    //     }
-    // }
-    // )
-
 
     const nameClick= () => {
       setDisplay("goals")
@@ -271,7 +170,10 @@ import * as yup from 'yup';
 return (
     <>
       <NavBar/>
-      {update() }
+      <Row className="mt-5"></Row>
+      <Row className="mt-5">
+        {update()}
+      </Row>
     </>
       
 )
