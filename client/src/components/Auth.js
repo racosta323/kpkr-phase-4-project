@@ -33,6 +33,7 @@ import Button from 'react-bootstrap/Button'
         passwordConfirmation: '',
         userId: '' 
       },
+      //needs error handling when you do not have an account
       onSubmit: (values) => {
         const endpoint = !signup ? '/authusers' : '/login'
         fetch(endpoint, {
@@ -67,7 +68,13 @@ import Button from 'react-bootstrap/Button'
   }
 
 
- 
+const title = () => {
+  if (!signup){
+    return 'Sign Up'
+  } else {
+    return 'Login'
+  }
+}
 
 return (
   <>
@@ -81,7 +88,7 @@ return (
       <Col className="border border-dark d-flex align-items-center">
         <Form className="w-75 m-5" onSubmit={formik.handleSubmit}> 
           <Form.Group>
-            <Form.Label className="fs-3">Login</Form.Label>
+            <Form.Label className="fs-3">{title()}</Form.Label>
             <p>Enter your login details to enter</p>
             <Form.Control 
                 as="input" 
@@ -98,14 +105,29 @@ return (
                 id='password' 
                 name="password"
                 type='password'
-                placeholder='password'
+                placeholder='Password'
                 required
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 className="my-3"
             />
             {!signup && <>
-                <label htmlFor='phase'>Confirm Password</label>
+              <Form.Group>
+                <Form.Label className="mt-4">Confirm Password</Form.Label>
+    
+                <Form.Control 
+                  as="input" 
+                  id="passwordConfirmation" 
+                  name="passwordConfirmation"
+                  type='password' 
+                  placeholder="Password Confirmation" 
+                  value={formik.values.passwordConfirmation}
+                  onChange={formik.handleChange}
+                  required
+                  className="mb-4"
+                />
+            </Form.Group>
+                {/* <label htmlFor='phase'>Confirm Password</label>
                 <input 
                     id="passwordConfirmation" 
                     name="passwordConfirmation"
@@ -113,8 +135,8 @@ return (
                     placeholder="Password Confirmation" 
                     value={formik.values.passwordConfirmation}
                     onChange={formik.handleChange}
-                />
-            </>} 
+                /> */}
+              </>} 
    
             <Button as="input" type="submit" value="Submit"/>{' '}
           </Form.Group>
