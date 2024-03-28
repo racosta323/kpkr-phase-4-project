@@ -8,11 +8,11 @@ import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import NavBar from "../NavBar"
 
 // import FakePage from "../AllGoals";
 import * as yup from 'yup';
 
-import NavBar from "../NavBar";
 
   function Intake(){
 
@@ -269,7 +269,11 @@ import NavBar from "../NavBar";
 
 
 return (
-      update() 
+    <>
+      <NavBar/>
+      {update() }
+    </>
+      
 )
   }
 export default Intake;
