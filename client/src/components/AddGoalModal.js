@@ -3,65 +3,54 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import { useFormik } from "formik";
+import { useState } from 'react'
 
-function AddGoalModal({ show, handleClose, userId }){
+function AddGoalModal({ show, setShow, handleClose, userId }){
 
-    console.log(userId)
-    
+  console.log(show)
+  function showClick(){
+    setShow(!show)
+  }
 
+  const formik = useFormik({
+      initialValues:{
+        goalName:'',
+        goalAmt:'',
+        contributions:'',
+        goalId: '',
+        userId: ''
+      },
+      onSubmit: async (values) => { 
+        try {
+          const goalResponse = await fetch('/goals',{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values, null, 2)
+          });
 
-    const formik = useFormik({
-        initialValues:{
-          goalName:'',
-          goalAmt:'',
-          contributions:'',
-          goalId: '',
-          userId: ''
-        },
-        onSubmit: async (values) => { 
-          try {
-            const goalResponse = await fetch('/goals',{
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(values, null, 2)
-            });
+          if (goalResponse.status === 201){
+            const goalData = await goalResponse.json()
+            formik.values.goalId = goalData.id
+            formik.values.userId = userId
+            console.log('goal id', formik.values.goalId, 'user id:', formik.values.userId)
+          }
 
-            if (goalResponse.status === 201){
-              const goalData = await goalResponse.json()
-              formik.values.goalId = goalData.id
-              formik.values.userId = userId
-              console.log('goal id', formik.values.goalId, 'user id:', formik.values.userId)
-            }
+          const userGoalResponse = await fetch(`/usergoals`,{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values, null, 2)
+          });
+          
 
-            // await new Promise((resolve) => {
-            //   if (userGoalId) {
-            //     formik.values.userGoalId = userGoalId
-            //     resolve();
-            //   } else {
-            //     const interval = setInterval(() => {
-            //       if (userGoalId) {
-            //         clearInterval(interval);
-            //         resolve();
-            //       }
-            //     }, 100);
-            //   }
-            // });
-
-            const userGoalResponse = await fetch(`/usergoals`,{
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(values, null, 2)
-            })
-
-            if (userGoalResponse.status === 200){
-              const userGoalData = await userGoalResponse.json()
-              console.log(userGoalData)
-            }
-
+          if (userGoalResponse.status === 201){
+            const userGoalData = await userGoalResponse.json()
+            
+            console.log(userGoalData)
+          }
           } catch(error){
             console.error(error)
           }
@@ -169,7 +158,7 @@ function AddGoalModal({ show, handleClose, userId }){
                   <Button variant='secondary' onClick={handleClose} className="mx-2">
                       Close
                   </Button>
-                  <Button variant='primary' as='input' type='submit' value='Submit'/>
+                  <Button variant='primary' as='input' type='submit' value='Submit' onClick={showClick}/>
               </Col>
             </Modal.Footer>
           </Form>

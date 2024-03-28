@@ -6,8 +6,6 @@ import Stack from 'react-bootstrap/Stack'
 
 import { useState } from 'react'
 
-import FakePage from '../AllGoals'
-
 
 function Contributions({ formik, click }){
 

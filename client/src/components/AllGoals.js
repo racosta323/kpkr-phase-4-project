@@ -121,6 +121,7 @@ function AllGoals(){
                 </Stack>
                 <AddGoalModal 
                     show={show} 
+                    setShow={setShow}
                     handleClose={handleClose} 
                     // goalId = {goalId}
                     userId = {userId}

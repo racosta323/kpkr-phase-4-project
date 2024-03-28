@@ -89,34 +89,34 @@ import NavBar from "../NavBar";
           body: JSON.stringify(values, null, 2)
         });
 
-        if (goalResponse.status === 201) {
-          const goalData = await goalResponse.json();
-          formik.values.goalId = goalData.id;
-          // console.log('From goal post', goalData);
+      if (goalResponse.status === 201) {
+        const goalData = await goalResponse.json();
+        formik.values.goalId = goalData.id;
+        // console.log('From goal post', goalData);
 
-          const userGoalResponse = await fetch('/usergoals', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values, null, 2)
-          });
+        const userGoalResponse = await fetch('/usergoals', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values, null, 2)
+      });
 
-          if (userGoalResponse.status === 201) {
-            formik.values.username = loggedInUser.username
-            console.log(formik.values.userId)
-            // const userGoalData = await userGoalResponse.json();
-            // formik.values.userGoalId = userGoalData.id
-            // console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
-            // console.log(userGoalData);
-            const authUserResponse = await fetch('/founduser', {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(values, null, 2)
-              
-            });
+      if (userGoalResponse.status === 201) {
+        formik.values.username = loggedInUser.username
+        console.log(formik.values.userId)
+        // const userGoalData = await userGoalResponse.json();
+        // formik.values.userGoalId = userGoalData.id
+        // console.log("From usergoals post", userGoalData, formik.values.userId, formik.values.goalId);
+        // console.log(userGoalData);
+        const authUserResponse = await fetch('/founduser', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values, null, 2)
+          
+        });
             
               formik.values.userId = '';
               formik.values.goalId = '';
