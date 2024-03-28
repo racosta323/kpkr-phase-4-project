@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import Container from "react-bootstrap/Container"
+import { useOutletContext } from "react-router-dom"
 
 import AddGoalModal from "./AddGoalModal"
 
@@ -16,34 +17,40 @@ function AllGoals(){
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
+    const { logoutUser, loggedInUser } = useOutletContext()
+    
+
+    const userId = loggedInUser ? loggedInUser.userId : null
+
     useEffect(()=>{
-        fetch('/usergoals')
+        fetch('/goals')
         .then(resp=>resp.json())
         .then(data => setGoals(data))
-        }, []
-    )
+    }, [])
 
-    let renderGoals = goals.map((goal)=>{
-        //this needs to change based on user id
-        if (goal.user_id === 2){
-            
-            return(
-                <GoalsList
-                    key={goal.id}
-                    id={goal.id}
-                    name={goal.goal.goal_name}
-                    amount={goal.goal.amount}
-                    //looks like we probably don't need progress -- will remove later
-                    // progress={goal.progress}
-                    contributions={goal.contributions}
-                />
-            )
-        }
+    const filterGoals = goals.filter(data=>{
+        const dataId = data.user_goals[0].user_id
+        return dataId == userId
+        
     })
+
+    console.log(filterGoals)
+
+    const renderGoals = () => {
+        return filterGoals.map((goal) => (
+          <GoalsList
+            key={goal.id}
+            id={goal.id}
+            name={goal.goal_name}
+            amount={goal.amount}
+            // contributions={goal.contributions}
+          />
+        ));
+    }
 
     return(
         <>
-            <NavBar/>
+            <NavBar logoutUser={logoutUser}/>
             <Container>
                 <Row className="m-4"></Row>
                 <Stack direction="horizontal" gap={3}>
@@ -52,15 +59,13 @@ function AllGoals(){
                 </Stack>
                 <AddGoalModal 
                     show={show} 
+                    setShow={setShow}
                     handleClose={handleClose} 
-                    // name={goalName} 
-                    // amount={goalAmount}
-                    // contributions={userContributions}
                     // goalId = {goalId}
-                    // userGoalId = {userGoalId}
+                    userId = {userId}
                 />
                 <Row className="m-4"></Row>
-                {renderGoals}
+                {renderGoals()}
             </Container>
         </>
     )

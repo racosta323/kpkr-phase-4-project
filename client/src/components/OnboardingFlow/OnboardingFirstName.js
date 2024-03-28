@@ -2,10 +2,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import * as Yup from 'yup'
 
 function FirstName({ formik, click }){
-
-console.log(typeof(formik.values.firstName))
 
 return(
     <>
@@ -15,7 +14,7 @@ return(
         <Form className="w-75 m-5"> 
           <Form.Group>
             <Form.Label className="fs-3">What is your first and last name?</Form.Label>
-            <p>Enter your first and last name, then press next</p>
+            <p>Enter your first and last name and click next</p>
             <Form.Control 
                 as="input" 
                 type='firstName'
@@ -35,6 +34,8 @@ return(
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
             />   
+            <p style={{ color: "red" }}> {formik.errors.lastName}</p>
+
             <Button as="input" type="button" value="Next" onClick={click}/>{' '}
           </Form.Group>
         </Form>

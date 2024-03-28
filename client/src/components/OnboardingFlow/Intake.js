@@ -1,32 +1,50 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useState } from 'react';
-import CreateUser from "../AllForm-don't delete";
-import * as yup from "yup"
-
+import Row from 'react-bootstrap/Row'
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import FirstName from "./OnboardingFirstName";
 import Goals from "./OnboardingGoals"
 import Contributions from "./OnboardingContributions"
 import Confirmation from "./OnboardingConfirmation";
-import FakePage from "../AllGoals";
+import NavBar from "../NavBar"
+
+import * as yup from 'yup';
+
 
   function Intake(){
 
+    const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
+
+    const navigate = useNavigate()
+
     const SignupSchema = yup.object().shape({
-      firstName: yup.string().required("Please enter a valid string as first name"),
-      lastName: yup.string().required("Please enter a valid string as last name"),
-      goalName: yup.string().required("Please enter valid goal"),
-      goalAmt: yup.number()
-      .required("A target savings in USD is required for your goal")
-      .integer("Goal must be a whole number"),
-      // targetDate: yup.date()
-      // .required('A target date is required')
-      // .min(new Date(), 'Taregt should be a reasonable date in the future')
+      firstName: yup
+                .string()
+                .nullable()
+                .matches(
+                  /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+                      'Name can only contain letters.')
+                .required(""),
+      lastName: yup
+                .string()
+                .nullable()
+                .matches(
+                  /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+                      'Name can only contain letters.')
+                .required(""),
+      goalName: yup
+                .string()
+                .required(""),
+      goalAmt: yup
+                .number()
+                .nullable()
+                .typeError("Goal Amount must be a number")
+                .required(""),
     })
 
-    
-
+  
     const [display, setDisplay] = useState("")
 
     const formik = useFormik({
@@ -38,68 +56,69 @@ import FakePage from "../AllGoals";
         targetDate:'',
         contributions:'',
         goalId: '',
-        userId: '' 
+        userId: '',
+        username: ''
       },
       validationSchema: SignupSchema,
-      onSubmit: (values) => { 
-        fetch("/users", {
+  onSubmit: async (values) => { 
+    try {
+      const userResponse = await fetch("/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values, null, 2)
-        }).then(
-          (res) => {
-            if(res.status == 201){
-              return res.json()
-            }
-          }
-        ).then(
-          (data)=>{
-            formik.values.userId = data["id"]
-          }
-        )
-        fetch("/goals",{
+      });
+
+      if (userResponse.status === 201) {
+        const userData = await userResponse.json();
+        console.log(userData)
+        formik.values.userId = userData.id;
+
+        const goalResponse = await fetch("/goals", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values, null, 2)
-        }).then(
-          (res) => {
-            if(res.status == 201){
-              return res.json()
-            }
-          }
-        ).then(
-          (data)=>{
-            formik.values.goalId = data["id"]
-            // console.log(data)
-          }
-        )
-        fetch('/usergoals', {
+        });
+
+      if (goalResponse.status === 201) {
+        const goalData = await goalResponse.json();
+        formik.values.goalId = goalData.id;
+
+        const userGoalResponse = await fetch('/usergoals', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values, null, 2)
-          }).then(
-            (res) => {
-              if(res.status == 201){
-                return res.json()
-              }
-            }
-          ).then(
-            (data)=>{
-              console.log(data)
-              // return <FakePage />
-            }
-          )
+      });
+
+      if (userGoalResponse.status === 201) {
+        formik.values.username = loggedInUser.username
+        const authUserResponse = await fetch('/founduser', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values, null, 2)
           
-        }
-    })
-    
-    console.log(formik.errors)
+        });
+            
+              formik.values.userId = '';
+              formik.values.goalId = '';
+              navigate(`/goals`)
+              window.location.reload()
+          }
+          }
+
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+});
 
     const nameClick= () => {
       setDisplay("goals")
@@ -125,22 +144,15 @@ import FakePage from "../AllGoals";
       }
     }
 
-
-      //not this
-    //   } catch (error) {
-    //     console.error("Error submitting form", error)
-    //     alert("Error submitting form, please try again when you have more money")
-    //   }
-    // }
-    // })
-
-
-
-
 return (
-  <>
-    {update()}
-  </>
+    <>
+      <NavBar/>
+      <Row className="mt-5"></Row>
+      <Row className="mt-5">
+        {update()}
+      </Row>
+    </>
+      
 )
-}
-export default Intake
+  }
+export default Intake;

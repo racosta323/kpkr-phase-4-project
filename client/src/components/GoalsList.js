@@ -3,7 +3,7 @@ import ProgressBar from "react-bootstrap/ProgressBar"
 import Stack from 'react-bootstrap/Stack'
 
 function GoalsList({ name, amount, contributions, id }){
-   let href = `${id}`
+   let href = `/goals/${id}`
 
     return (
         <Container>

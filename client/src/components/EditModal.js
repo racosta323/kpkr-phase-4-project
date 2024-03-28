@@ -2,9 +2,19 @@ import Button from "react-bootstrap/Button"
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
+import { useNavigate } from 'react-router-dom'
 import { useFormik } from "formik";
+import { useEffect } from 'react'
 
-function EditModal({ show, handleClose, name, amount, contributions, goalId, userGoalId }){
+function EditModal({ show, handleClose, name, amount, contributions, goalId, userGoalId, setGoal}){
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+      handleClose()
+      navigate(`/goals/${goalId}`)
+      window.location.reload()
+    }
 
     const handleDelete = () => {
         fetch(`/goals/${goalId}`, {
@@ -16,10 +26,12 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
         .then(resp=>resp.json())
         .then(data=>{
             console.log(data)
-            //nav back to all goals
         })
+        navigate(`/goals`)
+        window.location.reload()
     }
     
+
     const formik = useFormik({
         initialValues:{
           goal_name:'',
@@ -27,7 +39,10 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
           contributions:''
         },
         onSubmit: (values) => { 
-          console.log(formik.values.goal_name)
+          formik.values.goal_name = formik.values.goal_name ? formik.values.goal_name : name
+          formik.values.amount = formik.values.amount ? formik.values.amount : amount
+          formik.values.contributions = formik.values.contributions ? formik.values.contributions : name
+          
           if (formik.values.goal_name != "" || formik.values.amount != ""){
             fetch(`/goals/${goalId}`, {
               method: "PATCH",
@@ -47,7 +62,8 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 }
               )
           }
-          // console.log(formik.values.contributions)
+          navigate(`/goals/${userGoalId}`)
+         
           if (formik.values.contributions != ""){
             fetch(`/usergoals/${userGoalId}`, {
               method: "PATCH",
@@ -65,12 +81,25 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 (data)=>{
                   console.log(data)
                 }
-              )
+                )
+              navigate(`/goals/${userGoalId}`)
           }
+          navigate(`/goals/${userGoalId}`)
         }    
+        
     })
 
-    console.log(formik.values.amount)
+    useEffect(() => {
+      if (formik.values.goal_name !== "" || formik.values.amount !== "") {
+        fetch(`/goals/${goalId}`)
+          .then(resp => resp.json())
+          .then(data => {
+            setGoal(data);
+          });
+      }
+    }, [formik.values.goal_name, formik.values.amount]);
+
+  
 
     return(
     <Modal
@@ -91,7 +120,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                 type="goal_name"
                 name = 'goal_name'
                 placeholder= {name}
-                value={formik.values.goal_name}
+                value = {formik.values.goal_name}
                 onChange={formik.handleChange}
                 autoFocus
               />
@@ -128,7 +157,7 @@ function EditModal({ show, handleClose, name, amount, contributions, goalId, use
                   <Button variant='secondary' onClick={handleClose} className="mx-2">
                       Close
                   </Button>
-                  <Button variant='primary' as='input' type='submit' value='Submit'/>
+                  <Button variant='primary' as='input' type='submit' value='Submit' onClick={handleClick} />
               </Col>
             </Modal.Footer>
           </Form>

@@ -3,15 +3,43 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from datetime import date, datetime
 
-from config import db
-
-#don't forget to migrate!
+from config import db, bcrypt
 
 # Models go here!
+class AuthUser(db.Model, SerializerMixin):
+    __tablename__ = 'auth_users'
+
+    serialize_rules = ('-created_at', '-updated_at', '-_password_hash', '-user.auth_users')
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String, nullable=False)
+    _password_hash = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+    userId = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    user = db.relationship("User", back_populates='auth_users')
+
+    @property
+    def password_hash(self):
+        return self._password_hash
+    
+    @password_hash.setter
+    def password_hash(self, password):
+        byte_object = password.encode('utf-8')
+        bcrypt_hash = bcrypt.generate_password_hash(byte_object)
+        hash_object_as_string = bcrypt_hash.decode('utf-8')
+        self._password_hash = hash_object_as_string
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(self.password_hash, password.encode('utf-8'))
+
+
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    serialize_rules = ('-user_goals.user',)
+    serialize_rules = ('-user_goals.user', '-auth_users.user')
 
     id=db.Column(db.Integer, primary_key=True)
     first_name=db.Column(db.String, nullable=False)
@@ -21,6 +49,7 @@ class User(db.Model, SerializerMixin):
 
     user_goals = db.relationship("UserGoal", back_populates='user')
     goals = association_proxy('user_goals', 'goal')
+    auth_users = db.relationship("AuthUser", back_populates='user')
 
     def __repr__(self):
         return f'<User Id: {self.id}, first_name = {self.first_name}, last_name = {self.last_name}>'

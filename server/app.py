@@ -4,13 +4,14 @@
 from datetime import datetime
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
 # Add your model imports
-from models import User, Goal, UserGoal
+from models import User, Goal, UserGoal, AuthUser
+import ipdb
 
 # Views go here!
 
@@ -27,6 +28,7 @@ class Users(Resource):
         return make_response(new_user.to_dict(), 201)
 
 api.add_resource(Users, '/users')
+
 
 class UsersById(Resource):
     def get(self,id):
@@ -58,6 +60,11 @@ api.add_resource(UsersById, '/users/<int:id>')
 
 
 class Goals(Resource):
+    def get(self):
+        goals = Goal.query.all()
+        goals_list = [goals.to_dict() for goals in goals]
+        return make_response(goals_list)
+
     def post(self):
         # date_object = datetime.strptime(request.get_json()["targetDate"], '%m/%d/%Y').date()
 
@@ -76,8 +83,8 @@ api.add_resource(Goals, '/goals')
 
 class GoalById(Resource):
     def get(self,id):
-        user = Goal.query.get(id)
-        return make_response(user.to_dict())
+        goal = Goal.query.get(id)
+        return make_response(goal.to_dict())
 
     def delete(self,id):
         goal = Goal.query.get(id)
@@ -152,6 +159,97 @@ class UserGoalsById(Resource):
 
 api.add_resource(UserGoalsById, '/usergoals/<int:id>')
     
+class AuthUsers(Resource):
+    def post(self):
+        data = request.json
+        
+        try:
+            user = AuthUser(username=data['username'])
+            user.password_hash = data['password']
+            user.userId = data["userId"]
+            
+            db.session.add(user)
+            db.session.commit()
+
+            session['user_id'] = user.id
+            response = make_response(user.to_dict(), 201)
+        except:
+            return make_response({'error': "something went wrong"}, 400)
+
+        return response
+
+api.add_resource(AuthUsers, '/authusers')
+
+class FindUserbyUn(Resource):
+    def post(self):
+        
+        data = request.json
+    
+        client_username = data["username"]
+      
+      
+        user = AuthUser.query.filter_by(username=client_username).first()
+        user.userId = data["userId"]
+ 
+
+        db.session.add(user)
+        db.session.commit()
+
+        return make_response({})
+
+       
+
+api.add_resource(FindUserbyUn, '/founduser')
+
+# class AuthById(Resource):
+#     def post(self, id):
+#         data = request.json
+#         try:
+#             # ipdb.set_trace()
+#             user = AuthUser(username=data['username'])
+#             # user.password_hash = data['password']
+#             user.userId = data["userId"]
+#             ipdb.set_trace()
+#             db.session.add(user)
+#             db.session.commit()
+
+#             session['user_id'] = user.id
+#             response = make_response(user.to_dict(), 201)
+#         except:
+#             return make_response({'error': "something went wrong"}, 400)
+
+#         return response
+
+# api.add_resource(AuthById, '/authusers/<int:id>')
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    user = AuthUser.query.filter_by(username=data['username']).first()
+    if not user:
+        return make_response({'error': 'invalid username'}, 404)
+
+    if user.authenticate(data['password']):
+        session['user_id'] = user.id
+        return make_response(user.to_dict(), 200)
+    else:
+        return make_response({'error': 'invalid username or password'}, 401)
+
+
+@app.route('/authorized', methods=['GET'])
+def authorized():
+    user_id = session.get('user_id')
+    if user_id:
+        user = AuthUser.query.filter_by(id=user_id).first()
+        return make_response(user.to_dict())
+    else:
+        return make_response({'error': 'Unauthorized'}, 401)
+
+@app.route('/logout', methods=['DELETE'])
+def logout():
+    session['user_id'] = None
+    return make_response({}, 204)
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
