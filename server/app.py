@@ -60,6 +60,11 @@ api.add_resource(UsersById, '/users/<int:id>')
 
 
 class Goals(Resource):
+    def get(self):
+        goals = Goal.query.all()
+        goals_list = [goals.to_dict() for goals in goals]
+        return make_response(goals_list)
+
     def post(self):
         # date_object = datetime.strptime(request.get_json()["targetDate"], '%m/%d/%Y').date()
 

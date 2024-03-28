@@ -17,7 +17,7 @@ import NavBar from "../NavBar";
   function Intake(){
 
     const { loggedInUser, setLoggedInUser, logoutUser } = useOutletContext()
-    console.log(loggedInUser)
+    // console.log(loggedInUser)
 
     const navigate = useNavigate()
 
@@ -77,6 +77,7 @@ import NavBar from "../NavBar";
 
       if (userResponse.status === 201) {
         const userData = await userResponse.json();
+        console.log(userData)
         formik.values.userId = userData.id;
         // console.log('From user post', userData);
 

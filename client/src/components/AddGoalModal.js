@@ -6,35 +6,84 @@ import { useFormik } from "formik";
 
 function AddGoalModal({ show, handleClose, name, amount, contributions, userGoalId }){
 
-    let goalId
+    // console.log(userGoalId)
     
     const formik = useFormik({
         initialValues:{
           goal_name:'',
           amount:'',
-          contributions:''
+          contributions:'',
+          goalId: '',
+          userGoalId: ''
         },
-        onSubmit: (values) => { 
-          console.log(formik.values.goal_name)
-          if (formik.values.goal_name != "" || formik.values.amount != ""){
-            fetch(`/goals`, {
+        onSubmit: async (values) => { 
+          try {
+            const goalResponse = await fetch('/goals',{
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(values, null, 2)
-              }).then(
-                (res) => {
-                  if(res.status == 201){
-                    return res.json()
+            });
+
+            if (goalResponse.status === 201){
+              const goalData = await goalResponse.json()
+              formik.values.goalId = goalData.id
+              console.log(formik.values.goalId)
+            }
+
+            await new Promise((resolve) => {
+              if (userGoalId) {
+                formik.values.userGoalId = userGoalId
+                resolve();
+              } else {
+                const interval = setInterval(() => {
+                  if (userGoalId) {
+                    clearInterval(interval);
+                    resolve();
                   }
-                }
-              ).then(
-                (data)=>{
-                  goalId=data.id
-                  console.log(goalId)
-                }
-              )
+                }, 100);
+              }
+            });
+
+            const userGoalResponse = await fetch(`/usergoals`,{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values, null, 2)
+            })
+
+            if (userGoalResponse.status === 200){
+              const userGoalData = await userGoalResponse.json()
+              console.log(userGoalData)
+            }
+
+          } catch(error){
+            console.error(error)
+          }
+        }
+      })
+          // console.log(formik.values.goal_name)
+          // if (formik.values.goal_name != "" || formik.values.amount != ""){
+          //   fetch(`/goals`, {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify(values, null, 2)
+          //     }).then(
+          //       (res) => {
+          //         if(res.status == 201){
+          //           return res.json()
+          //         }
+          //       }
+          //     ).then(
+          //       (data)=>{
+          //         goalId=data.id
+          //         console.log(goalId)
+          //       }
+          //     )
               // .then(
               //   fetch(`/usergoals`, {
               //     method: "POST",
@@ -58,10 +107,10 @@ function AddGoalModal({ show, handleClose, name, amount, contributions, userGoal
               //       }
               //     )
               // )
-          }
+        //   }
           
-        }    
-    })
+        // }    
+    // })
 
     return(
     <Modal

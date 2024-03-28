@@ -42,28 +42,29 @@ import Button from 'react-bootstrap/Button'
       onSubmit: (values) => {
         const endpoint = !signup ? '/authusers' : '/login'
         fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-              },
-            body: JSON.stringify(values)
-          }).then((resp) => {
-            if (resp.ok) {
-                resp.json().then((user) => {
-                    setLoggedInUser(user)
-                    formik.values.username = user.username
-                    console.log(user)
-                    if (user.userId == null){
-                      console.log(user.userId)
-                      navigate(`/onboarding`)
-                    } else{
-                      // navigate(`/goals`)
-                    }
-                })
-            } else { 
-                console.log('errors? handle them')
-            }
-          })
+          method: 'POST',
+          headers: {
+              "Content-Type": 'application/json'
+            },
+          body: JSON.stringify(values)
+        }).then((resp) => {
+          if (resp.ok) {
+              resp.json().then((user) => {
+                  setLoggedInUser(user)
+                  formik.values.username = user.username
+                  console.log(user)
+                  if (user.userId == ""){
+                    console.log(user.userId)
+                    navigate(`/onboarding`)
+                  } else{
+                    navigate(`/goals`)
+                  }
+              })
+          } else { 
+              console.log('errors? handle them')
+          }
+        })
+        
         }
       })
 
