@@ -17,7 +17,7 @@ return(
             <Form.Label className="fs-3">Do you have any initial savings?</Form.Label>
               <p className='fs-5'>Have you made any contributions yet?</p>
               <p>Enter a contribution amount without dollar signs. Example, "50"</p>
-              <p>Press "Skip" if you're just getting started</p>
+              {/* <p>Press "Skip" if you're just getting started</p> */}
             <Form.Control 
                 as="input" 
                 type='contribution'
