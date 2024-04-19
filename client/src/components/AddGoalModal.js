@@ -71,7 +71,7 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="mb-3" controlId="goal_name">
               <Form.Label>Goal Name</Form.Label>
-              <p>What will you be saving toward?</p>
+              <p>What will you be saving for?</p>
               <Form.Control
                 as="input"
                 type="goalName"
@@ -84,7 +84,7 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
             </Form.Group>
             <Form.Group className="mb-3" controlId="amount">
               <Form.Label>Goal Amount</Form.Label>
-              <p>How much do you estimate it will cost?</p>
+              <p>How much do you need to save to reach your goal?</p>
               <Form.Control
                 as="input"
                 type="goalAmt"
@@ -96,7 +96,7 @@ function AddGoalModal({ show, setShow, handleClose, userId }){
             </Form.Group>
             <Form.Group className="mb-3" controlId="contributions">
               <Form.Label>Contribution Amount</Form.Label>
-              <p>Have you made any contributions towards it? (Enter "0" if you have not yet made a contribution.)</p>
+              <p>Do you have any savings for your goal already? (Enter "0" if you're starting from the beginning')</p>
               <Form.Control
                 as="input"
                 type="contributions"
