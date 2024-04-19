@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
+import Container from 'react-bootstrap/Container'
 import { useState } from 'react'
 
 
@@ -132,21 +133,23 @@ function Contributions({ formik }){
 
 return( 
     <>
-      <Row>
-        <Col></Col>
-        <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
-          <Form className="w-75" onSubmit={formik.handleSubmit}> 
-            <Form.Group>
-              <Form.Label className="fs-2 ">Confirm your details</Form.Label>
-              {nameStack()}
-              {goalStack()}
-              {contributionStack()}
-            </Form.Group>
-            <Button as="input" type="submit" value="Submit"/>{' '}
-          </Form>
-        </Col>
-        <Col></Col>
-      </Row>
+      <Container>
+        <Row>
+          <Col></Col>
+          <Col className="border border-dark d-flex justify-content-center h-100 pt-3">
+            <Form className="w-75 p-2 mb-3" onSubmit={formik.handleSubmit}> 
+              <Form.Group>
+                <Form.Label className="fs-2 ">Confirm your details</Form.Label>
+                {nameStack()}
+                {goalStack()}
+                {contributionStack()}
+              </Form.Group>
+              <Button as="input" type="submit" value="Submit"/>{' '}
+            </Form>
+          </Col>
+          <Col></Col>
+        </Row>
+      </Container>
     </>
 )
 
